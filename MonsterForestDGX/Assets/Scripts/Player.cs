@@ -3,36 +3,84 @@
 public class Player : Fighter
 {
     public IAttack attack;
+
     public bool canAttack = false;
     public BattleManager battleManager;
+    public Rigidbody rb;
+    public bool InBattle = false;
+
+    private float rotation = 0;
+    public float rotationSpeed = 10;
+    private float movement = 0;
+    public float movementSpeed = 10;
+
+    private void Start()
+    {
+        health.SetUpHealth();
+    }
+
+    public void Battle()
+    {
+        InBattle = true;
+    }
+
+    public void BattleEnd()
+    {
+        InBattle = false;
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A) && !canAttack)
+        if (!InBattle)
         {
-            health.SetUpBlock();
+            if (Input.GetKey(KeyCode.A))
+            {
+                rotation -= 1;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                rotation += 1;
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                movement += 1;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                movement -= 1;
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Space) && canAttack)
+        else
         {
-            Attack();
+            if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
+            {
+                health.SetUpBlock();
+            }
+            if (Input.GetMouseButtonDown(0) && canAttack)
+            {
+                battleManager.PlayerAttack();
+                attack.Attack();
+            }
         }
     }
 
-    public void Attack()
+    private void FixedUpdate()
     {
-        battleManager.PlayerAttack();
-        attack.Attack();
+        rb.MovePosition(transform.position + transform.forward * movement * Time.fixedDeltaTime * movementSpeed);
+        movement = 0;
+
+        Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotation, 0) * Time.deltaTime * rotationSpeed);
+        rb.MoveRotation(rb.rotation * deltaRotation);
+        rotation = 0;
     }
 
     public override void Die()
     {
-        Debug.Log("Player die!");
         battleManager.PlayerDied();
     }
 
     public override void StartTurn()
     {
-        Debug.Log("Player Start Turn!");
         AttackTurn();
     }
 

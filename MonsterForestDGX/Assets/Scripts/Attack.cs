@@ -2,6 +2,7 @@
 
 public class Attack : MonoBehaviour
 {
+    public float dmg = 10;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,8 +12,8 @@ public class Attack : MonoBehaviour
             return;
         }
 
-        health.TakeDamage(10);
+        health.TakeDamage(dmg);
 
-        Destroy(gameObject, 4);
+        gameObject.SetActive(false);
     }
 }

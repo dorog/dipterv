@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
     public Monster monster;
     public Player player;
     public SceneLoader sceneLoader;
+    public Text turn;
+    public GameObject turnGO;
 
-    public void Start()
+    public void Battle()
     {
-        monster.StartTurn();
+        turnGO.SetActive(true);
+        turn.text = "Battle!";
+
+        player.battleManager = this;
+
+        monster.Appear();
+        player.Battle();
+        MonsterTurn();
     }
-    
+
     public void PlayerAttack()
     {
         monster.React();
@@ -19,17 +29,20 @@ public class BattleManager : MonoBehaviour
     public void PlayerTurn()
     {
         player.StartTurn();
+        turn.text = "Player Turn";
     }
 
     public void MonsterTurn()
     {
         monster.StartTurn();
         player.DefTurn();
+        turn.text = "Monster Turn";
     }
 
     public void MonsterDied()
     {
-        sceneLoader.LoadMainMenu();
+        turnGO.SetActive(false);
+        player.BattleEnd();
     }
 
     public void PlayerDied()

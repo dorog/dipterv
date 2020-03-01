@@ -2,5 +2,5 @@
 
 public abstract class IAttack : MonoBehaviour
 {
-    public abstract void Attack();
+    public abstract float Attack();
 }

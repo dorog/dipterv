@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Monster : Fighter
 {
+    public Animator animator;
+    public string appearAnimation;
+    public float appearAnimationTime = 2;
+    public string dieAnimation;
+
     public IAttack attack;
     [Range(0, 100)]
     public float blockChance = 10f;
@@ -15,6 +20,11 @@ public class Monster : Fighter
     public float minWaitTime = 1;
     public float maxWaitTime = 10;
 
+    public GameObject[] extraObjects;
+    private bool died = false;
+
+    private bool firstTurn = true;
+
     public override void StartTurn()
     {
         StartCoroutine(Strike());
@@ -24,27 +34,39 @@ public class Monster : Fighter
     {
         Debug.Log("Monster Start Turn");
 
-        yield return new WaitForSeconds(2);
-
-        Attack();
-        float secondAttack = Random.Range(0, 100);
-        if (secondAttack <= secondAttackChance)
+        if (firstTurn)
+        {
+            firstTurn = false;
+            yield return new WaitForSeconds(2 + appearAnimationTime);
+        }
+        else
         {
             yield return new WaitForSeconds(2);
+        }
 
-            Attack();
-            float thirdAttack = Random.Range(0, 100);
+        float animationTime = Attack();
+
+        yield return new WaitForSeconds(2 + animationTime);
+
+        float secondAttack = Random.Range(0, 101);
+        if (secondAttack <= secondAttackChance)
+        {
+            animationTime = Attack();
+
+            yield return new WaitForSeconds(2 + animationTime);
+
+            float thirdAttack = Random.Range(0, 101);
             if (thirdAttack <= thirdAttackChance)
             {
-                yield return new WaitForSeconds(2);
+                animationTime = Attack();
 
-                Attack();
+                yield return new WaitForSeconds(2 + animationTime);
             }
         }
 
         Debug.Log("Monster End Turn");
 
-        float waitTime = Random.Range(minWaitTime, maxWaitTime);
+        float waitTime = Random.Range(minWaitTime, maxWaitTime + 1);
         StartCoroutine(Countdown(waitTime));
 
         yield return new WaitForSeconds(4);
@@ -56,30 +78,31 @@ public class Monster : Fighter
     {
         float duration = time;
         float normalizedTime = 0;
-        while (normalizedTime <= 1f)
+        while (normalizedTime <= 1f && !died)
         {
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
 
-        battleManager.MonsterTurn();
+        if (!died)
+        {
+            battleManager.MonsterTurn();
+        }
     }
 
-    private void Attack()
+    private float Attack()
     {
-        Debug.Log("Attack!");
-        attack.Attack();
+        return attack.Attack();
     }
 
     private void Block()
     {
-        Debug.Log("Monster Block!");
         health.SetUpBlock();
     }
 
     public void React()
     {
-        float random = Random.Range(0, 100);
+        float random = Random.Range(0, 101);
         if (random <= blockChance)
         {
             Block();
@@ -88,6 +111,19 @@ public class Monster : Fighter
 
     public override void Die()
     {
+        died = true;
         battleManager.MonsterDied();
+        animator.SetTrigger(dieAnimation);
+    }
+
+    public void Appear()
+    {
+        foreach(var go in extraObjects)
+        {
+            go.SetActive(true);
+        }
+
+        animator.SetTrigger(appearAnimation);
+        health.SetUpHealth();
     }
 }

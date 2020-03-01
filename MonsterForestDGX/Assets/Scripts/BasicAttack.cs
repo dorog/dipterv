@@ -6,8 +6,10 @@ public class BasicAttack : IAttack
     public GameObject attack;
     public Vector3 position;
 
-    public override void Attack()
+    public override float Attack()
     {
         Instantiate(attack, position, Quaternion.identity);
+
+        return 0;
     }
 }
