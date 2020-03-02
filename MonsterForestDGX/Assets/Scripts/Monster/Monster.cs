@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : Fighter
 {
+    public string MonsterName = "";
+    public Text nameText;
     public Animator animator;
     public string appearAnimation;
     public float appearAnimationTime = 2;
@@ -102,6 +105,7 @@ public class Monster : Fighter
 
     public void React()
     {
+        health.inBlock = false;
         float random = Random.Range(0, 101);
         if (random <= blockChance)
         {
@@ -111,6 +115,7 @@ public class Monster : Fighter
 
     public override void Die()
     {
+        Debug.Log("Die: "  + dieAnimation);
         died = true;
         battleManager.MonsterDied();
         animator.SetTrigger(dieAnimation);
@@ -125,5 +130,6 @@ public class Monster : Fighter
 
         animator.SetTrigger(appearAnimation);
         health.SetUpHealth();
+        nameText.text = MonsterName;
     }
 }

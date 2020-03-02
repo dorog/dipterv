@@ -2,17 +2,20 @@
 
 public class Player : Fighter
 {
-    public IAttack attack;
+    public PlayerRayAttack attack;
 
     public bool canAttack = false;
     public BattleManager battleManager;
     public Rigidbody rb;
     public bool InBattle = false;
+    private bool inCast = false;
 
     private float rotation = 0;
     public float rotationSpeed = 10;
     private float movement = 0;
     public float movementSpeed = 10;
+    private Vector3 mousePosition;
+    public GameObject magicCircle;
 
     private void Start()
     {
@@ -27,6 +30,9 @@ public class Player : Fighter
     public void BattleEnd()
     {
         InBattle = false;
+        health.inBlock = false;
+        canAttack = false;
+        inCast = false;
     }
 
     private void Update()
@@ -56,12 +62,32 @@ public class Player : Fighter
             {
                 health.SetUpBlock();
             }
-            if (Input.GetMouseButtonDown(0) && canAttack)
+            if (Input.GetMouseButtonDown(0) && !inCast)
             {
-                battleManager.PlayerAttack();
-                attack.Attack();
+                inCast = true;
+                mousePosition = Input.mousePosition;
+                magicCircle.SetActive(true);
             }
         }
+    }
+
+    public void Def()
+    {
+        health.SetUpBlock();
+        magicCircle.SetActive(false);
+        inCast = false;
+    }
+
+    public void Attack(float dmg)
+    {
+        battleManager.PlayerAttack();
+
+        attack.mousePosition = mousePosition;
+        attack.dmg = dmg;
+        attack.Attack();
+
+        magicCircle.SetActive(false);
+        inCast = false;
     }
 
     private void FixedUpdate()
@@ -76,6 +102,8 @@ public class Player : Fighter
 
     public override void Die()
     {
+        //Necessary?
+        magicCircle.SetActive(false);
         battleManager.PlayerDied();
     }
 
@@ -87,10 +115,14 @@ public class Player : Fighter
     public void DefTurn()
     {
         canAttack = false;
+        magicCircle.SetActive(false);
+        inCast = false;
     }
 
     public void AttackTurn()
     {
         canAttack = true;
+        magicCircle.SetActive(false);
+        inCast = false;
     }
 }

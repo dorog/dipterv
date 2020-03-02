@@ -11,13 +11,16 @@ public class MonsterHealth : Health
     {
         if (inBlock)
         {
-            animator.SetTrigger(blockAnimation);
             TakeDamage(dmg);
+            animator.SetTrigger(blockAnimation);
         }
         else
         {
-            animator.SetTrigger(bodyHitAnimation);
             TakeDamage(dmg);
+            if(currentHp > 0)
+            {
+                animator.SetTrigger(bodyHitAnimation);
+            }
         }
     }
 
