@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &786940863047230097
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 786940863047230096}
-  - component: {fileID: 786940863047230099}
-  m_Layer: 0
-  m_Name: SpellManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &786940863047230096
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786940863047230097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 144.02917, y: 1721.176, z: -368.88974}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 786940863158487220}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &786940863047230099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786940863047230097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42d719f5c581d64d915fda141326064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minCoverage: 0.4
-  SpellPatternPoints:
-  - {fileID: 11400000, guid: 544df0a5b5c61b74fb44c0d4f4b42274, type: 2}
-  - {fileID: 11400000, guid: 16222315677e3e24b9dbecf42f8db979, type: 2}
-  - {fileID: 11400000, guid: a88799c264f899549a0437bfc805a0c3, type: 2}
-  SpellPattern: {fileID: 9150795908177849273, guid: b0a170b9970df9e42a3bbe05ba24706b,
-    type: 3}
 --- !u!1 &786940863158487221
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +27,6 @@ Transform:
   m_LocalPosition: {x: -144.02917, y: 42.82395, z: 358.88974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 786940863047230096}
   - {fileID: 7417978620355113909}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,7 +64,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 786940863158487220}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -135,7 +84,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 786940863190051969}
-  SpellManager: {fileID: 786940863047230099}
+  SpellManager: {fileID: 0}
+  player: {fileID: 0}
+  scale: 0.1
 --- !u!120 &786940863190051969
 LineRenderer:
   m_ObjectHideFlags: 0

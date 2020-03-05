@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     public Image hpImage;
     public Color lowColor;
     public Color fullColor;
+    public Resistant resistant;
 
     public void Awake()
     {
@@ -23,16 +24,17 @@ public class Health : MonoBehaviour
         hpImage.color = Color.Lerp(lowColor, fullColor, currentHp / maxHp);
     }
 
-    public virtual void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg, AttackType magicType)
     {
         if (inBlock)
         {
-            inBlock = false;
+            BlockSet();
             return;
         }
-        //TODO: Add resistant calculation
-        //TODO: Monster: If take dmg, chance for attack back -> start turn
-        currentHp -= dmg;
+
+        float realDmg = resistant.CalculateDmg(dmg, magicType);
+
+        currentHp -= realDmg;
 
         SetUpHealth();
 
@@ -42,8 +44,13 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void SetUpBlock()
+    public virtual void SetUpBlock()
     {
         inBlock = true;
+    }
+
+    public virtual void BlockSet()
+    {
+        inBlock = false;
     }
 }

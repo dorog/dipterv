@@ -5,15 +5,15 @@ public class MonsterHit : MonoBehaviour
     public MonsterHealth health;
     public MonsterHitType monsterHitType;
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, AttackType magicType)
     {
         if(monsterHitType == MonsterHitType.Body)
         {
-            health.TakeDamageBody(dmg);
+            health.TakeDamageBody(dmg, magicType);
         }
         else
         {
-            health.TakeDamageHead(dmg);
+            health.TakeDamageHead(dmg, magicType);
         }
     }
 }

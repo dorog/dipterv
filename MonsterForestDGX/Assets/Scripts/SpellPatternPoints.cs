@@ -7,6 +7,7 @@ using UnityEngine;
 public class SpellPatternPoints : ScriptableObject
 {
     public GameObject Spell;
+    public AttackType attackType = AttackType.Undefined;
     public string patternName;
     private List<Vector3> Points = null;
 

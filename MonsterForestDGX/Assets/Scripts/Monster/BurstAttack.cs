@@ -4,6 +4,7 @@ public class BurstAttack : MonoBehaviour
 {
     public float dmgPerSecond = 5;
     public float duration = 5;
+    public AttackType magicType;
 
     public void OnEnable()
     {
@@ -21,7 +22,7 @@ public class BurstAttack : MonoBehaviour
         }
 
         float dmg = Time.deltaTime / 1 * dmgPerSecond;
-        health.TakeDamage(dmg);
+        health.TakeDamage(dmg, magicType);
 
         //gameObject.SetActive(false);
     }

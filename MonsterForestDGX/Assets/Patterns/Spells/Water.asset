@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d71b5bca3e76e5449f89dcb75688a10, type: 3}
-  m_Name: attack
+  m_Name: Water
   m_EditorClassIdentifier: 
-  Spell: {fileID: 6906740548910514859, guid: a1edc2ce5c5b53e4aa176a059ea9bef5, type: 3}
-  patternName: attack
+  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  attackType: 2
+  patternName: basicAttack

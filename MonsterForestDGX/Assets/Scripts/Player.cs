@@ -16,6 +16,7 @@ public class Player : Fighter
     public float movementSpeed = 10;
     private Vector3 mousePosition;
     public GameObject magicCircle;
+    public PlayerHealth playerHealth;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class Player : Fighter
         health.inBlock = false;
         canAttack = false;
         inCast = false;
+        playerHealth.BlockDown();
     }
 
     private void Update()

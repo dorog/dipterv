@@ -3,6 +3,7 @@
 public class Attack : MonoBehaviour
 {
     public float dmg = 10;
+    public AttackType magicType = AttackType.Undefined;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +13,7 @@ public class Attack : MonoBehaviour
             return;
         }
 
-        health.TakeDamage(dmg);
+        health.TakeDamage(dmg, magicType);
 
         gameObject.SetActive(false);
     }

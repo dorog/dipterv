@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d71b5bca3e76e5449f89dcb75688a10, type: 3}
-  m_Name: Zoro
+  m_Name: FireMedium
   m_EditorClassIdentifier: 
-  Spell: {fileID: 6906740548910514859, guid: f159b6ffc5566a1429c1b3e26ad73e00, type: 3}
-  patternName: zoro
+  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  attackType: 1
+  patternName: mediumAttack

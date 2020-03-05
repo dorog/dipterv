@@ -7,16 +7,16 @@ public class MonsterHealth : Health
     public string blockAnimation;
     public Animator animator;
 
-    public void TakeDamageBody(float dmg)
+    public void TakeDamageBody(float dmg, AttackType magicType)
     {
         if (inBlock)
         {
-            TakeDamage(dmg);
+            TakeDamage(dmg, magicType);
             animator.SetTrigger(blockAnimation);
         }
         else
         {
-            TakeDamage(dmg);
+            TakeDamage(dmg, magicType);
             if(currentHp > 0)
             {
                 animator.SetTrigger(bodyHitAnimation);
@@ -24,7 +24,7 @@ public class MonsterHealth : Health
         }
     }
 
-    public void TakeDamageHead(float dmg)
+    public void TakeDamageHead(float dmg, AttackType magicType)
     {
         if (inBlock)
         {
@@ -33,13 +33,13 @@ public class MonsterHealth : Health
         else
         {
             animator.SetTrigger(headHitAnimation);
-            TakeDamage(dmg);
+            TakeDamage(dmg, magicType);
         }
     }
 
-    public override void TakeDamage(float dmg)
+    public override void TakeDamage(float dmg, AttackType magicType)
     {
-        base.TakeDamage(dmg);
+        base.TakeDamage(dmg, magicType);
         if(currentHp <= 0)
         {
             hpSlider.gameObject.SetActive(false);

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
-  patternName: fire
+  attackType: 1
+  patternName: basicAttack
