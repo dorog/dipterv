@@ -6,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new SpellPatternPoints", menuName = "SpellPatternPoints")]
 public class SpellPatternPoints : ScriptableObject
 {
+    [HideInInspector]
+    public bool isAttack = true;
+    [HideInInspector]
+    public int treeLine = 0;
+
     public GameObject Spell;
     public AttackType attackType = AttackType.Undefined;
     public string patternName;

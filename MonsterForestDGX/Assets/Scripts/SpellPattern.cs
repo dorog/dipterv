@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class SpellPattern : MonoBehaviour
 {
+    public bool isAttack = true;
+    public int treeLine = 0;
+
     public float maxPoints = 0;
     public float correct = 0;
     public AttackType Type;

@@ -5,41 +5,42 @@ using UnityEngine.UI;
 public class SpellManager : MonoBehaviour
 {
     public float minCoverage = 0.6f;
-    
-    public List<SpellPatternPoints> AttackSpellPatternPoints = new List<SpellPatternPoints>();
-    public List<SpellPatternPoints> DefSpellPatternPoints = new List<SpellPatternPoints>();
+    public SpellTreeManager spellTreeManager;
+
     public SpellPattern SpellPattern;
 
-    private List<SpellPattern> AttackPatterns = new List<SpellPattern>();
-    private List<SpellPattern> DefPatterns = new List<SpellPattern>();
+    private readonly List<SpellPattern> attackPatterns = new List<SpellPattern>();
+    private readonly List<SpellPattern> defensePatterns = new List<SpellPattern>();
 
     public Transform attackParent;
-    public Transform defParent;
+    public Transform defenseParent;
 
     public AttackType attackType = AttackType.Undefined;
     public Text elementType;
+
+    private readonly int distanceDiff = 1100;
 
     void Start()
     {
         elementType.text = attackType.ToString();
 
-        CreatePatterns(AttackSpellPatternPoints, AttackPatterns, attackParent);
-        CreatePatterns(DefSpellPatternPoints, DefPatterns, defParent);
+        CreatePatterns(spellTreeManager.GetAttackSpellPatternPoints(), attackPatterns, attackParent);
+        CreatePatterns(spellTreeManager.GetDefenseSpellPatternPoints(), defensePatterns, defenseParent);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
             attackType = AttackType.Fire;
             elementType.text = attackType.ToString();
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
             attackType = AttackType.Water;
             elementType.text = attackType.ToString();
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad0))
+        else if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
         {
             attackType = AttackType.Undefined;
             elementType.text = attackType.ToString();
@@ -51,21 +52,28 @@ public class SpellManager : MonoBehaviour
         int x = 0;
         foreach (var spellPatternPoint in SpellPatternPoints)
         {
-            GameObject gameObject = Instantiate(SpellPattern.gameObject, parent.position + new Vector3(x, extraHeigh, 0), Quaternion.identity, parent);
-            x += 1100;
+            CreateSpellPattern(x, parent, spellPatternPoint, SpellPatterns, extraHeigh);
+            x += distanceDiff;
 
-            SpellPattern spellPattern = gameObject.GetComponent<SpellPattern>();
-            spellPattern.Type = spellPatternPoint.attackType;
-            spellPattern.SpellPatternPoints = spellPatternPoint;
-            spellPattern.DrawPoints();
-
-            SpellPatterns.Add(spellPattern);
         }
+    }
+
+    private void CreateSpellPattern(int x, Transform parent, SpellPatternPoints spellPatternPoint, List<SpellPattern> SpellPatterns, float extraHeigh = 0)
+    {
+        GameObject gameObject = Instantiate(SpellPattern.gameObject, parent.position + new Vector3(x, extraHeigh, 0), Quaternion.identity, parent);
+
+        SpellPattern spellPattern = gameObject.GetComponent<SpellPattern>();
+        spellPattern.Type = spellPatternPoint.attackType;
+        spellPattern.SpellPatternPoints = spellPatternPoint;
+        spellPattern.DrawPoints();
+        spellPattern.isAttack = spellPatternPoint.isAttack;
+        spellPattern.treeLine = spellPatternPoint.treeLine;
+        SpellPatterns.Add(spellPattern);
     }
 
     public void Guess(Vector3 point, bool canAttack)
     {
-        List<SpellPattern> SpellPatterns = canAttack ? AttackPatterns : DefPatterns;
+        List<SpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         foreach (var spellPattern in SpellPatterns)
         {
             spellPattern.Guess(point);
@@ -74,7 +82,7 @@ public class SpellManager : MonoBehaviour
 
     public GameObject GetSpell(bool canAttack)
     {
-        List<SpellPattern> SpellPatterns = canAttack ? AttackPatterns : DefPatterns;
+        List<SpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         int index = -1;
         float max = -1;
         for (int i = 0; i < SpellPatterns.Count; i++)
@@ -93,6 +101,7 @@ public class SpellManager : MonoBehaviour
         Debug.Log("Coverage: " + max);
         if(minCoverage <= max && index != -1)
         {
+            spellTreeManager.XpUpdate(canAttack, SpellPatterns[index].treeLine, XpType.Cast);
             return SpellPatterns[index].GetSpell();
         }
         else
@@ -103,13 +112,37 @@ public class SpellManager : MonoBehaviour
 
     public void ResetSpells()
     {
-        foreach (var spellPattern in AttackPatterns)
+        foreach (var spellPattern in attackPatterns)
         {
             spellPattern.ResetPoints();
         }
-        foreach (var spellPattern in DefPatterns)
+        foreach (var spellPattern in defensePatterns)
         {
             spellPattern.ResetPoints();
         }
+    }
+
+    public void AddNewPattern(bool isAttack, SpellPatternPoints spellPatternPoints)
+    {
+        if (isAttack)
+        {
+            AddNewAttackPattern(spellPatternPoints);
+        }
+        else
+        {
+            AddNewDefensePattern(spellPatternPoints);
+        }
+    }
+
+    private void AddNewAttackPattern(SpellPatternPoints spellPatternPoints)
+    {
+        int x = attackPatterns.Count * distanceDiff;
+        CreateSpellPattern(x, attackParent, spellPatternPoints, attackPatterns);
+    }
+
+    private void AddNewDefensePattern(SpellPatternPoints spellPatternPoints)
+    {
+        int x = defensePatterns.Count * distanceDiff;
+        CreateSpellPattern(x, defenseParent, spellPatternPoints, defensePatterns);
     }
 }

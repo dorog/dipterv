@@ -1329,6 +1329,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6f67dcbc1acee1141b13d0c8d1844a45,
         type: 2}
+    - target: {fileID: 8114367987940830726, guid: d911a65f48651f24488a54527ab8ffa4,
+        type: 3}
+      propertyPath: spellTreeManager
+      value: 
+      objectReference: {fileID: 1596155311}
+    - target: {fileID: 8114367987940830726, guid: d911a65f48651f24488a54527ab8ffa4,
+        type: 3}
+      propertyPath: defenseParent
+      value: 
+      objectReference: {fileID: 1882040800}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d911a65f48651f24488a54527ab8ffa4, type: 3}
 --- !u!4 &690772357 stripped
@@ -1410,7 +1420,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 4.4483056e+19, z: -5.7591515e+29, w: 6.1290463e-38}
+  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.306054e+18, w: 2.1175824e-22}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3124,6 +3134,69 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1596155310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596155312}
+  - component: {fileID: 1596155311}
+  m_Layer: 0
+  m_Name: SpellTreeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1596155311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596155310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f7151699aebbf41b83880585ad5b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTreeLines:
+  - xp: 0
+    unlockedLvl: 1
+    spellPatternPoints:
+    - {fileID: 11400000, guid: 544df0a5b5c61b74fb44c0d4f4b42274, type: 2}
+    - {fileID: 11400000, guid: 6f67dcbc1acee1141b13d0c8d1844a45, type: 2}
+  - xp: 0
+    unlockedLvl: 1
+    spellPatternPoints:
+    - {fileID: 11400000, guid: 144afb406c00de648bd8bf8b6b42a5de, type: 2}
+  defenseTreeLines:
+  - xp: 0
+    unlockedLvl: 1
+    spellPatternPoints:
+    - {fileID: 11400000, guid: a0cfceea7d1acd2499cb3f48fd1bd811, type: 2}
+  - xp: 0
+    unlockedLvl: 1
+    spellPatternPoints:
+    - {fileID: 11400000, guid: 503fec1667875d148b1e68aeb72ea5af, type: 2}
+  spellManager: {fileID: 1888129422}
+--- !u!4 &1596155312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596155310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.377014, y: 5000, z: 2.1400003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629140020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,7 +3495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882040800}
   m_Layer: 0
-  m_Name: DefSpells
+  m_Name: DefenseSpells
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
