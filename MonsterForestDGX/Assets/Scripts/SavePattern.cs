@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,11 +9,11 @@ public class SavePattern : MonoBehaviour
     public Text patternName;
     public static string saveLocation = @"\Assets\Patterns";
     private string location = Directory.GetCurrentDirectory() + saveLocation;
+    private readonly float scale = 100f;
 
     public void Save()
     {
         int count = lineRenderer.positionCount;
-        Debug.Log(count);
         SpellPatternData spellPatternData = new SpellPatternData
         {
             x = new float[count],
@@ -26,9 +24,9 @@ public class SavePattern : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             Vector3 position = lineRenderer.GetPosition(i);
-            spellPatternData.x[i] = position.x;
-            spellPatternData.y[i] = position.y;
-            spellPatternData.z[i] = position.z;
+            spellPatternData.x[i] = position.x * scale;
+            spellPatternData.y[i] = position.y * scale;
+            spellPatternData.z[i] = position.z * scale;
         }
 
         BinaryFormatter bf = new BinaryFormatter();
@@ -36,5 +34,8 @@ public class SavePattern : MonoBehaviour
 
         bf.Serialize(file, spellPatternData);
         file.Close();
+
+        lineRenderer.positionCount = 0;
+        patternName.text = "";
     }
 }

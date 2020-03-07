@@ -18,6 +18,10 @@ public class Player : Fighter
     public GameObject magicCircle;
     public PlayerHealth playerHealth;
 
+    public Color DefenseGridColor;
+    public Color AttackGridColor;
+    public SpriteRenderer grid;
+
     private void Start()
     {
         health.SetUpHealth();
@@ -116,6 +120,7 @@ public class Player : Fighter
 
     public void DefTurn()
     {
+        grid.color = DefenseGridColor;
         canAttack = false;
         magicCircle.SetActive(false);
         inCast = false;
@@ -123,6 +128,7 @@ public class Player : Fighter
 
     public void AttackTurn()
     {
+        grid.color = AttackGridColor;
         canAttack = true;
         magicCircle.SetActive(false);
         inCast = false;

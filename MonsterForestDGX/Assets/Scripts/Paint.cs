@@ -25,7 +25,7 @@ public class Paint : MonoBehaviour
                 Vector3 playerPoint = transform.position + rotatedVector;
 
                lineRenderer.SetPosition(lineRenderer.positionCount - 1, playerPoint);
-               SpellManager.Guess(position, player.canAttack);
+               SpellManager.Guess(position * 0.00225f * 100, player.canAttack);
             }
             catch (Exception) { }
         }
