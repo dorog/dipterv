@@ -20,12 +20,15 @@ public class Paint : MonoBehaviour
                 Vector3 position = ScreenWithoutRay();
                 position.z = transform.position.z;
 
-                float angle = Vector3.SignedAngle(Vector3.forward, transform.forward, Vector3.up);
-                Vector3 rotatedVector = Quaternion.Euler(0, angle, 0) * new Vector3(position.x * scale, position.y * scale, 0);
+                float up_angle = Vector3.SignedAngle(Vector3.forward, player.transform.forward, Vector3.up);
+                float left_angle = Vector3.SignedAngle(player.transform.forward, transform.forward, Vector3.left);
+
+                Vector3 rotatedVector = Quaternion.Euler(-left_angle, up_angle, 0) * new Vector3(position.x * scale, position.y * scale, 0);
                 Vector3 playerPoint = transform.position + rotatedVector;
 
-               lineRenderer.SetPosition(lineRenderer.positionCount - 1, playerPoint);
-               SpellManager.Guess(position * 0.00225f * 100, player.canAttack);
+
+                lineRenderer.SetPosition(lineRenderer.positionCount - 1, playerPoint);
+                SpellManager.Guess(position * 0.00225f * 100, player.canAttack);
             }
             catch (Exception) { }
         }
@@ -41,15 +44,7 @@ public class Paint : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(gameObject.name);
-                    if (player.canAttack)
-                    {
-                        player.Attack(10);
-                    }
-                    else
-                    {
-                        player.Def();
-                    }
+                    player.CastSpell(gameObject);
                 }
                 SpellManager.ResetSpells();
             }

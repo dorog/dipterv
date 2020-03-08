@@ -22,8 +22,6 @@ public class SpellPatternPoints : ScriptableObject
 
     public List<Vector3> GetPoints()
     {
-        Debug.Log("GetPoints");
-
         ReadData();
 
         /*if (Points == null)

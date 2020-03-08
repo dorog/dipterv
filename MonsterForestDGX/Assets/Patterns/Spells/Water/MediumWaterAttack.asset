@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MediumWaterAttack
   m_EditorClassIdentifier: 
   isAttack: 1
-  treeLine: 0
-  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  treeLine: 1
+  Spell: {fileID: 7520139766561337064, guid: cfa6a6f976a607341a4b6a61ad365096, type: 3}
   attackType: 2
   patternName: mediumAttack

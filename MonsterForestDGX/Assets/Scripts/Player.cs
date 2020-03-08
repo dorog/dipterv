@@ -84,6 +84,27 @@ public class Player : Fighter
         inCast = false;
     }
 
+    public void CastSpell(GameObject gameObject)
+    {
+        //battleManager.PlayerAttack();
+        Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
+        GameObject spell = Instantiate(gameObject, position + transform.forward, Camera.main.transform.rotation);
+        //spell.transform.forward = transform.forward;
+        /*SpellAttack spellAttack = spell.GetComponent<SpellAttack>();
+        if(spellAttack != null)
+        {
+            spellAttack.dmg = ;
+            spellAttack.attackType = ;
+        }
+        else
+        {
+            Debug.LogWarning("There is no SpellAttack!");
+        }*/
+
+        magicCircle.SetActive(false);
+        inCast = false;
+    }
+
     public void Attack(float dmg)
     {
         battleManager.PlayerAttack();

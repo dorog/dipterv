@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicWaterAttack
   m_EditorClassIdentifier: 
   isAttack: 1
-  treeLine: 0
-  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  treeLine: 1
+  Spell: {fileID: 7520139766561337064, guid: 4b72a3f0bdf55f3458e3b1bf9c87f5da, type: 3}
   attackType: 2
   patternName: basicAttack

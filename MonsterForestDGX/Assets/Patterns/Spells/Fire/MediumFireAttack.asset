@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttack: 1
   treeLine: 0
-  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  Spell: {fileID: 7520139766561337064, guid: 9c01851a714870043a470201a1acbb32, type: 3}
   attackType: 1
   patternName: mediumAttack

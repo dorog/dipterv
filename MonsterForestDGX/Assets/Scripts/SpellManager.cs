@@ -73,7 +73,6 @@ public class SpellManager : MonoBehaviour
 
     public void Guess(Vector3 point, bool canAttack)
     {
-        Debug.Log("Guess:" + point);
         List<SpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         foreach (var spellPattern in SpellPatterns)
         {

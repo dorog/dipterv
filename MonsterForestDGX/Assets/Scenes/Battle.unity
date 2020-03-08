@@ -1107,12 +1107,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570111802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.377, y: 1, z: 2.14}
+  m_LocalPosition: {x: 20.7, y: 1, z: 2.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
   - {fileID: 690772357}
-  - {fileID: 1377475238}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1423,7 +1422,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.258339e+11, y: 2.258339e+11, z: 2.258339e+11, w: 2.258339e+11}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1814,13 +1813,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -0, y: 1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1377475238}
   m_Father: {fileID: 570111806}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!1 &973224835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7285548529041835809, guid: fae3bc7f96227a447ba0c94f8af685d5,
@@ -2426,7 +2426,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 570111806}
+    m_TransformParent: {fileID: 963194228}
     m_Modifications:
     - target: {fileID: 786940863158487221, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
@@ -2436,7 +2436,19 @@ PrefabInstance:
     - target: {fileID: 786940863158487221, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 786940863158487220, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
@@ -2446,7 +2458,7 @@ PrefabInstance:
     - target: {fileID: 786940863158487220, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 786940863158487220, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
@@ -2476,7 +2488,7 @@ PrefabInstance:
     - target: {fileID: 786940863158487220, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 786940863158487220, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
@@ -2536,18 +2548,6 @@ PrefabInstance:
     - target: {fileID: 786940863190051969, guid: 4de75a5a743986b45a45e94839d1a8a7,
         type: 3}
       propertyPath: m_Parameters.colorGradient.key1.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594374396, guid: 4de75a5a743986b45a45e94839d1a8a7, type: 3}
-      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
