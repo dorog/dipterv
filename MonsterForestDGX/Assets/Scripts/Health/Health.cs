@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public float maxHp = 100f;
-    protected float currentHp;
+    public float currentHp;
     public Fighter fighter;
     public bool inBlock = false;
     public Slider hpSlider;
@@ -24,11 +24,11 @@ public class Health : MonoBehaviour
         hpImage.color = Color.Lerp(lowColor, fullColor, currentHp / maxHp);
     }
 
-    public virtual void TakeDamage(float dmg, AttackType magicType)
+    public virtual void TakeDamage(float dmg, ElementType magicType)
     {
         if (inBlock)
         {
-            BlockSet();
+            BlockDown();
             return;
         }
 
@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
         inBlock = true;
     }
 
-    public virtual void BlockSet()
+    public virtual void BlockDown()
     {
         inBlock = false;
     }

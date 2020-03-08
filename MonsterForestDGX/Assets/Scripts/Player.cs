@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
+[Serializable]
 public class Player : Fighter
 {
-    public PlayerRayAttack attack;
-
     public bool canAttack = false;
     public BattleManager battleManager;
     public Rigidbody rb;
@@ -22,14 +24,30 @@ public class Player : Fighter
     public Color AttackGridColor;
     public SpriteRenderer grid;
 
+    public Slider coolDown;
+    private RectTransform coolDownRectTransform;
+    private readonly float multiplyCD = 100;
+    private bool resetedCd = false;
+
+    public Pet playerPet;
+    private GameObject petGO;
+
+    public delegate void CastSpellDelegate();
+    public CastSpellDelegate castSpellDelegateEvent;
+
     private void Start()
     {
         health.SetUpHealth();
+        coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
     }
 
     public void Battle()
     {
         InBattle = true;
+        petGO = Instantiate(playerPet.gameObject, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
+
+        Pet pet = petGO.GetComponent<Pet>();
+        pet.AddPlayer(this);
     }
 
     public void BattleEnd()
@@ -39,6 +57,23 @@ public class Player : Fighter
         canAttack = false;
         inCast = false;
         playerHealth.BlockDown();
+        magicCircle.SetActive(false);
+
+        ClearDelegates();
+        Destroy(petGO);
+
+    }
+
+    private void ClearDelegates()
+    {
+        if(castSpellDelegateEvent != null)
+        {
+            Delegate[] delegates = castSpellDelegateEvent.GetInvocationList();
+            foreach (Delegate d in delegates)
+            {
+                castSpellDelegateEvent -= (CastSpellDelegate)d;
+            }
+        }
     }
 
     private void Update()
@@ -90,8 +125,12 @@ public class Player : Fighter
         Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
         GameObject spell = Instantiate(gameObject, position + transform.forward, Camera.main.transform.rotation);
         //spell.transform.forward = transform.forward;
-        /*SpellAttack spellAttack = spell.GetComponent<SpellAttack>();
-        if(spellAttack != null)
+        //TODO: Not in children?
+        PlayerSpell spellAttack = spell.GetComponentInChildren<PlayerSpell>();
+
+        SetUpCoolDown(spellAttack.cd);
+
+        /*if(spellAttack != null)
         {
             spellAttack.dmg = ;
             spellAttack.attackType = ;
@@ -101,20 +140,51 @@ public class Player : Fighter
             Debug.LogWarning("There is no SpellAttack!");
         }*/
 
+        if (!canAttack)
+        {
+            health.SetUpBlock();
+        }
+
         magicCircle.SetActive(false);
-        inCast = false;
     }
 
-    public void Attack(float dmg)
+    private void SetUpCoolDown(float cd)
     {
-        battleManager.PlayerAttack();
+        castSpellDelegateEvent?.Invoke();
 
-        attack.mousePosition = mousePosition;
-        attack.dmg = dmg;
-        attack.Attack();
+        if (!resetedCd)
+        {
+            coolDownRectTransform.sizeDelta = new Vector2(multiplyCD * cd, coolDownRectTransform.sizeDelta.y);
+            coolDown.value = 1;
+            coolDown.gameObject.SetActive(true);
+            StartCoroutine(Countdown(coolDown));
+        }
+        else
+        {
+            inCast = false;
+            resetedCd = false;
+        }
+    }
 
-        magicCircle.SetActive(false);
+    private IEnumerator Countdown(Slider slider)
+    {
+        float duration = coolDownRectTransform.sizeDelta.x / 100;
+        float normalizedTime = 0;
+        while (normalizedTime <= 1f && !resetedCd)
+        {
+            normalizedTime += Time.deltaTime / duration;
+            slider.value -= Time.deltaTime / duration;
+            yield return null;
+        }
+
+        coolDown.gameObject.SetActive(false);
         inCast = false;
+        resetedCd = false;
+    }
+
+    public void ResetCooldown()
+    {
+        resetedCd = true;
     }
 
     private void FixedUpdate()

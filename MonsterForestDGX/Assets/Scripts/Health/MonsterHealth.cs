@@ -7,7 +7,7 @@ public class MonsterHealth : Health
     public string blockAnimation;
     public Animator animator;
 
-    public void TakeDamageBody(float dmg, AttackType magicType)
+    public void TakeDamageBody(float dmg, ElementType magicType)
     {
         if (inBlock)
         {
@@ -24,7 +24,7 @@ public class MonsterHealth : Health
         }
     }
 
-    public void TakeDamageHead(float dmg, AttackType magicType)
+    public void TakeDamageHead(float dmg, ElementType magicType)
     {
         if (inBlock)
         {
@@ -37,7 +37,7 @@ public class MonsterHealth : Health
         }
     }
 
-    public override void TakeDamage(float dmg, AttackType magicType)
+    public override void TakeDamage(float dmg, ElementType magicType)
     {
         base.TakeDamage(dmg, magicType);
         if(currentHp <= 0)

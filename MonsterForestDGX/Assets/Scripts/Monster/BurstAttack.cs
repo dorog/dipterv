@@ -4,7 +4,7 @@ public class BurstAttack : MonoBehaviour
 {
     public float dmgPerSecond = 5;
     public float duration = 5;
-    public AttackType magicType;
+    public ElementType magicType;
 
     public void OnEnable()
     {

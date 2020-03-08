@@ -8,7 +8,7 @@ public class SpellPattern : MonoBehaviour
 
     public float maxPoints = 0;
     public float correct = 0;
-    public AttackType Type;
+    public ElementType Type;
     public SpellPatternPoints SpellPatternPoints;
     public GameObject Point;
     public List<SpellPoint> points = new List<SpellPoint>();

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
-public class SpellAttack : MonoBehaviour
+public class SpellAttack : PlayerSpell
 {
     public GameObject parent;
     public float dmg = 10;
-    public AttackType attackType = AttackType.Undefined;
 
     private void OnTriggerEnter(Collider other)
     {

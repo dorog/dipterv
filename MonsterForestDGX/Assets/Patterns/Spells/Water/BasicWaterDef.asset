@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d71b5bca3e76e5449f89dcb75688a10, type: 3}
   m_Name: BasicWaterDef
   m_EditorClassIdentifier: 
-  isAttack: 1
-  treeLine: 0
-  Spell: {fileID: 6906740548910514859, guid: 2f1a152683131ad4fa3843baf4793921, type: 3}
+  isAttack: 0
+  treeLine: 1
+  Spell: {fileID: 4919067549058400747, guid: f399165fc47989c4ca49eb7eb7f82d3b, type: 3}
   attackType: 2
   patternName: basicDef

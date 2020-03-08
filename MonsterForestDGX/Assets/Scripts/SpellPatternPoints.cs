@@ -12,7 +12,7 @@ public class SpellPatternPoints : ScriptableObject
     public int treeLine = 0;
 
     public GameObject Spell;
-    public AttackType attackType = AttackType.Undefined;
+    public ElementType attackType = ElementType.TrueDamage;
     public string patternName;
     private List<Vector3> Points = null;
 

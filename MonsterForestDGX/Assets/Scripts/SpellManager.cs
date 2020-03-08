@@ -15,7 +15,7 @@ public class SpellManager : MonoBehaviour
     public Transform attackParent;
     public Transform defenseParent;
 
-    public AttackType attackType = AttackType.Undefined;
+    public ElementType attackType = ElementType.TrueDamage;
     public Text elementType;
 
     private readonly int distanceDiff = 1100;
@@ -32,17 +32,17 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            attackType = AttackType.Fire;
+            attackType = ElementType.Fire;
             elementType.text = attackType.ToString();
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
-            attackType = AttackType.Water;
+            attackType = ElementType.Water;
             elementType.text = attackType.ToString();
         }
         else if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
         {
-            attackType = AttackType.Undefined;
+            attackType = ElementType.TrueDamage;
             elementType.text = attackType.ToString();
         }
     }

@@ -12,24 +12,24 @@ public class Resistant : ScriptableObject
     [Range(-100, 100)]
     public float laser = 0;
 
-    public float CalculateDmg(float dmg, AttackType magicType)
+    public float CalculateDmg(float dmg, ElementType magicType)
     {
         float resistant = GetResistant(magicType);
 
         return dmg * (1 - (resistant / 100));
     }
 
-    public float GetResistant(AttackType magicType)
+    public float GetResistant(ElementType magicType)
     {
         switch (magicType)
         {
-            case AttackType.Fire:
+            case ElementType.Fire:
                 return fire;
-            case AttackType.Water:
+            case ElementType.Water:
                 return water;
-            case AttackType.Poison:
+            case ElementType.Poison:
                 return poison;
-            case AttackType.Laser:
+            case ElementType.Laser:
                 return laser;
             default:
                 return 0;

@@ -3,7 +3,7 @@
 public class Attack : MonoBehaviour
 {
     public float dmg = 10;
-    public AttackType magicType = AttackType.Undefined;
+    public ElementType magicType = ElementType.TrueDamage;
 
     private void OnTriggerEnter(Collider other)
     {

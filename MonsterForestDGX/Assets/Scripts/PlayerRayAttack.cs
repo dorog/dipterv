@@ -5,12 +5,12 @@ public class PlayerRayAttack : IAttack
 {
     public float dmg = 10;
     public Vector3 mousePosition = Vector3.zero;
-    public AttackType magicType =  AttackType.Undefined;
+    public ElementType magicType =  ElementType.TrueDamage;
 
     //TODO: Delete
     public void Start()
     {
-        magicType = AttackType.Undefined;
+        magicType = ElementType.TrueDamage;
     }
 
     //TODO: Delete
@@ -18,15 +18,15 @@ public class PlayerRayAttack : IAttack
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            magicType = AttackType.Fire;
+            magicType = ElementType.Fire;
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            magicType = AttackType.Water;
+            magicType = ElementType.Water;
         }
         else if (Input.GetKeyDown(KeyCode.Keypad0))
         {
-            magicType = AttackType.Undefined;
+            magicType = ElementType.TrueDamage;
         }
     }
 

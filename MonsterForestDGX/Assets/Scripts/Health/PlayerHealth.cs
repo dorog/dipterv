@@ -19,15 +19,23 @@ public class PlayerHealth : Health
         block.SetActive(true);
     }
 
-    public override void BlockSet()
+    public override void BlockDown()
     {
-        base.BlockSet();
+        base.BlockDown();
         block.SetActive(false);
     }
 
-    public void BlockDown()
+    public void Heal(float amount)
     {
-        inBlock = false;
-        block.SetActive(true);
+        if(maxHp - currentHp >= amount)
+        {
+            currentHp += amount;
+        }
+        else
+        {
+            currentHp = maxHp;
+        }
+
+        SetUpHealth();
     }
 }

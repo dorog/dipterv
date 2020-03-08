@@ -8,9 +8,9 @@ public class BattlePlace : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            battleManager.Battle();
             other.gameObject.transform.position = transform.position;
             other.gameObject.transform.rotation = transform.rotation;
+            battleManager.Battle();
 
             gameObject.SetActive(false);
         }
