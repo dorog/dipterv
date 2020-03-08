@@ -103,7 +103,7 @@ public class Player : Fighter
             {
                 health.SetUpBlock();
             }
-            if (Input.GetMouseButtonDown(0) && !inCast)
+            if (Input.GetMouseButtonDown(1) && !inCast)
             {
                 inCast = true;
                 mousePosition = Input.mousePosition;

@@ -13,7 +13,7 @@ public class SpellPattern : MonoBehaviour
     public GameObject Point;
     public List<SpellPoint> points = new List<SpellPoint>();
 
-    private int step = 100;
+    private int step = 10;
 
     public void DrawPoints()
     {

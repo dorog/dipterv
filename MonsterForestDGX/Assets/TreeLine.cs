@@ -6,10 +6,12 @@ public class TreeLine
     public int xp = 0;
     public int unlockedLvl = 1;
     public SpellPatternPoints[] spellPatternPoints;
+    public SpellTreeUI spellTreeUI;
 
     public bool AddXp(int amount)
     {
         xp += amount;
+        spellTreeUI.AddXp(amount);
 
         return IsleveledUp();
     }
@@ -20,6 +22,7 @@ public class TreeLine
         if(realLvl > unlockedLvl)
         {
             unlockedLvl = realLvl;
+            spellTreeUI.LevelUp();
             return true;
         }
         else

@@ -7,10 +7,29 @@ public class SpellTreeManager : MonoBehaviour
     public TreeLine[] defenseTreeLines;
     public SpellManager spellManager;
 
+    public GameObject SkillTree;
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SkillTree.SetActive(!SkillTree.activeSelf);
+        }
+    }
+
     public void Awake()
     {
         SetTreeLineValues(attackTreeLines, true);
         SetTreeLineValues(defenseTreeLines, false);
+    }
+
+    private void Start()
+    {
+        foreach(var treeLine in attackTreeLines)
+        {
+            treeLine.spellTreeUI.SetUpSpells(treeLine);
+        }
+        //TODO: DefTreeLine foreach and setup
     }
 
     private void SetTreeLineValues(TreeLine[] treeLines, bool isAttack)

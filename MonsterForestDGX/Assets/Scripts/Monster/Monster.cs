@@ -35,8 +35,6 @@ public class Monster : Fighter
 
     private IEnumerator Strike()
     {
-        Debug.Log("Monster Start Turn");
-
         if (firstTurn)
         {
             firstTurn = false;
@@ -66,8 +64,6 @@ public class Monster : Fighter
                 yield return new WaitForSeconds(2 + animationTime);
             }
         }
-
-        Debug.Log("Monster End Turn");
 
         float waitTime = Random.Range(minWaitTime, maxWaitTime + 1);
         StartCoroutine(Countdown(waitTime));
@@ -115,7 +111,6 @@ public class Monster : Fighter
 
     public override void Die()
     {
-        Debug.Log("Die: "  + dieAnimation);
         died = true;
         battleManager.MonsterDied();
         animator.SetTrigger(dieAnimation);
