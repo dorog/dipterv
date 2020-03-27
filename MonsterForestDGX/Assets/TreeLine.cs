@@ -1,10 +1,8 @@
 ﻿using System;
 
 [Serializable]
-public class TreeLine
+public class TreeLine : TreeLineData
 {
-    public int xp = 0;
-    public int unlockedLvl = 1;
     public SpellPatternPoints[] spellPatternPoints;
     public SpellTreeUI spellTreeUI;
 
@@ -19,9 +17,9 @@ public class TreeLine
     private bool IsleveledUp()
     {
         int realLvl = GetLevel();
-        if(realLvl > unlockedLvl)
+        if(realLvl > lvl)
         {
-            unlockedLvl = realLvl;
+            lvl = realLvl;
             spellTreeUI.LevelUp();
             return true;
         }

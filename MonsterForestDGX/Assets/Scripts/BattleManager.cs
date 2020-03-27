@@ -8,9 +8,11 @@ public class BattleManager : MonoBehaviour
     public SceneLoader sceneLoader;
     public Text turn;
     public GameObject turnGO;
+    public int id;
 
-    public void Battle()
+    public void Battle(int _id)
     {
+        id = _id;
         turnGO.SetActive(true);
         turn.text = "Battle!";
 
@@ -42,7 +44,7 @@ public class BattleManager : MonoBehaviour
     public void MonsterDied()
     {
         turnGO.SetActive(false);
-        player.BattleEnd();
+        player.BattleEnd(id);
     }
 
     public void PlayerDied()

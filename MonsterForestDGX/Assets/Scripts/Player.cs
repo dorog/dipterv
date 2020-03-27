@@ -29,11 +29,13 @@ public class Player : Fighter
     private readonly float multiplyCD = 100;
     private bool resetedCd = false;
 
-    public Pet playerPet;
+    public PetManager petManager;
     private GameObject petGO;
 
     public delegate void CastSpellDelegate();
     public CastSpellDelegate castSpellDelegateEvent;
+    public SpellTreeManager spellTreeManager;
+    public AliveMonstersManager aliveMonstersManager;
 
     private void Start()
     {
@@ -44,13 +46,15 @@ public class Player : Fighter
     public void Battle()
     {
         InBattle = true;
-        petGO = Instantiate(playerPet.gameObject, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
+
+        GameObject playerPet = petManager.GetPet();
+        petGO = Instantiate(playerPet, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
 
         Pet pet = petGO.GetComponent<Pet>();
         pet.AddPlayer(this);
     }
 
-    public void BattleEnd()
+    public void BattleEnd(int id)
     {
         InBattle = false;
         health.inBlock = false;
@@ -62,6 +66,8 @@ public class Player : Fighter
         ClearDelegates();
         Destroy(petGO);
 
+        spellTreeManager.Won();
+        aliveMonstersManager.Won(id);
     }
 
     private void ClearDelegates()

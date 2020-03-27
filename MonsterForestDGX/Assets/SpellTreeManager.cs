@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class SpellTreeManager : MonoBehaviour
 {
-    public TreeLine[] attackTreeLines;
-    public TreeLine[] defenseTreeLines;
     public SpellManager spellManager;
 
     public GameObject SkillTree;
+
+    public TreeLine[] attackTreeLines;
+    public TreeLine[] defenseTreeLines;
+
+    private string deviceFileLocation;
 
     public void Update()
     {
@@ -19,8 +22,11 @@ public class SpellTreeManager : MonoBehaviour
 
     public void Awake()
     {
-        SetTreeLineValues(attackTreeLines, true);
-        SetTreeLineValues(defenseTreeLines, false);
+        DataManager dataManager = DataManager.GetInstance();
+        SpellTreeLineData spellTreeLineData = dataManager.gameData.SpellTreeLineData;
+
+        SetTreeLineValues(attackTreeLines, spellTreeLineData.attackTreeLine, true);
+        SetTreeLineValues(defenseTreeLines, spellTreeLineData.defenseTreeLine, false);
     }
 
     private void Start()
@@ -29,15 +35,20 @@ public class SpellTreeManager : MonoBehaviour
         {
             treeLine.spellTreeUI.SetUpSpells(treeLine);
         }
-        //TODO: DefTreeLine foreach and setup
+        foreach (var treeLine in defenseTreeLines)
+        {
+            treeLine.spellTreeUI.SetUpSpells(treeLine);
+        }
     }
 
-    private void SetTreeLineValues(TreeLine[] treeLines, bool isAttack)
+    private void SetTreeLineValues(TreeLine[] treeLines, TreeLineData[] treeLineData, bool isAttack)
     {
         for(int i = 0; i < treeLines.Length; i++)
         {
             for(int j = 0; j < treeLines[i].spellPatternPoints.Length; j++)
             {
+                treeLines[i].xp = treeLineData[i].xp;
+                treeLines[i].lvl = treeLineData[i].lvl;
                 SetSpellPatternPointsValues(treeLines[i].spellPatternPoints[j], isAttack, i);
             }
         }
@@ -65,7 +76,7 @@ public class SpellTreeManager : MonoBehaviour
 
         for( int i = 0; i < treeLines.Length; i++)
         {
-            for(int j = 0; j < treeLines[i].unlockedLvl; j++)
+            for(int j = 0; j < treeLines[i].lvl; j++)
             {
                 spellPatternPoints.Add(treeLines[i].spellPatternPoints[j]);
             }
@@ -80,8 +91,16 @@ public class SpellTreeManager : MonoBehaviour
         bool levelUp = treeLineArray[treeLine].AddXp(GetXp(xp));
         if (levelUp)
         {
-            spellManager.AddNewPattern(isAttack, treeLineArray[treeLine].spellPatternPoints[treeLineArray[treeLine].unlockedLvl-1]);
+            spellManager.AddNewPattern(isAttack, treeLineArray[treeLine].spellPatternPoints[treeLineArray[treeLine].lvl-1]);
         }
+    }
+
+    public void Won()
+    {
+        SpellTreeLineData spellTreeLineData = new SpellTreeLineData(attackTreeLines, defenseTreeLines);
+
+        DataManager dataManager = DataManager.GetInstance();
+        dataManager.Won(spellTreeLineData);
     }
 
     private int GetXp(XpType xpType)

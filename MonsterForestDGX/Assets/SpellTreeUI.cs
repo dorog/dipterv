@@ -17,7 +17,7 @@ public class SpellTreeUI : MonoBehaviour
     public void SetUpSpells(TreeLine treeLine)
     {
         xp = treeLine.xp;
-        unlockedLvl = treeLine.unlockedLvl;
+        unlockedLvl = treeLine.lvl;
 
         for (int i = 0; i < unlockedLvl; i++)
         {
