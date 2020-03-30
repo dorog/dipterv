@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellTreeManager : MonoBehaviour
+public class SpellTreeManager : SingletonClass<SpellTreeManager>
 {
     public SpellManager spellManager;
 
@@ -9,8 +9,6 @@ public class SpellTreeManager : MonoBehaviour
 
     public TreeLine[] attackTreeLines;
     public TreeLine[] defenseTreeLines;
-
-    private string deviceFileLocation;
 
     public void Update()
     {
@@ -27,6 +25,8 @@ public class SpellTreeManager : MonoBehaviour
 
         SetTreeLineValues(attackTreeLines, spellTreeLineData.attackTreeLine, true);
         SetTreeLineValues(defenseTreeLines, spellTreeLineData.defenseTreeLine, false);
+
+        Init(this);
     }
 
     private void Start()

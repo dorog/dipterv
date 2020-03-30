@@ -29,18 +29,23 @@ public class Player : Fighter
     private readonly float multiplyCD = 100;
     private bool resetedCd = false;
 
-    public PetManager petManager;
     private GameObject petGO;
 
     public delegate void CastSpellDelegate();
     public CastSpellDelegate castSpellDelegateEvent;
-    public SpellTreeManager spellTreeManager;
-    public AliveMonstersManager aliveMonstersManager;
+
+    private PetManager petManager;
+    private SpellTreeManager spellTreeManager;
+    private AliveMonstersManager aliveMonstersManager;
 
     private void Start()
     {
         health.SetUpHealth();
         coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
+
+        petManager = PetManager.GetInstance();
+        spellTreeManager = SpellTreeManager.GetInstance();
+        aliveMonstersManager = AliveMonstersManager.GetInstance();
     }
 
     public void Battle()

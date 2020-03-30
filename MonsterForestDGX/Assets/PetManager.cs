@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PetManager : MonoBehaviour
+public class PetManager : SingletonClass<PetManager>
 {
     public Image[] images;
     public GameObject petTab;
     public Color selectedColor;
     public int selectedPet = 0;
     public Pet[] pets;
+
+    private void Awake()
+    {
+        Init(this);
+    }
 
     private void Start()
     {

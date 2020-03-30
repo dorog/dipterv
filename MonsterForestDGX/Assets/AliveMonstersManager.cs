@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-
-public class AliveMonstersManager : MonoBehaviour
+﻿
+public class AliveMonstersManager : SingletonClass<AliveMonstersManager>
 {
     public BattlePlace[] battlePlaces;
 
@@ -14,6 +13,8 @@ public class AliveMonstersManager : MonoBehaviour
             battlePlaces[i].id = i;
             battlePlaces[i].gameObject.SetActive(aliveMonsters.alive[i]);
         }
+
+        Init(this);
     }
 
     public void Won(int id)

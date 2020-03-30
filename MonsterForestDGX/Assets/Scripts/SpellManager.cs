@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpellManager : MonoBehaviour
+public class SpellManager : SingletonClass<SpellManager>
 {
     public float minCoverage = 0.6f;
     public SpellTreeManager spellTreeManager;
@@ -19,6 +19,11 @@ public class SpellManager : MonoBehaviour
     public Text elementType;
 
     private readonly int distanceDiff = 1100;
+
+    private void Awake()
+    {
+        Init(this);
+    }
 
     void Start()
     {
