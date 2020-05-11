@@ -155,9 +155,9 @@ MonoBehaviour:
       defenseTreeLine: []
     AliveMonsters:
       alive: 
-  attackSpells: 2
-  defenseSpells: 2
-  number: 4
+  attackSpells: 1
+  defenseSpells: 0
+  aliveMonstersNumber: 4
 --- !u!4 &288658679
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new SpellPatternPoints", menuName = "SpellPatternPoints")]
@@ -14,7 +13,7 @@ public class SpellPatternPoints : ScriptableObject
     public GameObject Spell;
     public ElementType attackType = ElementType.TrueDamage;
     public string patternName;
-    private List<SpellPatternPoint> Points = null;
+    public bool stackable = true;
 
     //Make config for it
     private static string saveLocation = @"\Assets\Patterns";
@@ -22,29 +21,15 @@ public class SpellPatternPoints : ScriptableObject
 
     public List<SpellPatternPoint> GetPoints()
     {
-        ReadData();
+        List<SpellPatternPoint> spellPatternPoints = new List<SpellPatternPoint>();
 
-        /*if (Points == null)
+        SpellPatternData spellPatternData = JsonUtility.FromJson<SpellPatternData>(File.ReadAllText(location + @"\" + patternName + ".json"));
+
+        for (int i = 0; i < spellPatternData.x.Length; i++)
         {
-            Debug.Log("Read");
-            ReadData();
-        }*/
-
-        return Points;
-    }
-
-    private void ReadData()
-    {
-        Points = new List<SpellPatternPoint>();
-
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(location + @"\" + patternName + ".txt", FileMode.Open);
-        SpellPatternData spellPatternData = (SpellPatternData)bf.Deserialize(file);
-        file.Close();
-
-        for(int i = 0; i < spellPatternData.x.Length; i++)
-        {
-            Points.Add(new SpellPatternPoint(i, new Vector3(spellPatternData.x[i], spellPatternData.y[i], spellPatternData.z[i])));
+            spellPatternPoints.Add(new SpellPatternPoint(i, new Vector3(spellPatternData.x[i], spellPatternData.y[i], spellPatternData.z[i])));
         }
+
+        return spellPatternPoints;
     }
 }

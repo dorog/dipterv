@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,11 +28,8 @@ public class SavePattern : MonoBehaviour
             spellPatternData.z[i] = position.z * scale;
         }
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(location + @"\" + patternName.text + ".txt", FileMode.Create);
-
-        bf.Serialize(file, spellPatternData);
-        file.Close();
+        string jsonData = JsonUtility.ToJson(spellPatternData, true);
+        File.WriteAllText(location + @"\" + patternName.text + ".json", jsonData);
 
         lineRenderer.positionCount = 0;
         patternName.text = "";

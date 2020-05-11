@@ -108,11 +108,11 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
         switch (xpType)
         {
             case XpType.Cast:
-                return 10;
+                return 0;
             case XpType.Hit:
-                return 20;
+                return 0;
             case XpType.Kill:
-                return 50;
+                return 0;
             default:
                 return 0;
         }

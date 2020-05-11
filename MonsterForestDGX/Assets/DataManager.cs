@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
     public GameData gameData;
     public int attackSpells;
     public int defenseSpells;
-    public int number;
+    public int aliveMonstersNumber;
 
     private static DataManager instance = null;
     public static DataManager GetInstance()
@@ -62,7 +62,7 @@ public class DataManager : MonoBehaviour
         gameData = new GameData
         {
             SpellTreeLineData = new SpellTreeLineData(attackSpells, defenseSpells),
-            AliveMonsters = new AliveMonsters(number)
+            AliveMonsters = new AliveMonsters(aliveMonstersNumber)
         };
 
         Save(gameData);
