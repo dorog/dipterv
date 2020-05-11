@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1394918191207180750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1000, y: 1000, z: 1}
+  m_LocalScale: {x: 200, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 9150795908177849272}
   m_RootOrder: 0
@@ -136,8 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c039e1c9a84984bb311f23ed7fb79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttack: 1
+  treeLine: 0
   maxPoints: 0
   correct: 0
+  lastId: -2147483648
+  Type: 0
   SpellPatternPoints: {fileID: 0}
   Point: {fileID: 64617497195906632, guid: c53f632b450cc474d8c77654e7445de8, type: 3}
   points: []

@@ -4,14 +4,14 @@ public class SpellPoint : MonoBehaviour
 {
     public bool done = false;
     public SpellPattern SpellPattern;
+    public int Id;
 
-    public void Hit()
+    public void Hit(int lastId)
     {
-        //Debug.Log("Hit");
-        if (!done)
+        if (!done && Id > lastId)
         {
             done = true;
-            SpellPattern.HitOne();
+            SpellPattern.HitOne(Id);
         }
     }
 

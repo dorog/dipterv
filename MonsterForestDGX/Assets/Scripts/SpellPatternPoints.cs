@@ -14,13 +14,13 @@ public class SpellPatternPoints : ScriptableObject
     public GameObject Spell;
     public ElementType attackType = ElementType.TrueDamage;
     public string patternName;
-    private List<Vector3> Points = null;
+    private List<SpellPatternPoint> Points = null;
 
     //Make config for it
     private static string saveLocation = @"\Assets\Patterns";
     private string location = Directory.GetCurrentDirectory() + saveLocation;
 
-    public List<Vector3> GetPoints()
+    public List<SpellPatternPoint> GetPoints()
     {
         ReadData();
 
@@ -35,7 +35,7 @@ public class SpellPatternPoints : ScriptableObject
 
     private void ReadData()
     {
-        Points = new List<Vector3>();
+        Points = new List<SpellPatternPoint>();
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(location + @"\" + patternName + ".txt", FileMode.Open);
@@ -44,7 +44,7 @@ public class SpellPatternPoints : ScriptableObject
 
         for(int i = 0; i < spellPatternData.x.Length; i++)
         {
-            Points.Add(new Vector3(spellPatternData.x[i], spellPatternData.y[i], spellPatternData.z[i]));
+            Points.Add(new SpellPatternPoint(i, new Vector3(spellPatternData.x[i], spellPatternData.y[i], spellPatternData.z[i])));
         }
     }
 }

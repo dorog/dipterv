@@ -92,14 +92,11 @@ public class SpellManager : SingletonClass<SpellManager>
         float max = -1;
         for (int i = 0; i < SpellPatterns.Count; i++)
         {
-            if (SpellPatterns[i].Type == attackType)
+            float result = SpellPatterns[i].GetResult();
+            if (result > max)
             {
-                float result = SpellPatterns[i].GetResult();
-                if (result > max)
-                {
-                    index = i;
-                    max = result;
-                }
+                index = i;
+                max = result;
             }
         }
 
