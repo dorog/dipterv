@@ -7,6 +7,13 @@ public class MonsterHealth : Health
     public string blockAnimation;
     public Animator animator;
 
+    private SpellManager spellManager;
+
+    private void Start()
+    {
+        spellManager = SpellManager.GetInstance();
+    }
+
     public void TakeDamageBody(float dmg, ElementType magicType)
     {
         if (inBlock)

@@ -4,7 +4,8 @@ using UnityEngine;
 public class SpellPattern : MonoBehaviour
 {
     public bool isAttack = true;
-    public int treeLine = 0;
+    public int level = 0;
+    public int xp = 0;
 
     public float maxPoints = 0;
     public float correct = 0;
@@ -13,15 +14,14 @@ public class SpellPattern : MonoBehaviour
     public SpellPatternPoints SpellPatternPoints;
     public GameObject Point;
     public List<SpellPoint> points = new List<SpellPoint>();
+    public GameObject[] Spells;
 
-    private bool stackable = false;
     private int stacks = 0;
     private int step = 10;
 
     public void DrawPoints()
     {
         int extraId = 0;
-        stackable = SpellPatternPoints.stackable;
         List<SpellPatternPoint> spellPoints = SpellPatternPoints.GetPoints();
 
         Instantiate(spellPoints[0].Id, spellPoints[0].Point.x, spellPoints[0].Point.y, stacks);
@@ -36,10 +36,6 @@ public class SpellPattern : MonoBehaviour
                 Instantiate(spellPoints[i - 1].Id + extraId, spellPoints[i - 1].Point.x + j * direction.x * step, spellPoints[i - 1].Point.y + j * direction.y * step, stacks);
             }
             Instantiate(spellPoints[i].Id + extraId, spellPoints[i].Point.x, spellPoints[i].Point.y, stacks);
-            if (stackable)
-            {
-                stacks++;
-            }
         }
     }
 
@@ -56,43 +52,12 @@ public class SpellPattern : MonoBehaviour
 
     public GameObject GetSpell()
     {
-        return SpellPatternPoints.Spell;
+        return Spells[level - 1];
     }
 
     public float GetResult()
     {
-        if (stackable)
-        {
-            return GetBestMatch();
-        }
-
         return correct / maxPoints;
-    }
-
-    private float GetBestMatch()
-    {
-        float max = 0;
-        int actualStack = 0;
-        float correct = 0;
-        for(int i = 0; i < points.Count; i++)
-        {
-            if (points[i].done)
-            {
-                correct++;
-            }
-            if(points[i].StackNumber > actualStack)
-            {
-                float result = correct / (i + 1);
-                if (max <= result)
-                {
-                    max = result;
-                }
-                actualStack++;
-                Debug.Log("Last: " + i + ", " + correct + " / " + (i + 1) + " = " + result);
-            }
-        }
-
-        return max;
     }
 
     public void ResetPoints()
@@ -126,5 +91,32 @@ public class SpellPattern : MonoBehaviour
     {
         correct++;
         lastId = id;
+    }
+
+    public void AddXp(XpType xpType)
+    {
+        xp += xpType.GetXp();
+        Debug.Log(xp);
+        LevelSet();
+    }
+
+    private void LevelSet()
+    {
+        if(xp > 10)
+        {
+            level = 2;
+        }
+        else if(xp > 50)
+        {
+            level = 3;
+        }
+        else if(xp > 100)
+        {
+            level = 4;
+        }
+        else
+        {
+            level = 1;
+        }
     }
 }

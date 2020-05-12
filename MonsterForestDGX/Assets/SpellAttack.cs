@@ -2,29 +2,28 @@
 
 public class SpellAttack : PlayerSpell
 {
-    public GameObject parent;
     public float dmg = 10;
+    public GameObject impactParticle;
+    private bool hasCollided = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision hit)
     {
-        MonsterHit monsterHit = other.gameObject.GetComponent<MonsterHit>();
-        if (monsterHit != null)
+        if (!hasCollided)
         {
-            monsterHit.TakeDamage(dmg, attackType);
+            MonsterHit monsterHit = hit.gameObject.GetComponent<MonsterHit>();
+            if (monsterHit != null)
+            {
+                SpellManager.GetInstance().AddXpForHit(id);
+                monsterHit.TakeDamage(dmg, attackType);
+            }
+
+            Vector3 impactNormal = hit.contacts[0].normal;
+
+            hasCollided = true;
+            impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
+
+            Destroy(impactParticle, 3f);
+            Destroy(gameObject);
         }
-
-        Destroy(parent);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision");
-        MonsterHit monsterHit = collision.gameObject.GetComponent<MonsterHit>();
-        if (monsterHit != null)
-        {
-            monsterHit.TakeDamage(dmg, attackType);
-        }
-
-        Destroy(parent);
     }
 }

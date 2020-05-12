@@ -37,14 +37,14 @@ public class Paint : MonoBehaviour
             if(lineRenderer.positionCount != 0)
             {
                 lineRenderer.positionCount = 0;
-                GameObject gameObject = SpellManager.GetSpell(player.canAttack);
-                if (gameObject == null)
+                SpellResult spellResult = SpellManager.GetSpell(player.canAttack);
+                if (spellResult == null)
                 {
                     Debug.Log("Null");
                 }
                 else
                 {
-                    player.CastSpell(gameObject);
+                    player.CastSpell(spellResult);
                 }
                 SpellManager.ResetSpells();
             }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpellManager : SingletonClass<SpellManager>
 {
     public float minCoverage = 0.6f;
-    public SpellTreeManager spellTreeManager;
+    //public SpellTreeManager spellTreeManager;
 
     public SpellPattern SpellPattern;
 
@@ -20,6 +21,8 @@ public class SpellManager : SingletonClass<SpellManager>
 
     private readonly int distanceDiff = 1100;
 
+    private int lastSpell = -1;
+
     private void Awake()
     {
         Init(this);
@@ -29,8 +32,8 @@ public class SpellManager : SingletonClass<SpellManager>
     {
         elementType.text = attackType.ToString();
 
-        CreatePatterns(spellTreeManager.GetAttackSpellPatternPoints(), attackPatterns, attackParent);
-        CreatePatterns(spellTreeManager.GetDefenseSpellPatternPoints(), defensePatterns, defenseParent);
+        CreatePatterns(SharedData.GameConfig.baseSpells.ToList(), attackPatterns, attackParent);
+        //CreatePatterns(spellTreeManager.GetDefenseSpellPatternPoints(), defensePatterns, defenseParent);
     }
 
     private void Update()
@@ -52,27 +55,28 @@ public class SpellManager : SingletonClass<SpellManager>
         }
     }
 
-    private void CreatePatterns(List<SpellPatternPoints> SpellPatternPoints, List<SpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
+    private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<SpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
     {
         int x = 0;
-        foreach (var spellPatternPoint in SpellPatternPoints)
+        foreach (var basePaternSpell in BasePaternSpells)
         {
-            CreateSpellPattern(x, parent, spellPatternPoint, SpellPatterns, extraHeigh);
+            CreateSpellPattern(x, parent, basePaternSpell, SpellPatterns, extraHeigh);
             x += distanceDiff;
-
         }
     }
 
-    private void CreateSpellPattern(int x, Transform parent, SpellPatternPoints spellPatternPoint, List<SpellPattern> SpellPatterns, float extraHeigh = 0)
+    private void CreateSpellPattern(int x, Transform parent, BasePaternSpell basePaternSpell, List<SpellPattern> SpellPatterns, float extraHeigh = 0)
     {
         GameObject gameObject = Instantiate(SpellPattern.gameObject, parent.position + new Vector3(x, extraHeigh, 0), Quaternion.identity, parent);
 
         SpellPattern spellPattern = gameObject.GetComponent<SpellPattern>();
-        spellPattern.Type = spellPatternPoint.attackType;
-        spellPattern.SpellPatternPoints = spellPatternPoint;
+        spellPattern.Type = basePaternSpell.SpellPatternPoints.attackType;
+        spellPattern.SpellPatternPoints = basePaternSpell.SpellPatternPoints;
         spellPattern.DrawPoints();
-        spellPattern.isAttack = spellPatternPoint.isAttack;
-        spellPattern.treeLine = spellPatternPoint.treeLine;
+        spellPattern.isAttack = true;
+        spellPattern.level = basePaternSpell.level;
+        spellPattern.xp = basePaternSpell.xp;
+        spellPattern.Spells = basePaternSpell.levelsSpell;
         SpellPatterns.Add(spellPattern);
     }
 
@@ -85,7 +89,7 @@ public class SpellManager : SingletonClass<SpellManager>
         }
     }
 
-    public GameObject GetSpell(bool canAttack)
+    public SpellResult GetSpell(bool canAttack)
     {
         List<SpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         int index = -1;
@@ -100,11 +104,16 @@ public class SpellManager : SingletonClass<SpellManager>
             }
         }
 
-        Debug.Log("Coverage: " + max);
+
         if(minCoverage <= max && index != -1)
         {
-            spellTreeManager.XpUpdate(canAttack, SpellPatterns[index].treeLine, XpType.Cast);
-            return SpellPatterns[index].GetSpell();
+            SpellPatterns[index].AddXp(XpType.Cast);
+            SpellResult spellResult = new SpellResult
+            {
+                id = index,
+                spell = SpellPatterns[index].GetSpell()
+            };
+            return spellResult;
         }
         else
         {
@@ -126,25 +135,47 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public void AddNewPattern(bool isAttack, SpellPatternPoints spellPatternPoints)
     {
-        if (isAttack)
+        /*if (isAttack)
         {
             AddNewAttackPattern(spellPatternPoints);
         }
         else
         {
             AddNewDefensePattern(spellPatternPoints);
-        }
+        }*/
     }
 
     private void AddNewAttackPattern(SpellPatternPoints spellPatternPoints)
     {
-        int x = attackPatterns.Count * distanceDiff;
-        CreateSpellPattern(x, attackParent, spellPatternPoints, attackPatterns);
+        //int x = attackPatterns.Count * distanceDiff;
+        //CreateSpellPattern(x, attackParent, spellPatternPoints, attackPatterns);
     }
 
     private void AddNewDefensePattern(SpellPatternPoints spellPatternPoints)
     {
-        int x = defensePatterns.Count * distanceDiff;
-        CreateSpellPattern(x, defenseParent, spellPatternPoints, defensePatterns);
+        //int x = defensePatterns.Count * distanceDiff;
+        //CreateSpellPattern(x, defenseParent, spellPatternPoints, defensePatterns);
+    }
+
+    public void Won()
+    {
+        attackPatterns[lastSpell].AddXp(XpType.Kill);
+
+        for (int i = 0; i < attackPatterns.Count; i++)
+        {
+            Debug.Log(attackPatterns[i].xp);
+            SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
+            Debug.Log(attackPatterns[i].level);
+            SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].level;
+        }
+
+        DataManager.GetInstance().Won();
+    }
+
+    public void AddXpForHit(int id)
+    {
+        lastSpell = id;
+        Debug.Log("Not only Attack!");
+        attackPatterns[id].AddXp(XpType.Hit);
     }
 }

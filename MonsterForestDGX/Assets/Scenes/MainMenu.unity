@@ -149,15 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18924fe6112a5bf45be48cfaa420c85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConfig: {fileID: 11400000, guid: 1936c5d025b2b8e4aa2560390c3ee3a2, type: 2}
   gameData:
-    SpellTreeLineData:
-      attackTreeLine: []
-      defenseTreeLine: []
+    BasePatternSpells: []
     AliveMonsters:
       alive: 
-  attackSpells: 1
-  defenseSpells: 0
-  aliveMonstersNumber: 4
 --- !u!4 &288658679
 Transform:
   m_ObjectHideFlags: 0

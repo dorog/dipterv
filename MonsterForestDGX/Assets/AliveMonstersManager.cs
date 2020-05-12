@@ -6,12 +6,11 @@ public class AliveMonstersManager : SingletonClass<AliveMonstersManager>
     private void Awake()
     {
         DataManager dataManager = DataManager.GetInstance();
-        AliveMonsters aliveMonsters = dataManager.gameData.AliveMonsters;
 
-        for (int i = 0; i < aliveMonsters.alive.Length; i++)
+        for (int i = 0; i < SharedData.GameConfig.aliveMonsters.Length; i++)
         {
             battlePlaces[i].id = i;
-            battlePlaces[i].gameObject.SetActive(aliveMonsters.alive[i]);
+            battlePlaces[i].gameObject.SetActive(SharedData.GameConfig.aliveMonsters[i]);
         }
 
         Init(this);

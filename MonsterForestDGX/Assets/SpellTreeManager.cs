@@ -21,10 +21,10 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
     public void Awake()
     {
         DataManager dataManager = DataManager.GetInstance();
-        SpellTreeLineData spellTreeLineData = dataManager.gameData.SpellTreeLineData;
+        //SpellTreeLineData spellTreeLineData = dataManager.gameData.SpellTreeLineData;
 
-        SetTreeLineValues(attackTreeLines, spellTreeLineData.attackTreeLine, true);
-        SetTreeLineValues(defenseTreeLines, spellTreeLineData.defenseTreeLine, false);
+        //SetTreeLineValues(attackTreeLines, spellTreeLineData.attackTreeLine, true);
+        //SetTreeLineValues(defenseTreeLines, spellTreeLineData.defenseTreeLine, false);
 
         Init(this);
     }
@@ -56,8 +56,8 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
 
     private void SetSpellPatternPointsValues(SpellPatternPoints spellPatternPoints, bool isAttack, int treeLine)
     {
-        spellPatternPoints.isAttack = isAttack;
-        spellPatternPoints.treeLine = treeLine;
+        //spellPatternPoints.isAttack = true; //isAttack;
+        //spellPatternPoints.treeLine = 1; //treeLine;
     }
 
     public List<SpellPatternPoints> GetAttackSpellPatternPoints()
@@ -87,12 +87,12 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
 
     public void XpUpdate(bool isAttack, int treeLine, XpType xp)
     {
-        TreeLine[] treeLineArray = isAttack ? attackTreeLines : defenseTreeLines;
+        /*TreeLine[] treeLineArray = isAttack ? attackTreeLines : defenseTreeLines;
         bool levelUp = treeLineArray[treeLine].AddXp(GetXp(xp));
         if (levelUp)
         {
             spellManager.AddNewPattern(isAttack, treeLineArray[treeLine].spellPatternPoints[treeLineArray[treeLine].lvl-1]);
-        }
+        }*/
     }
 
     public void Won()
@@ -100,7 +100,7 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
         SpellTreeLineData spellTreeLineData = new SpellTreeLineData(attackTreeLines, defenseTreeLines);
 
         DataManager dataManager = DataManager.GetInstance();
-        dataManager.Won(spellTreeLineData);
+        //dataManager.Won(spellTreeLineData);
     }
 
     private int GetXp(XpType xpType)

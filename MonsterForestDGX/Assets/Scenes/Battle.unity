@@ -367,8 +367,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.878871e-38, y: -3.0316488e-13, z: -6.3739956e-28,
-    w: 6.344131e-17}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -856,7 +855,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4028594949376398670}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0f7151699aebbf41b83880585ad5b71, type: 3}
   m_Name: 
@@ -1289,6 +1288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellTreeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4028594950267482336, guid: 7780b89238bba7f48ba97441b56b62e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4028594950267482337, guid: 7780b89238bba7f48ba97441b56b62e4,
         type: 3}
       propertyPath: attackTreeLines.Array.size
@@ -1382,8 +1386,12 @@ PrefabInstance:
         type: 3}
       propertyPath: attackTreeLines.Array.data[0].spellPatternPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 8daf7b1b419a18f45b138e4fddece0ac,
-        type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028594950267482337, guid: 7780b89238bba7f48ba97441b56b62e4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4028594950267482366, guid: 7780b89238bba7f48ba97441b56b62e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2119,6 +2127,12 @@ PrefabInstance:
       propertyPath: elementType
       value: 
       objectReference: {fileID: 533468243}
+    - target: {fileID: 1039040874116950253, guid: 160308609b93b2649a482c318667d8a0,
+        type: 3}
+      propertyPath: gameConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 1936c5d025b2b8e4aa2560390c3ee3a2,
+        type: 2}
     - target: {fileID: 9148900580768278609, guid: 160308609b93b2649a482c318667d8a0,
         type: 3}
       propertyPath: m_LocalPosition.x

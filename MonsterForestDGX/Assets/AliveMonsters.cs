@@ -13,4 +13,9 @@ public class AliveMonsters
             alive[i] = true;
         }
     }
+
+    public AliveMonsters(bool[] aliveMonsters)
+    {
+        alive = aliveMonsters;
+    }
 }

@@ -1,8 +1,17 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class GameData
 {
-    public SpellTreeLineData SpellTreeLineData;
+    public PatternSpell[] BasePatternSpells;
     public AliveMonsters AliveMonsters;
+
+    public GameData() { }
+
+    public GameData(GameConfig gameConfig)
+    {
+        AliveMonsters = new AliveMonsters(gameConfig.aliveMonsters);
+        BasePatternSpells = gameConfig.GetBasePatternSpells();
+    }
 }

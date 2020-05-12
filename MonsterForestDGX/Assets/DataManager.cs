@@ -1,16 +1,12 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public readonly string fileName = "gameData.txt";
+    public readonly string fileName = "gameData.json";
     private static string deviceFileLocation;
 
-    public GameData gameData;
-    public int attackSpells;
-    public int defenseSpells;
-    public int aliveMonstersNumber;
+    public GameConfig gameConfig;
 
     private static DataManager instance = null;
     public static DataManager GetInstance()
@@ -51,19 +47,34 @@ public class DataManager : MonoBehaviour
 
     private void Read()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(deviceFileLocation, FileMode.Open);
-        gameData = (GameData)bf.Deserialize(file);
-        file.Close();
+        GameData gameData = JsonUtility.FromJson<GameData>(File.ReadAllText(deviceFileLocation));
+
+
+        Debug.Log(gameData.AliveMonsters);
+        Debug.Log(gameData.BasePatternSpells);
+        Debug.Log(deviceFileLocation);
+
+        SharedData.GameConfig = gameConfig;
+
+        for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
+        {
+            SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
+            SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
+        }
+
+        SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
     }
 
     private void Create()
     {
-        gameData = new GameData
+        GameData gameData = new GameData(gameConfig);
+
+        SharedData.GameConfig = gameConfig;
+        for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
         {
-            SpellTreeLineData = new SpellTreeLineData(attackSpells, defenseSpells),
-            AliveMonsters = new AliveMonsters(aliveMonstersNumber)
-        };
+            SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
+            SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
+        }
 
         Save(gameData);
     }
@@ -71,23 +82,28 @@ public class DataManager : MonoBehaviour
 
     public void Save<T>(T data)
     {
-        BinaryFormatter bf = new BinaryFormatter();
+        /*BinaryFormatter bf = new BinaryFormatter();
         FileStream fileForSave = File.Create(deviceFileLocation);
         bf.Serialize(fileForSave, data);
-        fileForSave.Close();
+        fileForSave.Close();*/
+
+        string jsonData = JsonUtility.ToJson(data, true);
+        File.WriteAllText(deviceFileLocation, jsonData);
     }
 
     public void SaveMonsterDeath(int id)
     {
+        GameData gameData = new GameData(SharedData.GameConfig);
         gameData.AliveMonsters.alive[id] = false;
 
         Save(gameData);
     }
 
-    public void Won(SpellTreeLineData spellTreeLineData)
+    public void Won()
     {
-        gameData.SpellTreeLineData = spellTreeLineData;
+        Debug.Log("Not implemented!");
+        //gameData.SpellTreeLineData = spellTreeLineData;
 
-        Save(gameData);
+        Save(SharedData.GameConfig);
     }
 }

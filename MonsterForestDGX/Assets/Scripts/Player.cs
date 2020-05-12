@@ -36,6 +36,7 @@ public class Player : Fighter
 
     private PetManager petManager;
     private SpellTreeManager spellTreeManager;
+    private SpellManager spellManager;
     private AliveMonstersManager aliveMonstersManager;
 
     private void Start()
@@ -46,6 +47,7 @@ public class Player : Fighter
         petManager = PetManager.GetInstance();
         spellTreeManager = SpellTreeManager.GetInstance();
         aliveMonstersManager = AliveMonstersManager.GetInstance();
+        spellManager = SpellManager.GetInstance();
     }
 
     public void Battle()
@@ -71,7 +73,7 @@ public class Player : Fighter
         ClearDelegates();
         Destroy(petGO);
 
-        spellTreeManager.Won();
+        spellManager.Won();
         aliveMonstersManager.Won(id);
     }
 
@@ -130,16 +132,18 @@ public class Player : Fighter
         inCast = false;
     }
 
-    public void CastSpell(GameObject gameObject)
+    public void CastSpell(SpellResult spellResult)
     {
         //battleManager.PlayerAttack();
         Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
-        GameObject spell = Instantiate(gameObject, position + transform.forward, Camera.main.transform.rotation);
+        GameObject spell = Instantiate(spellResult.spell, position + transform.forward, Camera.main.transform.rotation);
         //spell.transform.forward = transform.forward;
         //TODO: Not in children?
-        PlayerSpell spellAttack = spell.GetComponentInChildren<PlayerSpell>();
+        PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
+        spellAttack.id = spellResult.id;
 
         SetUpCoolDown(spellAttack.cd);
+        //SetUpCoolDown(2);
 
         /*if(spellAttack != null)
         {
