@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685bbf0530d809c48935d19a4bdd1128, type: 3}
+  m_Name: Earth
+  m_EditorClassIdentifier: 
+  xp: 0
+  level: 1
+  maxLevel: 4
+  SpellPatternPoints: {fileID: 11400000, guid: 0bf9c23f7a1f29242a7d6d50502adbd2, type: 2}
+  levelsSpell:
+  - {fileID: 189528, guid: 676af163bda25f042b4fb56488fbb3c8, type: 3}
+  - {fileID: 100008, guid: 5f7cc43d7a58bdf42bdde7cf919b119c, type: 3}
+  - {fileID: 100008, guid: 7f6c2595e07144d408b980794a40ee34, type: 3}
+  - {fileID: 131830, guid: da5b218f99284e34ab7f7865855c3675, type: 3}

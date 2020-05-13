@@ -15,43 +15,7 @@ MonoBehaviour:
   aliveMonstersNumber: 0
   aliveMonsters: 01010101
   baseSpells:
-  - name: Water
-    xp: 0
-    level: 0
-    maxLevel: 4
-    SpellPatternPoints: {fileID: 11400000, guid: 01ba9f376d5f4bd458ba6b6ddad94227,
-      type: 2}
-    levelsSpell: []
-  - name: Earth
-    xp: 0
-    level: 0
-    maxLevel: 4
-    SpellPatternPoints: {fileID: 11400000, guid: 0bf9c23f7a1f29242a7d6d50502adbd2,
-      type: 2}
-    levelsSpell:
-    - {fileID: 189528, guid: 676af163bda25f042b4fb56488fbb3c8, type: 3}
-    - {fileID: 100008, guid: 5f7cc43d7a58bdf42bdde7cf919b119c, type: 3}
-    - {fileID: 100008, guid: 7f6c2595e07144d408b980794a40ee34, type: 3}
-    - {fileID: 131830, guid: da5b218f99284e34ab7f7865855c3675, type: 3}
-  - name: Fire
-    xp: 3
-    level: 1
-    maxLevel: 4
-    SpellPatternPoints: {fileID: 11400000, guid: 88ce9b04a52c4764d9b295991b3d33b0,
-      type: 2}
-    levelsSpell:
-    - {fileID: 141582, guid: b007d99bf4ab4694598c04fb8ccba511, type: 3}
-    - {fileID: 100008, guid: e8bf195d55101c745ab2e6453b6e9b9b, type: 3}
-    - {fileID: 100010, guid: eb4ece7042318614e8b72ce0c93fe85e, type: 3}
-    - {fileID: 191840, guid: ffa70433df7e3f0458993a415695ef31, type: 3}
-  - name: Air
-    xp: 0
-    level: 0
-    maxLevel: 4
-    SpellPatternPoints: {fileID: 11400000, guid: c9d14de8e7a65284f9b194b992454e70,
-      type: 2}
-    levelsSpell:
-    - {fileID: 148338, guid: a75f39c5bb6711049a1d5d5cbe4cd515, type: 3}
-    - {fileID: 100012, guid: fe57405af35a02848b3e9c247ab1f644, type: 3}
-    - {fileID: 100014, guid: fcb5c083659d20643a5041a3ffa7b584, type: 3}
-    - {fileID: 178060, guid: 5a02d5359e0ebc04c8f9f5255789f29b, type: 3}
+  - {fileID: 11400000, guid: 1f722a660fa5de84b8fe8d3df2243d6a, type: 2}
+  - {fileID: 11400000, guid: 727ce6bdee5cabf47a0c84b6c1c03bab, type: 2}
+  - {fileID: 11400000, guid: 8d90394de04875242b00553c4e51de75, type: 2}
+  - {fileID: 11400000, guid: da66cc5a61628c840822cad7a7394324, type: 2}

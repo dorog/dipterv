@@ -101,9 +101,6 @@ public class DataManager : MonoBehaviour
 
     public void Won()
     {
-        Debug.Log("Not implemented!");
-        //gameData.SpellTreeLineData = spellTreeLineData;
-
         Save(SharedData.GameConfig);
     }
 }

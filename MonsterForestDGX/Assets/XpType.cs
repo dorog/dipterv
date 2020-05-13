@@ -8,12 +8,16 @@ static class XpTypeMethods
 {
     public static int GetXp(this XpType xpType)
     {
-        return xpType switch
+        switch (xpType)
         {
-            XpType.Cast => 1,
-            XpType.Hit => 10,
-            XpType.Kill => 50,
-            _ => 0,
-        };
-    }
+            case XpType.Cast:
+                return 1;
+            case XpType.Hit:
+                return 10;
+            case XpType.Kill:
+                return 50;
+            default:
+                return 0;
+        }
+     }
 }
