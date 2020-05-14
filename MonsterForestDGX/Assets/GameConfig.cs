@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     [Header("Monster Settings")]
-    public int aliveMonstersNumber;
     public bool[] aliveMonsters;
 
     [Header("Attack Spells Setting")]

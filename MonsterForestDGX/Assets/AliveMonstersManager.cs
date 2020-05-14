@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public class AliveMonstersManager : SingletonClass<AliveMonstersManager>
 {
     public BattlePlace[] battlePlaces;

@@ -73,7 +73,8 @@ public class SpellPattern : MonoBehaviour
     public void Guess(Vector3 point)
     {
         Vector3 attack = new Vector3(transform.position.x + point.x, transform.position.y + point.y, transform.position.z + point.z + 30);
-        Ray position = new Ray(attack, new Vector3(0, 0, 1));
+        Vector3 direction = attack.z < 0 ? new Vector3(0, 0, 1) : new Vector3(0, 0, -1);
+        Ray position = new Ray(attack, direction);
         RaycastHit hit;
         if (Physics.Raycast(position, out hit))
         {

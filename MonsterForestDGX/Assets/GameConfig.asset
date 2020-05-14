@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72130d91d366e5449a73bd4c165e0c0d, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  aliveMonstersNumber: 0
   aliveMonsters: 01010101
   baseSpells:
   - {fileID: 11400000, guid: 1f722a660fa5de84b8fe8d3df2243d6a, type: 2}

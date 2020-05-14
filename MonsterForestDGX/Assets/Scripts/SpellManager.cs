@@ -16,12 +16,15 @@ public class SpellManager : SingletonClass<SpellManager>
     public Transform attackParent;
     public Transform defenseParent;
 
-    public ElementType attackType = ElementType.TrueDamage;
-    public Text elementType;
+    //public ElementType attackType = ElementType.TrueDamage;
+    //public Text elementType;
 
     private readonly int distanceDiff = 1100;
 
     private int lastSpell = -1;
+
+    public GameObject castParent;
+    public CastEffect[] castEffects;
 
     private void Awake()
     {
@@ -30,17 +33,17 @@ public class SpellManager : SingletonClass<SpellManager>
 
     void Start()
     {
-        elementType.text = attackType.ToString();
+        //elementType.text = attackType.ToString();
 
         CreatePatterns(SharedData.GameConfig.baseSpells.ToList(), attackPatterns, attackParent);
         //CreatePatterns(spellTreeManager.GetDefenseSpellPatternPoints(), defensePatterns, defenseParent);
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            attackType = ElementType.Fire;
+            //attackType = ElementType.Fire;
             elementType.text = attackType.ToString();
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
@@ -53,7 +56,7 @@ public class SpellManager : SingletonClass<SpellManager>
             attackType = ElementType.TrueDamage;
             elementType.text = attackType.ToString();
         }
-    }
+    }*/
 
     private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<SpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
     {
@@ -113,6 +116,23 @@ public class SpellManager : SingletonClass<SpellManager>
                 id = index,
                 spell = SpellPatterns[index].GetSpell()
             };
+
+            ElementType elementType = SpellPatterns[index].Type;
+            GameObject castEffect = null;
+            for(int i = 0; i < castEffects.Length; i++)
+            {
+                if(elementType == castEffects[i].ElementType)
+                {
+                    castEffect = castEffects[i].gameObject;
+                    break;
+                }
+            }
+            if(castEffect != null)
+            {
+                Instantiate(castEffect, castParent.transform);
+            }
+
+            //SpellPatterns[index].Type
             return spellResult;
         }
         else
