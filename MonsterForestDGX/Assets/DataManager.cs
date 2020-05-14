@@ -49,11 +49,6 @@ public class DataManager : MonoBehaviour
     {
         GameData gameData = JsonUtility.FromJson<GameData>(File.ReadAllText(deviceFileLocation));
 
-
-        Debug.Log(gameData.AliveMonsters);
-        Debug.Log(gameData.BasePatternSpells);
-        Debug.Log(deviceFileLocation);
-
         SharedData.GameConfig = gameConfig;
 
         for (int i = 0; i < gameData.BasePatternSpells.Length; i++)

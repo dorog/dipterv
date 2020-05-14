@@ -189,6 +189,27 @@ MonoBehaviour:
   turn: {fileID: 0}
   turnGO: {fileID: 0}
   id: 0
+--- !u!114 &7427502603421434831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651830619666990786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7295a7e90ce193948b458bea8ac9a3ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 4000349072905146619}
+  distance: 10
+  time: 2
+  animator: {fileID: 7651830619657594362}
+  appearAnimation: appear
+  appearAnimationTime: 3
+  disapperAnimation: disappear
+  disappearAnimationTime: 3
+  undergroundtime: 2
 --- !u!1001 &4000349072476037941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,26 +221,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Giant Worm v2 DEMO
-      objectReference: {fileID: 0}
-    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: battleManager
-      value: 
-      objectReference: {fileID: 4000349071436581317}
-    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: extraObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: appearAnimationTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: nameText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: MonsterName
-      value: Giant Worm
       objectReference: {fileID: 0}
     - target: {fileID: 6752262676867435541, guid: cb34f421aa6593e4fb46a5760275fda7,
         type: 3}
@@ -289,14 +290,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 45fa85eae6868e045969c155787f35cb,
         type: 2}
-    - target: {fileID: 225968050, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470196767, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 510424013, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: normalAttacks.Array.data[0].activate.Array.size
       value: 1
@@ -321,6 +314,34 @@ PrefabInstance:
       propertyPath: ultimateAttacks.Array.data[0].activate.Array.data[0]
       value: 
       objectReference: {fileID: 4599936799599638191}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: extraObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: battleManager
+      value: 
+      objectReference: {fileID: 4000349071436581317}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: extraObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: appearAnimationTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: MonsterName
+      value: Giant Worm
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: turnFill
+      value: 
+      objectReference: {fileID: 7427502603421434831}
     - target: {fileID: 342235424612192043, guid: cb34f421aa6593e4fb46a5760275fda7,
         type: 3}
       propertyPath: magicType
@@ -335,11 +356,31 @@ PrefabInstance:
       propertyPath: magicType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 225968050, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470196767, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+--- !u!1 &7651830619666990786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6752262676867065335, guid: cb34f421aa6593e4fb46a5760275fda7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000349072476037941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7651830619666689824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6752262676867435541, guid: cb34f421aa6593e4fb46a5760275fda7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000349072476037941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7651830619657594362 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6752262676859750095, guid: cb34f421aa6593e4fb46a5760275fda7,
     type: 3}
   m_PrefabInstance: {fileID: 4000349072476037941}
   m_PrefabAsset: {fileID: 0}
@@ -349,7 +390,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4000349072476037941}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7651830619666990786}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d260211b369344f8a384de562f9744, type: 3}

@@ -27,6 +27,132 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 5449196950372748169}
   monsterHitType: 0
+--- !u!114 &5449196950372748169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133929955126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333e0ee7357afa94cb37fadc3bf0b014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  currentHp: 100
+  fighter: {fileID: 5449196950372748174}
+  inBlock: 0
+  hpSlider: {fileID: 0}
+  hpImage: {fileID: 0}
+  lowColor: {r: 1, g: 0, b: 0, a: 1}
+  fullColor: {r: 1, g: 0, b: 0, a: 1}
+  resistant: {fileID: 11400000, guid: 4f4f52b427eff9547abc552944b1333f, type: 2}
+  bodyHitAnimation: gotHit
+  headHitAnimation: gotHit
+  blockAnimation: 
+  animator: {fileID: 3029147133939501562}
+--- !u!114 &5449196950372748174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133929955126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d260211b369344f8a384de562f9744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 5449196950372748169}
+  MonsterName: Plant Monster
+  nameText: {fileID: 0}
+  animator: {fileID: 3029147133939501562}
+  appearAnimation: goAlive
+  appearAnimationTime: 2
+  dieAnimation: death
+  attack: {fileID: 5449196950372748175}
+  blockChance: 0
+  battleManager: {fileID: 5449196950354447427}
+  secondAttackChance: 50
+  thirdAttackChance: 10
+  minWaitTime: 1
+  maxWaitTime: 10
+  extraObjects:
+  - {fileID: 0}
+  turnFill: {fileID: 5586935807568985112}
+--- !u!114 &5449196950372748175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133929955126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf7841e543953e4c9b6c6bfd1e983bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3029147133939501562}
+  normalAttacks:
+  - animation: attack1
+    time: 3
+    activate:
+    - {fileID: 5449196949896177307}
+  hardAttacks:
+  - animation: attack2
+    time: 3
+    activate:
+    - {fileID: 5449196950483051575}
+  ultimateAttacks: []
+  normalAttakChance: 50
+  hardAttackChance: 50
+  ultimateAttackChance: 0
+--- !u!114 &5586935807568985112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133929955126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22191917b5e3f346889ae795bb92b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 5449196950372748174}
+  time: 5
+  distance: 5
+  animator: {fileID: 3029147133939501562}
+  movingAnimation: locomotion
+  value: 1
+--- !u!135 &5449196950991684930
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133930046208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.42
+  m_Center: {x: -0.011505541, y: -0.011757746, z: 1.4886917}
+--- !u!114 &5449196950991684989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029147133930046208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14793ab1a6160a049bb108ec2135479b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 5449196950372748169}
+  monsterHitType: 1
 --- !u!1 &5449196949713590832
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,86 +294,6 @@ MonoBehaviour:
   turn: {fileID: 0}
   turnGO: {fileID: 0}
   id: 0
---- !u!114 &5449196950372748175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029147133929955126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf7841e543953e4c9b6c6bfd1e983bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 3029147133939501562}
-  normalAttacks:
-  - animation: attack1
-    time: 3
-    activate:
-    - {fileID: 5449196949896177307}
-  hardAttacks:
-  - animation: attack2
-    time: 3
-    activate:
-    - {fileID: 5449196950483051575}
-  ultimateAttacks: []
-  normalAttakChance: 50
-  hardAttackChance: 50
-  ultimateAttackChance: 0
---- !u!114 &5449196950372748174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029147133929955126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d260211b369344f8a384de562f9744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 5449196950372748169}
-  MonsterName: Plant Monster
-  nameText: {fileID: 0}
-  animator: {fileID: 3029147133939501562}
-  appearAnimation: goAlive
-  appearAnimationTime: 2
-  dieAnimation: death
-  attack: {fileID: 5449196950372748175}
-  blockChance: 0
-  battleManager: {fileID: 5449196950354447427}
-  secondAttackChance: 50
-  thirdAttackChance: 10
-  minWaitTime: 1
-  maxWaitTime: 10
-  extraObjects:
-  - {fileID: 0}
---- !u!114 &5449196950372748169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029147133929955126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333e0ee7357afa94cb37fadc3bf0b014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 100
-  fighter: {fileID: 5449196950372748174}
-  inBlock: 0
-  hpSlider: {fileID: 0}
-  hpImage: {fileID: 0}
-  lowColor: {r: 1, g: 0, b: 0, a: 1}
-  fullColor: {r: 1, g: 0, b: 0, a: 1}
-  resistant: {fileID: 11400000, guid: 4f4f52b427eff9547abc552944b1333f, type: 2}
-  bodyHitAnimation: gotHit
-  headHitAnimation: gotHit
-  blockAnimation: 
-  animator: {fileID: 3029147133939501562}
 --- !u!1 &5449196950483051575
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,33 +461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   battleManager: {fileID: 5449196950354447427}
---- !u!135 &5449196950991684930
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029147133930046208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.42
-  m_Center: {x: -0.011505541, y: -0.011757746, z: 1.4886917}
---- !u!114 &5449196950991684989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029147133930046208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14793ab1a6160a049bb108ec2135479b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 5449196950372748169}
-  monsterHitType: 1
 --- !u!1001 &5449196950372748179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,16 +472,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlantMonster DEMO 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032052533955969161, guid: d66e56637f050474989d6340baeca55c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032052533956118675, guid: d66e56637f050474989d6340baeca55c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7032052533955664505, guid: d66e56637f050474989d6340baeca55c,
         type: 3}
@@ -534,23 +543,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7032052533955969161, guid: d66e56637f050474989d6340baeca55c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032052533956118675, guid: d66e56637f050474989d6340baeca55c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d66e56637f050474989d6340baeca55c, type: 3}
 --- !u!1 &3029147133929900826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7032052533955969161, guid: d66e56637f050474989d6340baeca55c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5449196950372748179}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3029147133930141124 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7032052533955690071, guid: d66e56637f050474989d6340baeca55c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5449196950372748179}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3029147133939501562 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7032052533963473513, guid: d66e56637f050474989d6340baeca55c,
     type: 3}
   m_PrefabInstance: {fileID: 5449196950372748179}
   m_PrefabAsset: {fileID: 0}
@@ -569,6 +576,18 @@ GameObject:
 --- !u!1 &3029147133930046208 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7032052533956118675, guid: d66e56637f050474989d6340baeca55c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5449196950372748179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3029147133930141124 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7032052533955690071, guid: d66e56637f050474989d6340baeca55c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5449196950372748179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3029147133939501562 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7032052533963473513, guid: d66e56637f050474989d6340baeca55c,
     type: 3}
   m_PrefabInstance: {fileID: 5449196950372748179}
   m_PrefabAsset: {fileID: 0}

@@ -28,9 +28,21 @@ public class Monster : Fighter
 
     private bool firstTurn = true;
 
+    public TurnFill turnFill;
+
+    private bool firstRound = true;
+
     public override void StartTurn()
     {
-        StartCoroutine(Strike());
+        if (firstRound)
+        {
+            firstRound = false;
+            MonsterTurnStart();
+        }
+        else
+        {
+            turnFill.MoveForward();
+        }
     }
 
     private IEnumerator Strike()
@@ -65,12 +77,12 @@ public class Monster : Fighter
             }
         }
 
-        float waitTime = Random.Range(minWaitTime, maxWaitTime + 1);
+        float waitTime = Random.Range(minWaitTime + turnFill.time, maxWaitTime + 1 + turnFill.time);
         StartCoroutine(Countdown(waitTime));
 
         yield return new WaitForSeconds(4);
 
-        battleManager.PlayerTurn();
+        turnFill.MoveBack();
     }
 
     private IEnumerator Countdown(float time)
@@ -126,5 +138,15 @@ public class Monster : Fighter
         animator.SetTrigger(appearAnimation);
         health.SetUpHealth();
         nameText.text = MonsterName;
+    }
+
+    public void MonsterTurnEnd()
+    {
+        battleManager.PlayerTurn();
+    }
+
+    public void MonsterTurnStart()
+    {
+        StartCoroutine(Strike());
     }
 }
