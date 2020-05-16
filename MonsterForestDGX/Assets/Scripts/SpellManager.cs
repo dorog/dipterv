@@ -22,6 +22,7 @@ public class SpellManager : SingletonClass<SpellManager>
     private readonly int distanceDiff = 1100;
 
     private int lastSpell = -1;
+    private float lastCoverage = 0;
 
     public GameObject castParent;
     public CastEffect[] castEffects;
@@ -110,11 +111,12 @@ public class SpellManager : SingletonClass<SpellManager>
 
         if(minCoverage <= max && index != -1)
         {
-            SpellPatterns[index].AddXp(XpType.Cast);
+            SpellPatterns[index].AddXp(XpType.Cast, max);
             SpellResult spellResult = new SpellResult
             {
                 id = index,
-                spell = SpellPatterns[index].GetSpell()
+                spell = SpellPatterns[index].GetSpell(),
+                coverage = max
             };
 
             ElementType elementType = SpellPatterns[index].Type;
@@ -179,7 +181,7 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public void Won()
     {
-        attackPatterns[lastSpell].AddXp(XpType.Kill);
+        attackPatterns[lastSpell].AddXp(XpType.Kill, lastCoverage);
 
         for (int i = 0; i < attackPatterns.Count; i++)
         {
@@ -192,10 +194,11 @@ public class SpellManager : SingletonClass<SpellManager>
         DataManager.GetInstance().Won();
     }
 
-    public void AddXpForHit(int id)
+    public void AddXpForHit(int id, float coverage)
     {
         lastSpell = id;
+        lastCoverage = coverage;
         Debug.Log("Not only Attack!");
-        attackPatterns[id].AddXp(XpType.Hit);
+        attackPatterns[id].AddXp(XpType.Hit, coverage);
     }
 }

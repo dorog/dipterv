@@ -141,6 +141,7 @@ public class Player : Fighter
         //TODO: Not in children?
         PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
         spellAttack.id = spellResult.id;
+        spellAttack.coverage = spellResult.coverage;
 
         SetUpCoolDown(spellAttack.cd);
         //SetUpCoolDown(2);

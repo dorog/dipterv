@@ -33,7 +33,6 @@ public class Health : MonoBehaviour
         }
 
         float realDmg = resistant.CalculateDmg(dmg, magicType);
-
         currentHp -= realDmg;
 
         SetUpHealth();

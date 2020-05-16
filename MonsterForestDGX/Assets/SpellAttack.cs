@@ -13,8 +13,8 @@ public class SpellAttack : PlayerSpell
             MonsterHit monsterHit = hit.gameObject.GetComponent<MonsterHit>();
             if (monsterHit != null)
             {
-                SpellManager.GetInstance().AddXpForHit(id);
-                monsterHit.TakeDamage(dmg, attackType);
+                SpellManager.GetInstance().AddXpForHit(id, coverage);
+                monsterHit.TakeDamage(dmg * coverage, attackType);
             }
 
             Vector3 impactNormal = hit.contacts[0].normal;

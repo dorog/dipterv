@@ -5,7 +5,7 @@ public class SpellPattern : MonoBehaviour
 {
     public bool isAttack = true;
     public int level = 0;
-    public int xp = 0;
+    public float xp = 0;
 
     public float maxPoints = 0;
     public float correct = 0;
@@ -94,10 +94,9 @@ public class SpellPattern : MonoBehaviour
         lastId = id;
     }
 
-    public void AddXp(XpType xpType)
+    public void AddXp(XpType xpType, float coverage)
     {
-        xp += xpType.GetXp();
-        Debug.Log(xp);
+        xp += xpType.GetXp() * coverage;
         LevelSet();
     }
 
