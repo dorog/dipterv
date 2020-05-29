@@ -4599,6 +4599,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
         type: 3}
+      propertyPath: extraAttackChances.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
       propertyPath: nameText
       value: 
       objectReference: {fileID: 881170087}
@@ -4616,6 +4621,26 @@ PrefabInstance:
         type: 3}
       propertyPath: maxWaitTime
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraAttackChances.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraAttackChances.Array.data[1]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraAttackChances.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraAttackChances.Array.data[3]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000349071804731280, guid: 53bc6e8785af0c04a86644e22462c864,
         type: 3}

@@ -15,10 +15,12 @@ public class Monster : Fighter
     [Range(0, 100)]
     public float blockChance = 10f;
     public BattleManager battleManager;
-    [Range(0, 100)]
+    /*[Range(0, 100)]
     public float secondAttackChance = 50;
     [Range(0, 100)]
-    public float thirdAttackChance = 10;
+    public float thirdAttackChance = 10;*/
+    [Range(0, 100)]
+    public float[] extraAttackChances;
 
     public float minWaitTime = 1;
     public float maxWaitTime = 10;
@@ -61,19 +63,18 @@ public class Monster : Fighter
 
         yield return new WaitForSeconds(2 + animationTime);
 
-        float secondAttack = Random.Range(0, 101);
-        if (secondAttack <= secondAttackChance)
+        for (int i = 0; i < extraAttackChances.Length; i++)
         {
-            animationTime = Attack();
-
-            yield return new WaitForSeconds(2 + animationTime);
-
-            float thirdAttack = Random.Range(0, 101);
-            if (thirdAttack <= thirdAttackChance)
+            float extraAttack = Random.Range(0, 101);
+            if (extraAttack <= extraAttackChances[i])
             {
                 animationTime = Attack();
 
                 yield return new WaitForSeconds(2 + animationTime);
+            }
+            else
+            {
+                break;
             }
         }
 
