@@ -4,7 +4,8 @@ using UnityEngine;
 public class MovingTurnFill : TurnFill
 {
     public string movingAnimation = "locomotion";
-    public float value = 1f;
+    public float forwardValue = 1f;
+    public float backWardValue = 1f;
     private int direction = -1;
 
     private Vector3 startPosition;
@@ -19,6 +20,7 @@ public class MovingTurnFill : TurnFill
     protected override IEnumerator Moving(bool forward, float time)
     {
         direction = forward ? 1 : -1;
+        float value = forward ? forwardValue : backWardValue;
         animator.SetFloat(movingAnimation, value * direction);
 
         if (forward)
