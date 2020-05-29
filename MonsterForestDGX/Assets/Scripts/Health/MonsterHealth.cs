@@ -7,6 +7,8 @@ public class MonsterHealth : Health
     public string blockAnimation;
     public Animator animator;
 
+    private bool death = false;
+
     private SpellManager spellManager;
 
     private void Start()
@@ -39,16 +41,25 @@ public class MonsterHealth : Health
         }
         else
         {
-            animator.SetTrigger(headHitAnimation);
             TakeDamage(dmg, magicType);
+            if (currentHp > 0)
+            {
+                animator.SetTrigger(headHitAnimation);
+            }
         }
     }
 
     public override void TakeDamage(float dmg, ElementType magicType)
     {
+        //Player doesn't need it?
+        if (death)
+        {
+            return;
+        }
         base.TakeDamage(dmg, magicType);
         if(currentHp <= 0)
         {
+            death = true;
             hpSlider.gameObject.SetActive(false);
         }
     }
