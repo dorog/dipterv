@@ -11,6 +11,7 @@ public class Player : Fighter
     public Rigidbody rb;
     private bool InLobby = false;
     public bool InBattle = false;
+    public bool InMenu = false;
     private bool inCast = false;
 
     private float rotation = 0;
@@ -97,7 +98,7 @@ public class Player : Fighter
 
     private void Update()
     {
-        if (!InBattle && !InLobby)
+        if (CanMove())
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -261,5 +262,10 @@ public class Player : Fighter
         battleLobbyUI.SetResistantValues(monsterResistant);
 
         battleLobbyUI.gameObject.SetActive(true);
+    }
+
+    public bool CanMove()
+    {
+        return !(InLobby || InBattle || InMenu);
     }
 }

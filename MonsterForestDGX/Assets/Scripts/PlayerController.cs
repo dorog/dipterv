@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Player player;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (player.CanMove())
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    TeleportUI teleportUI = hit.collider.gameObject.GetComponent<TeleportUI>();
+                    if (teleportUI)
+                    {
+                        player.InMenu = true;
+                        teleportUI.ShowUI();
+                    }
+                }
+            }
+        }
     }
 }
