@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4000349070942057365}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -427, y: 5.5, z: 329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   battleManager: {fileID: 4000349071436581317}
+  monster: {fileID: 4000349070942057365}
 --- !u!1 &4000349071436581319
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +190,21 @@ MonoBehaviour:
   turn: {fileID: 0}
   turnGO: {fileID: 0}
   id: 0
+--- !u!114 &4000349071641932289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651830619666990786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03e8eee2664cd42a53e047aacbddb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 10
+  disappearTime: 10
+  delayTime: 6
 --- !u!114 &7427502603421434831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,8 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 4000349072905146619}
-  distance: 10
   time: 2
+  distance: 10
   animator: {fileID: 7651830619657594362}
   appearAnimation: appear
   appearAnimationTime: 3
@@ -278,18 +294,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1476619429, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: hpSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1476619429, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: hpImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1476619429, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: resistant
       value: 
       objectReference: {fileID: 11400000, guid: 45fa85eae6868e045969c155787f35cb,
         type: 2}
+    - target: {fileID: 1476619429, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: monsterBodyDisappear
+      value: 
+      objectReference: {fileID: 4000349071641932289}
     - target: {fileID: 510424013, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: normalAttacks.Array.data[0].activate.Array.size
       value: 1
@@ -315,28 +327,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4599936799599638191}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: extraObjects.Array.size
-      value: 1
+      propertyPath: extraAttackChances.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: MonsterName
+      value: Giant Worm
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 4000349071436581317}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: extraObjects.Array.data[1]
-      value: 
+      propertyPath: extraAttackChances.Array.data[0]
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: appearAnimationTime
-      value: 2
+      propertyPath: extraAttackChances.Array.data[1]
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: nameText
-      value: 
+      propertyPath: extraAttackChances.Array.data[2]
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: MonsterName
-      value: Giant Worm
+      propertyPath: extraAttackChances.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: minWaitTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: maxWaitTime
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: turnFill
@@ -355,14 +379,6 @@ PrefabInstance:
     - target: {fileID: 846111885, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: magicType
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 225968050, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470196767, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}

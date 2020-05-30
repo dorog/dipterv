@@ -2200,11 +2200,6 @@ PrefabInstance:
       objectReference: {fileID: 878706196}
     - target: {fileID: 7430444228697404817, guid: d8cd6fdbbee8a4e42ace32684ae889e4,
         type: 3}
-      propertyPath: monster
-      value: 
-      objectReference: {fileID: 955995796}
-    - target: {fileID: 7430444228697404817, guid: d8cd6fdbbee8a4e42ace32684ae889e4,
-        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 570111807}
@@ -2241,18 +2236,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f635f31e28e06d488ccbff3713d2161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &955995796 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7430444227610318338, guid: d8cd6fdbbee8a4e42ace32684ae889e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 955995793}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d260211b369344f8a384de562f9744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &961448450 stripped
@@ -4498,11 +4481,6 @@ PrefabInstance:
       propertyPath: extraObjects.Array.data[0]
       value: 
       objectReference: {fileID: 281174809}
-    - target: {fileID: 6221232076501879938, guid: 45e3b4886d77dc849a7c7a598bc9b316,
-        type: 3}
-      propertyPath: forwardValue
-      value: 0.75
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e3b4886d77dc849a7c7a598bc9b316, type: 3}
 --- !u!1001 &4000349071641932287
@@ -4594,16 +4572,6 @@ PrefabInstance:
       objectReference: {fileID: 1121384222}
     - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
         type: 3}
-      propertyPath: extraObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: extraAttackChances.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
       propertyPath: nameText
       value: 
       objectReference: {fileID: 881170087}
@@ -4612,36 +4580,6 @@ PrefabInstance:
       propertyPath: extraObjects.Array.data[1]
       value: 
       objectReference: {fileID: 281174809}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: minWaitTime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: maxWaitTime
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: extraAttackChances.Array.data[0]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: extraAttackChances.Array.data[1]
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: extraAttackChances.Array.data[2]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
-        type: 3}
-      propertyPath: extraAttackChances.Array.data[3]
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4000349071804731280, guid: 53bc6e8785af0c04a86644e22462c864,
         type: 3}
       propertyPath: hpSlider
@@ -5008,16 +4946,6 @@ PrefabInstance:
       propertyPath: extraObjects.Array.data[0]
       value: 
       objectReference: {fileID: 281174809}
-    - target: {fileID: 5449196950372748174, guid: 91870e5f129f6a24daaef510772dc9a4,
-        type: 3}
-      propertyPath: minWaitTime
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5449196950372748174, guid: 91870e5f129f6a24daaef510772dc9a4,
-        type: 3}
-      propertyPath: maxWaitTime
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 5449196950354447427, guid: 91870e5f129f6a24daaef510772dc9a4,
         type: 3}
       propertyPath: player

@@ -76,7 +76,7 @@ public class SpellManager : SingletonClass<SpellManager>
         for (int i = 0; i < SpellPatterns.Count; i++)
         {
             float result = SpellPatterns[i].GetResult();
-            Debug.Log(result);
+            //Debug.Log(result);
             if (result > max)
             {
                 index = i;
@@ -151,9 +151,9 @@ public class SpellManager : SingletonClass<SpellManager>
 
         for (int i = 0; i < attackPatterns.Count; i++)
         {
-            Debug.Log(attackPatterns[i].xp);
+            //Debug.Log(attackPatterns[i].xp);
             SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
-            Debug.Log(attackPatterns[i].level);
+            //Debug.Log(attackPatterns[i].level);
             SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].level;
         }
 

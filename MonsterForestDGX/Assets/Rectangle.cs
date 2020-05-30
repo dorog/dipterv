@@ -33,24 +33,24 @@ public class Rectangle
         if (signedAngle >= 0 && signedAngle < 90)
         {
             // 0 and I
-            Debug.Log("I");
+            //Debug.Log("I");
             SetUpLines(startPoint, direction, startPoint, endPoint, width);
         }
         else if (signedAngle >= 90 && signedAngle < 180)
         {
             // 90 and II
-            Debug.Log("II");
+            //Debug.Log("II");
             Vector2 half = (endPoint - startPoint) / 2 + startPoint;
-            Debug.Log("F: " + (endPoint - startPoint) / 2);
+            /*Debug.Log("F: " + (endPoint - startPoint) / 2);
             Debug.Log("S: " + startPoint);
-            Debug.Log("H: " + half);
+            Debug.Log("H: " + half);*/
             Vector2 normal = new Vector2(direction.y, -direction.x);
             SetUpLines(startPoint, normal, half - width * normal, half + width * normal, (startPoint - endPoint).magnitude / 2);
         }
         else if (signedAngle < 0 && signedAngle >= -90)
         {
             // -90 and IV
-            Debug.Log("IV");
+            //Debug.Log("IV");
             Vector2 half = (endPoint - startPoint) / 2 + startPoint;
             Vector2 normal = new Vector2(-direction.y, direction.x);
             SetUpLines(startPoint, normal, half - width * normal, half + width * normal, (startPoint - endPoint).magnitude / 2);
@@ -58,7 +58,7 @@ public class Rectangle
         else
         {
             // 180 and III
-            Debug.Log("III");
+            //Debug.Log("III");
             SetUpLines(startPoint, -direction, endPoint, startPoint, width);
         }
     }
@@ -67,10 +67,10 @@ public class Rectangle
     {
         this.distancePoint = distancePoint;
 
-        Debug.Log("Direction: " + direction);
+        /*Debug.Log("Direction: " + direction);
         Debug.Log("Start: " + startPoint);
         Debug.Log("End: " + endPoint);
-        Debug.Log("Width: " + width);
+        Debug.Log("Width: " + width);*/
 
         Vector2 normal = new Vector2(-direction.y, direction.x);
 

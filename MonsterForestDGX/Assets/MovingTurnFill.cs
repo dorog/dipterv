@@ -25,27 +25,15 @@ public class MovingTurnFill : TurnFill
 
         if (forward)
         {
-            StartCoroutine(MoveToPosition(transform, startPosition, time));
+            StartCoroutine(EnumeratorMoving.MoveToPosition(transform, startPosition, time));
         }
         else
         {
-            StartCoroutine(MoveToPosition(transform, playerTurnPosition, time));
+            StartCoroutine(EnumeratorMoving.MoveToPosition(transform, playerTurnPosition, time));
         }
 
         yield return new WaitForSeconds(time);
 
         animator.SetFloat(movingAnimation, 0);
-    }
-
-    public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)
-    {
-        var currentPos = transform.position;
-        var t = 0f;
-        while (t < 1)
-        {
-            t += Time.deltaTime / timeToMove;
-            transform.position = Vector3.Lerp(currentPos, position, t);
-            yield return null;
-        }
     }
 }

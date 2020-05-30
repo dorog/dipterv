@@ -17,7 +17,7 @@ public class CooldownResetPetAbility : PetAbility
     private void ResetCooldown()
     {
         float random = UnityEngine.Random.Range(0, 100);
-        Debug.Log(random + ", " + resetChance);
+        //Debug.Log(random + ", " + resetChance);
         if (random <= resetChance)
         {
             player.ResetCooldown();

@@ -6,6 +6,7 @@ public class MonsterHealth : Health
     public string headHitAnimation;
     public string blockAnimation;
     public Animator animator;
+    public MonsterBodyDisappear monsterBodyDisappear;
 
     private bool death = false;
 
@@ -61,6 +62,7 @@ public class MonsterHealth : Health
         {
             death = true;
             hpSlider.gameObject.SetActive(false);
+            StartCoroutine(monsterBodyDisappear.DisAppear());
         }
     }
 }

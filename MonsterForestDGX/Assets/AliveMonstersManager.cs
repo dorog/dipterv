@@ -12,7 +12,7 @@ public class AliveMonstersManager : SingletonClass<AliveMonstersManager>
         for (int i = 0; i < SharedData.GameConfig.aliveMonsters.Length; i++)
         {
             battlePlaces[i].id = i;
-            battlePlaces[i].gameObject.SetActive(SharedData.GameConfig.aliveMonsters[i]);
+            battlePlaces[i].SetAlive(SharedData.GameConfig.aliveMonsters[i]);
         }
 
         Init(this);

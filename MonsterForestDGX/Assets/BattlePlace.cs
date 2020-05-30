@@ -4,6 +4,7 @@ public class BattlePlace : MonoBehaviour
 {
     public int id;
     public BattleManager battleManager;
+    public GameObject monster;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,14 @@ public class BattlePlace : MonoBehaviour
             battleManager.Battle(id);
 
             gameObject.SetActive(false);
+        }
+    }
+
+    public void SetAlive(bool alive)
+    {
+        if (!alive)
+        {
+            monster.gameObject.SetActive(false);
         }
     }
 }
