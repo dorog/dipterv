@@ -4,13 +4,13 @@
 public class Resistant : ScriptableObject
 {
     [Range(-100, 100)]
-    public float fire = 0;
+    public int water = 0;
     [Range(-100, 100)]
-    public float water = 0;
+    public int earth = 0;
     [Range(-100, 100)]
-    public float poison = 0;
+    public int fire = 0;
     [Range(-100, 100)]
-    public float laser = 0;
+    public int air = 0;
 
     public float CalculateDmg(float dmg, ElementType magicType)
     {
@@ -23,14 +23,14 @@ public class Resistant : ScriptableObject
     {
         switch (magicType)
         {
-            case ElementType.Fire:
-                return fire;
             case ElementType.Water:
                 return water;
-            case ElementType.Poison:
-                return poison;
-            case ElementType.Laser:
-                return laser;
+            case ElementType.Earth:
+                return water;
+            case ElementType.Fire:
+                return fire;
+            case ElementType.Air:
+                return air;
             default:
                 return 0;
         }

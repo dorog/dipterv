@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class BattleManager : MonoBehaviour
 {
     public Monster monster;
+    public MonsterHealth monsterHealth;
     public Player player;
     public SceneLoader sceneLoader;
     public Text turn;
@@ -19,7 +20,7 @@ public class BattleManager : MonoBehaviour
         player.battleManager = this;
 
         monster.Appear();
-        player.Battle(this);
+        player.Battle(this, monsterHealth.resistant);
     }
 
     public void BattleStart()

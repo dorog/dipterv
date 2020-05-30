@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924d57a6e33051a42b089c881b5c2b6e, type: 3}
   m_Name: Mushroom
   m_EditorClassIdentifier: 
-  fire: -50
   water: 50
-  poison: 10
-  laser: -30
+  earth: 20
+  fire: -100
+  air: 0

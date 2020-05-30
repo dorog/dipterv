@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924d57a6e33051a42b089c881b5c2b6e, type: 3}
   m_Name: GiantWorm
   m_EditorClassIdentifier: 
-  fire: -100
-  water: 20
+  water: -50
+  earth: 80
+  fire: -50
+  air: 0

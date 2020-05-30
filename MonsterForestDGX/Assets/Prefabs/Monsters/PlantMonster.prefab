@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 5449196950372748174}
+  monsterHealth: {fileID: 5449196950372748169}
   player: {fileID: 0}
   sceneLoader: {fileID: 0}
   turn: {fileID: 0}

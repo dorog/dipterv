@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 4000349072905146619}
+  monsterHealth: {fileID: 4000349071804731280}
   player: {fileID: 0}
   sceneLoader: {fileID: 0}
   turn: {fileID: 0}
@@ -410,6 +411,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d260211b369344f8a384de562f9744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4000349071804731280 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476619429, guid: cb34f421aa6593e4fb46a5760275fda7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000349072476037941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651830619666990786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333e0ee7357afa94cb37fadc3bf0b014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4599936800059638997 stripped

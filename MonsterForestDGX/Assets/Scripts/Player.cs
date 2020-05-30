@@ -253,11 +253,13 @@ public class Player : Fighter
         inCast = false;
     }
 
-    public void Battle(BattleManager battleManager)
+    public void Battle(BattleManager battleManager, Resistant monsterResistant)
     {
         InLobby = true;
         this.battleManager = battleManager;
         battleLobbyUI.battleManager = battleManager;
+        battleLobbyUI.SetResistantValues(monsterResistant);
+
         battleLobbyUI.gameObject.SetActive(true);
     }
 }
