@@ -276,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3793616788255035440}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!114 &3793616788255035440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3793616788255035440}
   monsterHitType: 1
+  dmgPercent: 50
 --- !u!1001 &3793616788255035444
 PrefabInstance:
   m_ObjectHideFlags: 0

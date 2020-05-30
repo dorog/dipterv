@@ -28,6 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!135 &7430444228953736343
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -55,6 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444227508633010
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444228676941928
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -111,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!114 &891596397294545581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444228673397329
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -304,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444228690495283
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -332,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444227745877828
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -360,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!135 &7430444228404708367
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -387,6 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!135 &7430444228631416162
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -414,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444228803101131
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -442,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!136 &7430444228219360619
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -470,6 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 7430444227610318348}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!1 &6710771293941701040
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 5449196950372748169}
   monsterHitType: 0
+  dmgPercent: 100
 --- !u!114 &5449196950372748169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 5449196950372748169}
   monsterHitType: 1
+  dmgPercent: 150
 --- !u!1 &5449196949713590832
 GameObject:
   m_ObjectHideFlags: 0
