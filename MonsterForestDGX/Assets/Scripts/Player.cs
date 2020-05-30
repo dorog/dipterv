@@ -112,6 +112,7 @@ public class Player : Fighter
         }
         else
         {
+            //Remove later, add def spells
             if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
             {
                 health.SetUpBlock();
@@ -121,6 +122,11 @@ public class Player : Fighter
                 inCast = true;
                 mousePosition = Input.mousePosition;
                 magicCircle.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                inCast = false;
+                magicCircle.SetActive(false);
             }
         }
     }

@@ -34,20 +34,7 @@ public class Paint : MonoBehaviour
         }
         else
         {
-            if(lineRenderer.positionCount != 0)
-            {
-                lineRenderer.positionCount = 0;
-                SpellResult spellResult = SpellManager.GetSpell(player.canAttack);
-                if (spellResult == null)
-                {
-                    Debug.Log("Null");
-                }
-                else
-                {
-                    player.CastSpell(spellResult);
-                }
-                SpellManager.ResetSpells();
-            }
+            CheckResult();
         }
     }
 
@@ -58,6 +45,24 @@ public class Paint : MonoBehaviour
         mousePos.y -= Screen.height / 2;
 
         return mousePos;
+    }
+
+    private void CheckResult()
+    {
+        if (lineRenderer.positionCount != 0)
+        {
+            lineRenderer.positionCount = 0;
+            SpellResult spellResult = SpellManager.GetSpell(player.canAttack);
+            if (spellResult == null)
+            {
+                Debug.Log("Null");
+            }
+            else
+            {
+                player.CastSpell(spellResult);
+            }
+            SpellManager.ResetSpells();
+        }
     }
 
     private void OnDisable()
