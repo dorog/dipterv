@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class PetManager : SingletonClass<PetManager>
 {
     public Image[] images;
-    public GameObject petTab;
     public Color selectedColor;
     public int selectedPet = 0;
     public Pet[] pets;
@@ -17,14 +16,6 @@ public class PetManager : SingletonClass<PetManager>
     private void Start()
     {
         images[selectedPet].color = selectedColor;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            petTab.SetActive(!petTab.activeSelf);
-        }
     }
 
     public GameObject GetPet()
