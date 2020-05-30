@@ -9,6 +9,7 @@ public class Player : Fighter
     public bool canAttack = false;
     public BattleManager battleManager;
     public Rigidbody rb;
+    private bool InLobby = false;
     public bool InBattle = false;
     private bool inCast = false;
 
@@ -39,6 +40,8 @@ public class Player : Fighter
     private SpellManager spellManager;
     private AliveMonstersManager aliveMonstersManager;
 
+    public BattleLobby battleLobbyUI;
+
     private void Start()
     {
         health.SetUpHealth();
@@ -50,8 +53,11 @@ public class Player : Fighter
         spellManager = SpellManager.GetInstance();
     }
 
-    public void Battle()
+    public void BattleStarted()
     {
+        battleLobbyUI.gameObject.SetActive(false);
+        InLobby = false;
+
         InBattle = true;
 
         GameObject playerPet = petManager.GetPet();
@@ -91,7 +97,7 @@ public class Player : Fighter
 
     private void Update()
     {
-        if (!InBattle)
+        if (!InBattle && !InLobby)
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -245,5 +251,13 @@ public class Player : Fighter
         canAttack = true;
         magicCircle.SetActive(false);
         inCast = false;
+    }
+
+    public void Battle(BattleManager battleManager)
+    {
+        InLobby = true;
+        this.battleManager = battleManager;
+        battleLobbyUI.battleManager = battleManager;
+        battleLobbyUI.gameObject.SetActive(true);
     }
 }

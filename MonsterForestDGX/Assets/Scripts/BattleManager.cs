@@ -19,7 +19,12 @@ public class BattleManager : MonoBehaviour
         player.battleManager = this;
 
         monster.Appear();
-        player.Battle();
+        player.Battle(this);
+    }
+
+    public void BattleStart()
+    {
+        player.BattleStarted();
         MonsterTurn();
     }
 
