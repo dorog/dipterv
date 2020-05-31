@@ -592,8 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba5d955b9da6a54a843561863d0d868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resistant: {fileID: 11400000, guid: 4fe9cc2d1942a334fa8bf19d0ccf4223, type: 2}
-  player: {fileID: 0}
+  petName: Red
   normalAbilities: []
   updateAbilities:
   - {fileID: 7335588371824786013, guid: 282cf0bff65b75b43915803678e24da8, type: 3}

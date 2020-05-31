@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -57,6 +58,11 @@ public class DataManager : MonoBehaviour
             SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
         }
 
+        for(int i = 0; i < gameData.availablePets.Length; i++)
+        {
+            SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
+        }
+
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
     }
 
@@ -70,6 +76,13 @@ public class DataManager : MonoBehaviour
             SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
             SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
         }
+
+        for (int i = 0; i < gameData.availablePets.Length; i++)
+        {
+            SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
+        }
+
+        SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
 
         Save(gameData);
     }
@@ -97,5 +110,19 @@ public class DataManager : MonoBehaviour
     public void Won()
     {
         Save(SharedData.GameConfig);
+    }
+
+    public Pet[] GetAvailablePets()
+    {
+        List<Pet> pets = new List<Pet>();
+        for(int i = 0; i < gameConfig.pets.Length; i++)
+        {
+            if (gameConfig.pets[i].available)
+            {
+                pets.Add(gameConfig.pets[i].pet);
+            }
+        }
+
+        return pets.ToArray();
     }
 }

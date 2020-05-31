@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System;
 
+[Serializable]
 public class Pet : MonoBehaviour
 {
-    public Resistant resistant;
-
+    public string petName = "Unknown";
     public PetAbility[] normalAbilities;
     public UpdatePetAbility[] updateAbilities;
 

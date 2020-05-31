@@ -1815,8 +1815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba5d955b9da6a54a843561863d0d868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resistant: {fileID: 11400000, guid: 4fe9cc2d1942a334fa8bf19d0ccf4223, type: 2}
-  player: {fileID: 0}
+  petName: Green
   normalAbilities: []
   updateAbilities:
   - {fileID: 8709626779585211243, guid: 4c0a361d87c8a6f4fb8f87ec9e14c54f, type: 3}

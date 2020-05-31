@@ -62,10 +62,13 @@ public class Player : Fighter
         InBattle = true;
 
         GameObject playerPet = petManager.GetPet();
-        petGO = Instantiate(playerPet, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
+        if(playerPet != null)
+        {
+            petGO = Instantiate(playerPet, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
 
-        Pet pet = petGO.GetComponent<Pet>();
-        pet.AddPlayer(this);
+            Pet pet = petGO.GetComponent<Pet>();
+            pet.AddPlayer(this);
+        }
     }
 
     public void BattleEnd(int id)
@@ -78,7 +81,10 @@ public class Player : Fighter
         magicCircle.SetActive(false);
 
         ClearDelegates();
-        Destroy(petGO);
+        if(petGO != null)
+        {
+            Destroy(petGO);
+        }
 
         spellManager.Won();
         aliveMonstersManager.Won(id);

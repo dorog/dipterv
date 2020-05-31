@@ -1756,8 +1756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba5d955b9da6a54a843561863d0d868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resistant: {fileID: 11400000, guid: 4fe9cc2d1942a334fa8bf19d0ccf4223, type: 2}
-  player: {fileID: 0}
+  petName: Blue
   normalAbilities:
   - {fileID: 4284074866904985539, guid: f2e2269a03e01f44180ebada21e164d5, type: 3}
   updateAbilities: []

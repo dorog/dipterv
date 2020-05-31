@@ -7,8 +7,11 @@ public class GameConfig : ScriptableObject
     [Header("Monster Settings")]
     public bool[] aliveMonsters;
 
-    [Header("Attack Spells Setting")]
+    [Header("Attack Spells Settings")]
     public BasePaternSpell[] baseSpells;
+
+    [Header("Pet Settings")]
+    public PetData[] pets;
 
     public PatternSpell[] GetBasePatternSpells()
     {
@@ -31,5 +34,24 @@ public class GameConfig : ScriptableObject
         }
 
         return basePatternSpellsPoints;
+    }
+
+    public bool[] GetAvailablePets()
+    {
+        if(pets == null || pets.Length == 0)
+        {
+            Debug.LogError(nameof(GetAvailablePets) + " Error!");
+            return new bool[0];
+        }
+        else
+        {
+            bool[] availablePets = new bool[pets.Length];
+            for(int i = 0; i < pets.Length; i++)
+            {
+                availablePets[i] = pets[i].available;
+            }
+
+            return availablePets;
+        }
     }
 }
