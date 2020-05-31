@@ -6,6 +6,16 @@ public class SpellAttack : PlayerSpell
     public GameObject impactParticle;
     private bool hasCollided = false;
 
+    public override string GetSpellType()
+    {
+        return "Damage";
+    }
+
+    public override float GetSpellTypeValue()
+    {
+        return dmg;
+    }
+
     private void OnCollisionEnter(Collision hit)
     {
         if (!hasCollided)
@@ -14,7 +24,7 @@ public class SpellAttack : PlayerSpell
             if (monsterHit != null)
             {
                 SpellManager.GetInstance().AddXpForHit(coverage);
-                monsterHit.TakeDamage(dmg * coverage, attackType);
+                monsterHit.TakeDamage(dmg * coverage, elementType);
             }
 
             Vector3 impactNormal = hit.contacts[0].normal;
@@ -26,4 +36,6 @@ public class SpellAttack : PlayerSpell
             Destroy(gameObject);
         }
     }
+
+
 }

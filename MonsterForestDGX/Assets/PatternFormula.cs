@@ -8,14 +8,16 @@ public class PatternFormula : ISpellPattern
 
     private int lastId = int.MinValue;
 
+    public Sprite icon;
     public int level = 0;
     //public float xp = 0;
 
-    public GameObject[] Spells;
+    public PlayerSpell[] Spells;
     public ElementType ElementType;
 
-    public PatternFormula(List<Vector2> points, float width = 10)
+    public PatternFormula(List<Vector2> points, Sprite icon, float width = 10)
     {
+        this.icon = icon;
         int id = 0;
         for(int i = 0; i < points.Count - 1; i++)
         {
@@ -26,7 +28,7 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public void Guess(Vector2 point)
+    public override void Guess(Vector2 point)
     {
         int minId = int.MaxValue;
         bool hit = false;
@@ -47,7 +49,7 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public float GetResult()
+    public override float GetResult()
     {
         int correct = 0;
         int max = 0;
@@ -60,7 +62,7 @@ public class PatternFormula : ISpellPattern
         return ((float)correct) / max;
     }
 
-    public void Reset()
+    public override void Reset()
     {
         lastId = int.MinValue;
         for (int i = 0; i < rectangles.Count; i++)
@@ -69,13 +71,47 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public GameObject GetSpell()
+    public override GameObject GetSpell()
     {
-        return Spells[level - 1];
+        return Spells[level - 1].gameObject;
     }
 
-    public ElementType GetElementType()
+    public override ElementType GetElementType()
     {
         return ElementType;
+    }
+
+    public override string GetSpellType()
+    {
+        return Spells[level - 1].GetSpellType();
+    }
+
+    public override string GetLevel()
+    {
+        if(level == Spells.Length - 1)
+        {
+            return "Max";
+        }
+        return level.ToString();
+    }
+
+    public override Sprite GetIcon()
+    {
+        return icon;
+    }
+
+    public override float GetTypeValue()
+    {
+        return Spells[level - 1].GetSpellTypeValue();
+    }
+
+    public override float GetCooldown()
+    {
+        return Spells[level - 1].cd;
+    }
+
+    public override int GetLevelValue()
+    {
+        return level;
     }
 }

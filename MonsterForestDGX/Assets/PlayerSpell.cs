@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-public class PlayerSpell : MonoBehaviour
+public abstract class PlayerSpell : MonoBehaviour
 {
-    public float cd = 2;
-    public ElementType attackType = ElementType.TrueDamage;
+    public ElementType elementType = ElementType.TrueDamage;
     public float coverage;
+    public float cd;
+
+    public abstract string GetSpellType();
+    public abstract float GetSpellTypeValue();
 }

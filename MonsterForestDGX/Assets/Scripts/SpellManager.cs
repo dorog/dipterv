@@ -10,8 +10,8 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public SpellPattern SpellPattern;
 
-    private readonly List<PatternFormula> attackPatterns = new List<PatternFormula>();
-    private readonly List<PatternFormula> defensePatterns = new List<PatternFormula>();
+    private readonly List<ISpellPattern> attackPatterns = new List<ISpellPattern>();
+    private readonly List<ISpellPattern> defensePatterns = new List<ISpellPattern>();
 
     public Transform attackParent;
     public Transform defenseParent;
@@ -23,6 +23,8 @@ public class SpellManager : SingletonClass<SpellManager>
     public GameObject castParent;
     public CastEffect[] castEffects;
 
+    public SpellsUI spellsUI;
+
     private void Awake()
     {
         Init(this);
@@ -30,10 +32,12 @@ public class SpellManager : SingletonClass<SpellManager>
 
     void Start()
     {
-        CreatePatterns(SharedData.GameConfig.baseSpells.ToList(), attackPatterns, attackParent);
+        List<BasePaternSpell> basePaternSpells = SharedData.GameConfig.baseSpells.ToList();
+        CreatePatterns(basePaternSpells, attackPatterns, attackParent);
+        spellsUI.SetupUI(attackPatterns);
     }
 
-    private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<PatternFormula> SpellPatterns, Transform parent, float extraHeigh = 0)
+    private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<ISpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
     {
         int x = 0;
         foreach (var basePaternSpell in BasePaternSpells)
@@ -43,7 +47,7 @@ public class SpellManager : SingletonClass<SpellManager>
         }
     }
 
-    private void CreateSpellPattern(int x, Transform parent, BasePaternSpell basePaternSpell, List<PatternFormula> SpellPatterns, float extraHeigh = 0)
+    private void CreateSpellPattern(int x, Transform parent, BasePaternSpell basePaternSpell, List<ISpellPattern> SpellPatterns, float extraHeigh = 0)
     {
         List<Vector2> points = new List<Vector2>();
         List<SpellPatternPoint> spellPatternPoints = basePaternSpell.SpellPatternPoints.GetPoints();
@@ -52,7 +56,7 @@ public class SpellManager : SingletonClass<SpellManager>
             points.Add(spellPatternPoints[i].Point);
         }
 
-        PatternFormula spellPattern = new PatternFormula(points);
+        PatternFormula spellPattern = new PatternFormula(points, basePaternSpell.icon);
         spellPattern.ElementType = basePaternSpell.SpellPatternPoints.attackType;
         spellPattern.level = basePaternSpell.level;
         //spellPattern.xp = basePaternSpell.xp;
@@ -62,7 +66,7 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public void Guess(Vector3 point, bool canAttack)
     {
-        List<PatternFormula> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
+        List<ISpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         foreach (var spellPattern in SpellPatterns)
         {
             spellPattern.Guess(point);
@@ -71,7 +75,7 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public SpellResult GetSpell(bool canAttack)
     {
-        List<PatternFormula> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
+        List<ISpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         int index = -1;
         float max = -1;
         for (int i = 0; i < SpellPatterns.Count; i++)
@@ -94,7 +98,8 @@ public class SpellManager : SingletonClass<SpellManager>
             {
                 id = index,
                 spell = SpellPatterns[index].GetSpell(),
-                coverage = max
+                coverage = max,
+                cooldown = SpellPatterns[index].GetCooldown()
             };
 
             ElementType elementType = SpellPatterns[index].GetElementType();
@@ -156,7 +161,7 @@ public class SpellManager : SingletonClass<SpellManager>
             //Debug.Log(attackPatterns[i].xp);
             //SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
             //Debug.Log(attackPatterns[i].level);
-            SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].level;
+            SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].GetLevelValue();
         }
 
         DataManager.GetInstance().Won();

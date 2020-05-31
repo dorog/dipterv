@@ -11,7 +11,7 @@ public class PatternFormulaTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PatternFormula patternFormula = new PatternFormula(points.ToList(), 2);
+        PatternFormula patternFormula = new PatternFormula(points.ToList(), null, 2);
         for(int i = 0; i < guesses.Length; i++)
         {
             patternFormula.Guess(guesses[i]);
