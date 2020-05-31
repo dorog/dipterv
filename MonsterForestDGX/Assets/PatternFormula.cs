@@ -9,7 +9,7 @@ public class PatternFormula : ISpellPattern
     private int lastId = int.MinValue;
 
     public int level = 0;
-    public float xp = 0;
+    //public float xp = 0;
 
     public GameObject[] Spells;
     public ElementType ElementType;
@@ -66,32 +66,6 @@ public class PatternFormula : ISpellPattern
         for (int i = 0; i < rectangles.Count; i++)
         {
             rectangles[i].Reset();
-        }
-    }
-
-    public void AddXp(XpType xpType, float coverage)
-    {
-        xp += xpType.GetXp() * coverage;
-        LevelSet();
-    }
-
-    private void LevelSet()
-    {
-        if (xp > 10)
-        {
-            level = 2;
-        }
-        else if (xp > 50)
-        {
-            level = 3;
-        }
-        else if (xp > 100)
-        {
-            level = 4;
-        }
-        else
-        {
-            level = 1;
         }
     }
 

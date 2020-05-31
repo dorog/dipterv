@@ -54,7 +54,7 @@ public class DataManager : MonoBehaviour
 
         for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
         {
-            SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
+            //SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
             SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
         }
 
@@ -63,6 +63,7 @@ public class DataManager : MonoBehaviour
             SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
         }
 
+        SharedData.GameConfig.xp = gameData.xp;
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
     }
 
@@ -73,7 +74,7 @@ public class DataManager : MonoBehaviour
         SharedData.GameConfig = gameConfig;
         for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
         {
-            SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
+            //SharedData.GameConfig.baseSpells[i].xp = gameData.BasePatternSpells[i].xp;
             SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
         }
 
@@ -82,6 +83,7 @@ public class DataManager : MonoBehaviour
             SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
         }
 
+        SharedData.GameConfig.xp = gameData.xp;
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
 
         Save(gameData);

@@ -7,5 +7,4 @@ public interface ISpellPattern
     void Reset();
     GameObject GetSpell();
     ElementType GetElementType();
-    void AddXp(XpType xpType, float coverage);
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpellManager : SingletonClass<SpellManager>
 {
+    public Player player;
+
     public float minCoverage = 0.6f;
 
     public SpellPattern SpellPattern;
@@ -16,7 +18,6 @@ public class SpellManager : SingletonClass<SpellManager>
 
     private readonly int distanceDiff = 1100;
 
-    private int lastSpell = -1;
     private float lastCoverage = 0;
 
     public GameObject castParent;
@@ -54,7 +55,7 @@ public class SpellManager : SingletonClass<SpellManager>
         PatternFormula spellPattern = new PatternFormula(points);
         spellPattern.ElementType = basePaternSpell.SpellPatternPoints.attackType;
         spellPattern.level = basePaternSpell.level;
-        spellPattern.xp = basePaternSpell.xp;
+        //spellPattern.xp = basePaternSpell.xp;
         spellPattern.Spells = basePaternSpell.levelsSpell;
         SpellPatterns.Add(spellPattern);
     }
@@ -87,7 +88,8 @@ public class SpellManager : SingletonClass<SpellManager>
 
         if(minCoverage <= max && index != -1)
         {
-            SpellPatterns[index].AddXp(XpType.Cast, max);
+            player.AddXp(XpType.Cast, max);
+            //SpellPatterns[index].AddXp(XpType.Cast, max);
             SpellResult spellResult = new SpellResult
             {
                 id = index,
@@ -147,12 +149,12 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public void Won()
     {
-        attackPatterns[lastSpell].AddXp(XpType.Kill, lastCoverage);
+        player.AddXp(XpType.Kill, lastCoverage);
 
         for (int i = 0; i < attackPatterns.Count; i++)
         {
             //Debug.Log(attackPatterns[i].xp);
-            SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
+            //SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
             //Debug.Log(attackPatterns[i].level);
             SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].level;
         }
@@ -160,11 +162,10 @@ public class SpellManager : SingletonClass<SpellManager>
         DataManager.GetInstance().Won();
     }
 
-    public void AddXpForHit(int id, float coverage)
+    public void AddXpForHit(float coverage)
     {
-        lastSpell = id;
         lastCoverage = coverage;
         Debug.Log("Not only Attack!");
-        attackPatterns[id].AddXp(XpType.Hit, coverage);
+        player.AddXp(XpType.Hit, coverage);
     }
 }

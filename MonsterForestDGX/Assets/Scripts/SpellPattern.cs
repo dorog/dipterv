@@ -93,30 +93,4 @@ public class SpellPattern : MonoBehaviour
         correct++;
         lastId = id;
     }
-
-    public void AddXp(XpType xpType, float coverage)
-    {
-        xp += xpType.GetXp() * coverage;
-        LevelSet();
-    }
-
-    private void LevelSet()
-    {
-        if(xp > 10)
-        {
-            level = 2;
-        }
-        else if(xp > 50)
-        {
-            level = 3;
-        }
-        else if(xp > 100)
-        {
-            level = 4;
-        }
-        else
-        {
-            level = 1;
-        }
-    }
 }

@@ -13,6 +13,9 @@ public class GameConfig : ScriptableObject
     [Header("Pet Settings")]
     public PetData[] pets;
 
+    [Header("Player Settings")]
+    public float xp = 0;
+
     public PatternSpell[] GetBasePatternSpells()
     {
         PatternSpell[] basePatternSpells = new PatternSpell[baseSpells.Length];

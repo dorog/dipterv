@@ -13,7 +13,7 @@ public class SpellAttack : PlayerSpell
             MonsterHit monsterHit = hit.gameObject.GetComponent<MonsterHit>();
             if (monsterHit != null)
             {
-                SpellManager.GetInstance().AddXpForHit(id, coverage);
+                SpellManager.GetInstance().AddXpForHit(coverage);
                 monsterHit.TakeDamage(dmg * coverage, attackType);
             }
 

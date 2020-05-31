@@ -159,7 +159,6 @@ public class Player : Fighter
         //spell.transform.forward = transform.forward;
         //TODO: Not in children?
         PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
-        spellAttack.id = spellResult.id;
         spellAttack.coverage = spellResult.coverage;
 
         SetUpCoolDown(spellAttack.cd);
@@ -273,5 +272,10 @@ public class Player : Fighter
     public bool CanMove()
     {
         return !(InLobby || InBattle || InMenu);
+    }
+
+    public void AddXp(XpType xpType, float coverage) 
+    {
+        SharedData.GameConfig.xp += (xpType.GetXp() * coverage);
     }
 }
