@@ -12,12 +12,12 @@ public class GameData
 
     public GameData() { }
 
-    public GameData(GameConfig gameConfig, float playerExp)
+    public GameData(GameConfig gameConfig)
     {
         aliveMonsters = CreateArrayWithDefaultValue(gameConfig.aliveMonsters, true);
         basePatternSpellLevels = CreateArrayWithDefaultValue(gameConfig.baseSpells.Length, 1);
         availablePets = CreateArrayWithDefaultValue(gameConfig.pets.Length, false);
-        exp = playerExp;
+        exp = gameConfig.exp;
     }
 
     public T[] CreateArrayWithDefaultValue<T>(int count, T value)

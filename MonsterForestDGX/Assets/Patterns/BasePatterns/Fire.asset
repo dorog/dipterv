@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efa3327c1c03224e82c0988d5af0355, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 796188f72c3ec024bb5da91900112383, type: 3}
+  elementType: 1
+  SpellPatternPoints: {fileID: 11400000, guid: 88ce9b04a52c4764d9b295991b3d33b0, type: 2}
+  levelsSpell:
+  - exp: 100
+    playerSpell: {fileID: 2547435817590868130, guid: b007d99bf4ab4694598c04fb8ccba511,
+      type: 3}
+  - exp: 500
+    playerSpell: {fileID: -7575248756505859261, guid: e8bf195d55101c745ab2e6453b6e9b9b,
+      type: 3}
+  - exp: 1000
+    playerSpell: {fileID: 79442447016482676, guid: eb4ece7042318614e8b72ce0c93fe85e,
+      type: 3}
+  - exp: 2000
+    playerSpell: {fileID: 2939845473548581011, guid: ffa70433df7e3f0458993a415695ef31,
+      type: 3}

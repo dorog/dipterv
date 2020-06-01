@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efa3327c1c03224e82c0988d5af0355, type: 3}
+  m_Name: Earth
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 19a7582fb6a7f0745a2c7aaf34dc09e8, type: 3}
+  elementType: 7
+  SpellPatternPoints: {fileID: 11400000, guid: 0bf9c23f7a1f29242a7d6d50502adbd2, type: 2}
+  levelsSpell:
+  - exp: 100
+    playerSpell: {fileID: -6026737951799444418, guid: 676af163bda25f042b4fb56488fbb3c8,
+      type: 3}
+  - exp: 500
+    playerSpell: {fileID: 8130443732143584630, guid: 5f7cc43d7a58bdf42bdde7cf919b119c,
+      type: 3}
+  - exp: 1000
+    playerSpell: {fileID: 5039816277387081887, guid: 7f6c2595e07144d408b980794a40ee34,
+      type: 3}
+  - exp: 2000
+    playerSpell: {fileID: 1998146334888700678, guid: da5b218f99284e34ab7f7865855c3675,
+      type: 3}

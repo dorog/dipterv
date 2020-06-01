@@ -37,7 +37,7 @@ public class SpellManager : SingletonClass<SpellManager>
         playerExperience = PlayerExperience.GetInstance();
     }
 
-    private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<int> levels, List<ISpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
+    private void CreatePatterns(List<BasePatternSpell> BasePaternSpells, List<int> levels, List<ISpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
     {
         int x = 0;
         for (int i = 0; i < BasePaternSpells.Count; i++)
@@ -47,7 +47,7 @@ public class SpellManager : SingletonClass<SpellManager>
         }
     }
 
-    private void CreateSpellPattern(int x, Transform parent, BasePaternSpell basePaternSpell, int level, List<ISpellPattern> SpellPatterns, float extraHeigh = 0)
+    private void CreateSpellPattern(int x, Transform parent, BasePatternSpell basePaternSpell, int level, List<ISpellPattern> SpellPatterns, float extraHeigh = 0)
     {
         List<Vector2> points = new List<Vector2>();
         List<SpellPatternPoint> spellPatternPoints = basePaternSpell.SpellPatternPoints.GetPoints();
@@ -60,7 +60,8 @@ public class SpellManager : SingletonClass<SpellManager>
         {
             ElementType = basePaternSpell.SpellPatternPoints.attackType,
             level = level,
-            Spells = basePaternSpell.levelsSpell
+            Spells = basePaternSpell.GetSpells(),
+            RequiredExps = basePaternSpell.GetRequiredExps()
         };
         SpellPatterns.Add(spellPattern);
     }

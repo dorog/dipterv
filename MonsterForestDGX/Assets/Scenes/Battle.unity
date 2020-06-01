@@ -2482,7 +2482,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.75508e-40, z: -1.14e-43, w: -1.49e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6706,6 +6706,56 @@ PrefabInstance:
     - target: {fileID: 1446832557, guid: 1e441748457b6f64590f12d8459067fc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365972885866077236, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 221.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365972885866077236, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -124.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212359029098838660, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212359029098838660, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 555168629223090110, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 555168629223090110, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43.30005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277696932691093459, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277696932691093459, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43.30005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320994859733915212, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320994859733915212, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43.30005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e441748457b6f64590f12d8459067fc, type: 3}

@@ -63,7 +63,7 @@ public class DataManager : MonoBehaviour
 
     private void Create()
     {
-        gameData = new GameData(gameConfig, 0f);
+        gameData = new GameData(gameConfig);
 
         Save(gameData);
     }
@@ -123,7 +123,7 @@ public class DataManager : MonoBehaviour
         return gameData.aliveMonsters;
     }
 
-    public List<BasePaternSpell> GetBasePatterns()
+    public List<BasePatternSpell> GetBasePatterns()
     {
         return gameConfig.baseSpells.ToList();
     }

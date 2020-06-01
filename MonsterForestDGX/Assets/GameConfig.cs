@@ -4,18 +4,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new GameConfig", menuName = "GameConfig")]
 public class GameConfig : ScriptableObject
 {
+    [Header("Player Settings")]
+    public float exp;
+
     [Header("Monster Settings")]
     public int aliveMonsters;
 
     [Header("Attack Spells Settings")]
-    public BasePaternSpell[] baseSpells;
+    public BasePatternSpell[] baseSpells;
 
     [Header("Pet Settings")]
     public Pet[] pets;
 
-    public BasePaternSpell[] GetBasePatternSpells()
+    public BasePatternSpell[] GetBasePatternSpells()
     {
-        BasePaternSpell[] basePatternSpells = new BasePaternSpell[baseSpells.Length];
+        BasePatternSpell[] basePatternSpells = new BasePatternSpell[baseSpells.Length];
         for(int i = 0; i < baseSpells.Length; i++)
         {
             basePatternSpells[i] = baseSpells[i];

@@ -17,10 +17,10 @@ public class SpellElementInfoUI : MonoBehaviour
         spellNameText.text = spellPattern.GetElementType().ToString();
         difficultyValueText.text = "" + spellPattern.GetDifficulty();
         difficultyValueText.color = spellPattern.GetDifficultyColor();
-        valueTitleText.text = "" + spellPattern.GetSpellType() + ":";
-        valueValueText.text = "" + spellPattern.GetTypeValue();
-        cooldownValueText.text = "" + spellPattern.GetCooldown();
-        levelText.text = "" + spellPattern.GetLevel();
+        valueTitleText.text = "" + spellPattern.GetSpellTypeUI() + ":";
+        valueValueText.text = "" + spellPattern.GetTypeValueUI();
+        cooldownValueText.text = spellPattern.GetCooldownUI();
+        levelText.text = "" + spellPattern.GetLevelUI();
 
         ui.SetActive(true);
     }

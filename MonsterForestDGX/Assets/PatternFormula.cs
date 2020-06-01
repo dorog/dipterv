@@ -12,6 +12,7 @@ public class PatternFormula : ISpellPattern
     public int level = 0;
 
     public PlayerSpell[] Spells;
+    public int[] RequiredExps;
     public ElementType ElementType;
 
     public PatternFormula(List<Vector2> points, Sprite icon, float width = 10)
@@ -80,28 +81,54 @@ public class PatternFormula : ISpellPattern
         return ElementType;
     }
 
-    public string GetSpellType()
+    public int GetLevelValue()
     {
-        return Spells[level - 1].GetSpellType();
+        return level;
     }
 
-    public string GetLevel()
+    public float GetMinCoverage()
     {
-        if(level == Spells.Length - 1)
-        {
-            return "Max";
-        }
-        return level.ToString();
+        return Spells[level - 1].coverage;
     }
 
+    //UI:
     public Sprite GetIcon()
     {
         return icon;
     }
 
-    public float GetTypeValue()
+    public string GetSpellTypeUI()
     {
-        return Spells[level - 1].GetSpellTypeValue();
+        //Attack -> def? Make it impossible
+        return Spells[level].GetSpellType().ToString();
+    }
+
+    public string GetLevelUI()
+    {
+        if (level == Spells.Length - 1)
+        {
+            return "Max";
+        }
+        else if (level == 0)
+        {
+            return (level + 1).ToString();
+        }
+        else
+        {
+            return level.ToString() + " -> (" + (level + 1) + ")";
+        }
+    }
+
+    public string GetTypeValueUI()
+    {
+        if (level == 0 || level == (Spells.Length - 1))
+        {
+            return Spells[level].GetSpellTypeValue().ToString();
+        }
+        else
+        {
+            return Spells[level].GetSpellTypeValue() + " -> (" + Spells[level + 1].GetSpellTypeValue() + ")";
+        }
     }
 
     public float GetCooldown()
@@ -109,23 +136,55 @@ public class PatternFormula : ISpellPattern
         return Spells[level - 1].cd;
     }
 
-    public int GetLevelValue()
-    {
-        return level;
-    }
-
     public string GetDifficulty()
     {
-        return Spells[level - 1].GetDifficulty();
+        if(level == 0 || level == (Spells.Length - 1))
+        {
+            return Spells[level].GetDifficulty();
+        }
+        else
+        {
+            return Spells[level].GetDifficulty() + " -> (" + Spells[level + 1].GetDifficulty() + ")";
+        }
     }
 
     public Color GetDifficultyColor()
     {
-        return Spells[level - 1].GetDifficultyColor();
+        //TODO: Handle different difficulty
+        //return Spells[level].GetDifficultyColor();
+        return Color.white;
     }
 
-    public float GetMinCoverage()
+    public string GetRequiredExp()
     {
-        return Spells[level - 1].coverage;
+        if(level >= Spells.Length)
+        {
+            return "---";
+        }
+        else
+        {
+            return RequiredExps[level].ToString();
+        }
+    }
+
+    public string GetCooldownUI()
+    {
+        if (level == 0 || level == (Spells.Length - 1))
+        {
+            return Spells[level].cd.ToString();
+        }
+        else
+        {
+            return Spells[level].cd.ToString() + " -> (" + Spells[level].cd.ToString() + ")";
+        }
+    }
+
+    public int GetRequiredExpValue()
+    {
+        if(level >= Spells.Length)
+        {
+            return int.MaxValue;
+        }
+        return RequiredExps[level];
     }
 }

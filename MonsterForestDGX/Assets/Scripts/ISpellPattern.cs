@@ -7,13 +7,18 @@ public interface ISpellPattern
     void Reset();
     GameObject GetSpell();
     ElementType GetElementType();
-    string GetSpellType();
-    string GetLevel();
     int GetLevelValue();
-    Sprite GetIcon();
-    float GetTypeValue();
     float GetCooldown();
+    float GetMinCoverage();
+
+    //Only UI:
+    Sprite GetIcon();
+    string GetSpellTypeUI();
+    string GetLevelUI();
+    string GetTypeValueUI();
     string GetDifficulty();
     Color GetDifficultyColor();
-    float GetMinCoverage();
+    string GetRequiredExp();
+    int GetRequiredExpValue();
+    string GetCooldownUI();
 }
