@@ -17,10 +17,6 @@ public class Monster : Fighter
     [Range(0, 100)]
     public float blockChance = 10f;
     public BattleManager battleManager;
-    /*[Range(0, 100)]
-    public float secondAttackChance = 50;
-    [Range(0, 100)]
-    public float thirdAttackChance = 10;*/
     [Range(0, 100)]
     public float[] extraAttackChances;
 

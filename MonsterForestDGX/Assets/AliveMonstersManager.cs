@@ -9,10 +9,12 @@ public class AliveMonstersManager : SingletonClass<AliveMonstersManager>
     {
         DataManager dataManager = DataManager.GetInstance();
 
-        for (int i = 0; i < SharedData.GameConfig.aliveMonsters.Length; i++)
+        bool[] aliveMonsters = dataManager.GetAliveMonsters();
+
+        for (int i = 0; i < aliveMonsters.Length; i++)
         {
             battlePlaces[i].id = i;
-            battlePlaces[i].SetAlive(SharedData.GameConfig.aliveMonsters[i]);
+            battlePlaces[i].SetAlive(aliveMonsters[i]);
         }
 
         Init(this);

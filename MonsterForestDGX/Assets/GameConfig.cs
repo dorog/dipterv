@@ -5,17 +5,17 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     [Header("Monster Settings")]
-    public bool[] aliveMonsters;
+    public int aliveMonsters;
 
     [Header("Attack Spells Settings")]
     public BasePaternSpell[] baseSpells;
 
     [Header("Pet Settings")]
-    public PetData[] pets;
+    public Pet[] pets;
 
-    public PatternSpell[] GetBasePatternSpells()
+    public BasePaternSpell[] GetBasePatternSpells()
     {
-        PatternSpell[] basePatternSpells = new PatternSpell[baseSpells.Length];
+        BasePaternSpell[] basePatternSpells = new BasePaternSpell[baseSpells.Length];
         for(int i = 0; i < baseSpells.Length; i++)
         {
             basePatternSpells[i] = baseSpells[i];
@@ -34,24 +34,5 @@ public class GameConfig : ScriptableObject
         }
 
         return basePatternSpellsPoints;
-    }
-
-    public bool[] GetAvailablePets()
-    {
-        if(pets == null || pets.Length == 0)
-        {
-            Debug.LogError(nameof(GetAvailablePets) + " Error!");
-            return new bool[0];
-        }
-        else
-        {
-            bool[] availablePets = new bool[pets.Length];
-            for(int i = 0; i < pets.Length; i++)
-            {
-                availablePets[i] = pets[i].available;
-            }
-
-            return availablePets;
-        }
     }
 }

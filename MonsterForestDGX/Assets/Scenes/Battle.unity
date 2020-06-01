@@ -2482,7 +2482,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 6e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6379,6 +6379,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7924391077694288609, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 570111807}
+    - target: {fileID: 7924391077694288609, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: lastLocation
+      value: 
+      objectReference: {fileID: 498585570}
     - target: {fileID: 4974427262557414474, guid: 1e441748457b6f64590f12d8459067fc,
         type: 3}
       propertyPath: m_IsActive
@@ -6697,16 +6707,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7924391077694288609, guid: 1e441748457b6f64590f12d8459067fc,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 570111807}
-    - target: {fileID: 7924391077694288609, guid: 1e441748457b6f64590f12d8459067fc,
-        type: 3}
-      propertyPath: lastLocation
-      value: 
-      objectReference: {fileID: 498585570}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e441748457b6f64590f12d8459067fc, type: 3}
 --- !u!1 &8065708766782369320 stripped

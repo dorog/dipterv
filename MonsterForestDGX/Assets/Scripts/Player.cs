@@ -133,26 +133,12 @@ public class Player : Fighter
 
     public void CastSpell(SpellResult spellResult)
     {
-        //battleManager.PlayerAttack();
         Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
         GameObject spell = Instantiate(spellResult.spell, position + transform.forward, Camera.main.transform.rotation);
-        //spell.transform.forward = transform.forward;
-        //TODO: Not in children?
         PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
         spellAttack.coverage = spellResult.coverage;
 
         SetUpCoolDown(spellResult.cooldown);
-        //SetUpCoolDown(2);
-
-        /*if(spellAttack != null)
-        {
-            spellAttack.dmg = ;
-            spellAttack.attackType = ;
-        }
-        else
-        {
-            Debug.LogWarning("There is no SpellAttack!");
-        }*/
 
         if (!canAttack)
         {

@@ -12,18 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72130d91d366e5449a73bd4c165e0c0d, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  aliveMonsters: 00010001
+  aliveMonsters: 4
   baseSpells:
   - {fileID: 11400000, guid: 1f722a660fa5de84b8fe8d3df2243d6a, type: 2}
   - {fileID: 11400000, guid: 727ce6bdee5cabf47a0c84b6c1c03bab, type: 2}
   - {fileID: 11400000, guid: 8d90394de04875242b00553c4e51de75, type: 2}
   - {fileID: 11400000, guid: da66cc5a61628c840822cad7a7394324, type: 2}
   pets:
-  - available: 1
-    pet: {fileID: 5812343948825244384, guid: b5ea5ff87386830468341484f8de2853, type: 3}
-  - available: 1
-    pet: {fileID: 6310326573633760408, guid: 2609c5f3df922c146957e72f25c8a148, type: 3}
-  - available: 1
-    pet: {fileID: 5346369568621177650, guid: 64c305601a5fef94db5c6db4aafbeef2, type: 3}
-  - available: 1
-    pet: {fileID: 3441869854891632780, guid: 0c90877c7dedb784782ee27c3e30e62d, type: 3}
+  - {fileID: 5812343948825244384, guid: b5ea5ff87386830468341484f8de2853, type: 3}
+  - {fileID: 6310326573633760408, guid: 2609c5f3df922c146957e72f25c8a148, type: 3}
+  - {fileID: 5346369568621177650, guid: 64c305601a5fef94db5c6db4aafbeef2, type: 3}
+  - {fileID: 3441869854891632780, guid: 0c90877c7dedb784782ee27c3e30e62d, type: 3}

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -11,8 +12,7 @@ public class DataManager : MonoBehaviour
 
     private static DataManager instance = null;
 
-    private float exp = 0;
-    private GameObject lastLocation = null;
+    private GameData gameData = null;
 
     public static DataManager GetInstance()
     {
@@ -40,7 +40,7 @@ public class DataManager : MonoBehaviour
     private void Start()
     {
         PlayerExperience playerExperience = PlayerExperience.GetInstance();
-        playerExperience.SetExp(exp);
+        playerExperience.SetExp(gameData.exp);
     }
 
     private void GetGameData()
@@ -58,42 +58,12 @@ public class DataManager : MonoBehaviour
 
     private void Read()
     {
-        GameData gameData = JsonUtility.FromJson<GameData>(File.ReadAllText(deviceFileLocation));
-
-        SharedData.GameConfig = gameConfig;
-
-        for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
-        {
-            SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
-        }
-
-        for(int i = 0; i < gameData.availablePets.Length; i++)
-        {
-            SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
-        }
-
-        exp = gameData.exp;
-        lastLocation = gameData.lastLocation;
-
-        SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
+        gameData = JsonUtility.FromJson<GameData>(File.ReadAllText(deviceFileLocation));
     }
 
     private void Create()
     {
-        GameData gameData = new GameData(gameConfig, 0f);
-
-        SharedData.GameConfig = gameConfig;
-        for (int i = 0; i < gameData.BasePatternSpells.Length; i++)
-        {
-            SharedData.GameConfig.baseSpells[i].level = gameData.BasePatternSpells[i].level;
-        }
-
-        for (int i = 0; i < gameData.availablePets.Length; i++)
-        {
-            SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
-        }
-
-        SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
+        gameData = new GameData(gameConfig, 0f);
 
         Save(gameData);
     }
@@ -101,26 +71,25 @@ public class DataManager : MonoBehaviour
 
     public void Save<T>(T data)
     {
-        /*BinaryFormatter bf = new BinaryFormatter();
-        FileStream fileForSave = File.Create(deviceFileLocation);
-        bf.Serialize(fileForSave, data);
-        fileForSave.Close();*/
-
         string jsonData = JsonUtility.ToJson(data, true);
         File.WriteAllText(deviceFileLocation, jsonData);
     }
 
     public void SaveMonsterDeath(int id)
     {
-        GameData gameData = new GameData(SharedData.GameConfig, PlayerExperience.GetInstance().GetExp());
-        gameData.AliveMonsters.alive[id] = false;
+        gameData.aliveMonsters[id] = false;
 
         Save(gameData);
     }
 
-    public void Won()
+    public void Won(List<ISpellPattern> spellPatterns)
     {
-        Save(SharedData.GameConfig);
+        for (int i = 0; i < spellPatterns.Count; i++)
+        {
+            gameData.basePatternSpellLevels[i] = spellPatterns[i].GetLevelValue();
+        }
+
+        Save(gameData);
     }
 
     public Pet[] GetAvailablePets()
@@ -128,9 +97,9 @@ public class DataManager : MonoBehaviour
         List<Pet> pets = new List<Pet>();
         for(int i = 0; i < gameConfig.pets.Length; i++)
         {
-            if (gameConfig.pets[i].available)
+            if (gameData.availablePets[i])
             {
-                pets.Add(gameConfig.pets[i].pet);
+                pets.Add(gameConfig.pets[i]);
             }
         }
 
@@ -139,16 +108,28 @@ public class DataManager : MonoBehaviour
 
     public GameObject GetLastLocation()
     {
-        return lastLocation;
+        return gameData.lastLocation;
     }
 
     public void SavePortLocation(GameObject lastLocation)
     {
-        GameData gameData = new GameData(SharedData.GameConfig, PlayerExperience.GetInstance().GetExp())
-        {
-            lastLocation = lastLocation
-        };
+        gameData.lastLocation = lastLocation;
 
         Save(gameData);
+    }
+
+    public bool[] GetAliveMonsters()
+    {
+        return gameData.aliveMonsters;
+    }
+
+    public List<BasePaternSpell> GetBasePatterns()
+    {
+        return gameConfig.baseSpells.ToList();
+    }
+
+    public List<int> GetBasePatternLevels()
+    {
+        return gameData.basePatternSpellLevels.ToList();
     }
 }
