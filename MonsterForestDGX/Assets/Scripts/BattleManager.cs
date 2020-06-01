@@ -11,8 +11,12 @@ public class BattleManager : MonoBehaviour
     public GameObject turnGO;
     public int id;
 
-    public void Battle(int _id)
+    private GameObject battlePlace;
+
+    public void Battle(int _id, GameObject battlePlace)
     {
+        this.battlePlace = battlePlace;
+
         id = _id;
         turnGO.SetActive(true);
         turn.text = "Battle!";
@@ -56,5 +60,14 @@ public class BattleManager : MonoBehaviour
     public void PlayerDied()
     {
         sceneLoader.LoadMainMenu();
+    }
+
+    public void Run()
+    {
+        turnGO.SetActive(false);
+
+        monster.Disappear();
+        player.Run();
+        battlePlace.SetActive(true);
     }
 }

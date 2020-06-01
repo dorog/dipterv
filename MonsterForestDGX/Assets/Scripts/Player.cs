@@ -9,6 +9,8 @@ public class Player : Fighter
     public bool canAttack = false;
     public BattleManager battleManager;
 
+    public Teleport teleport;
+
     private bool inCast = false;
 
     private bool InLobby = false;
@@ -245,5 +247,11 @@ public class Player : Fighter
     public void MenuState(bool state)
     {
         InMenu = state;
+    }
+
+    public void Run()
+    {
+        InLobby = false;
+        teleport.TeleportToLastPosition();
     }
 }

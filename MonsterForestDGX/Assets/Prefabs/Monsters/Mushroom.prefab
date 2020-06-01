@@ -348,6 +348,8 @@ MonoBehaviour:
   animator: {fileID: 5971945030674387717}
   appearAnimation: goMonster
   appearAnimationTime: 2
+  disappearAnimation: goStatue
+  disappearAnimationTime: 2
   dieAnimation: death
   attack: {fileID: 3793616788255035441}
   blockChance: 10

@@ -9,6 +9,8 @@ public class Monster : Fighter
     public Animator animator;
     public string appearAnimation;
     public float appearAnimationTime = 2;
+    public string disappearAnimation;
+    public float disappearAnimationTime = 2;
     public string dieAnimation;
 
     public IAttack attack;
@@ -139,6 +141,15 @@ public class Monster : Fighter
         animator.SetTrigger(appearAnimation);
         health.SetUpHealth();
         nameText.text = MonsterName;
+    }
+
+    public void Disappear()
+    {
+        foreach (var go in extraObjects)
+        {
+            go.SetActive(false);
+        }
+        animator.SetTrigger(disappearAnimation);
     }
 
     public void MonsterTurnEnd()

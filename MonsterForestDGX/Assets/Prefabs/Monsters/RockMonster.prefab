@@ -148,6 +148,8 @@ MonoBehaviour:
   animator: {fileID: 145604344163933179}
   appearAnimation: rubbleToIdle
   appearAnimationTime: 4
+  disappearAnimation: idleToRubble
+  disappearAnimationTime: 2
   dieAnimation: death
   attack: {fileID: 7430444227610318339}
   blockChance: 40

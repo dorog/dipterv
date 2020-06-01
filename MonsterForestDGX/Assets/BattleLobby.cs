@@ -20,4 +20,11 @@ public class BattleLobby : MonoBehaviour
         fire.SetValue(ElementType.Fire.ToString(), resistant.fire);
         air.SetValue(ElementType.Air.ToString(), resistant.air);
     }
+
+    public void Run()
+    {
+        battleManager.Run();
+
+        gameObject.SetActive(false);
+    }
 }

@@ -12,7 +12,7 @@ public class BattlePlace : MonoBehaviour
         {
             other.gameObject.transform.position = transform.position;
             other.gameObject.transform.rotation = transform.rotation;
-            battleManager.Battle(id);
+            battleManager.Battle(id, gameObject);
 
             gameObject.SetActive(false);
         }

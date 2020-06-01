@@ -72,6 +72,8 @@ MonoBehaviour:
   animator: {fileID: 3029147133939501562}
   appearAnimation: goAlive
   appearAnimationTime: 2
+  disappearAnimation: goPlant
+  disappearAnimationTime: 2
   dieAnimation: death
   attack: {fileID: 5449196950372748175}
   blockChance: 0

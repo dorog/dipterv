@@ -336,6 +336,10 @@ PrefabInstance:
       value: Giant Worm
       objectReference: {fileID: 0}
     - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
+      propertyPath: disappearAnimation
+      value: disappear
+      objectReference: {fileID: 0}
+    - target: {fileID: 510424014, guid: cb34f421aa6593e4fb46a5760275fda7, type: 3}
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 4000349071436581317}
