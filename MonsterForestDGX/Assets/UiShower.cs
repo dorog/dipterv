@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public class TeleportUI : MonoBehaviour
+public class UiShower : MonoBehaviour
 {
-    public Player player;
     public GameObject portUI;
 
     public void ShowUI()

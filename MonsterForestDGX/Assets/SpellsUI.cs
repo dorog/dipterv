@@ -2,21 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpellsUI : MonoBehaviour
+public class SpellsUI : MenuUI
 {
     public Text xpText;
     public SpellElementUI spellElementUI;
     public Transform content;
-
-    public GameObject menu;
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            menu.SetActive(!menu.activeSelf);
-        }
-    }
 
     public void SetupUI(List<ISpellPattern> spellPatterns)
     {

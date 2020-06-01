@@ -19,6 +19,7 @@ public class Player : Fighter
     private float rotation = 0;
     public float rotationSpeed = 10;
     private float movement = 0;
+    private float sideMovement = 0;
     public float movementSpeed = 10;
     private Vector3 mousePosition;
     public GameObject magicCircle;
@@ -126,6 +127,14 @@ public class Player : Fighter
             {
                 movement -= 1;
             }
+            if (Input.GetKey(KeyCode.E))
+            {
+                sideMovement += 1;
+            }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                sideMovement -= 1;
+            }
         }
         else
         {
@@ -227,8 +236,12 @@ public class Player : Fighter
 
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + transform.forward * movement * Time.fixedDeltaTime * movementSpeed);
+        Vector3 forwardDirection = transform.forward * movement;
+        Vector3 sideDirection = transform.right * sideMovement;
+        Vector3 direction =  (forwardDirection + sideDirection) * Time.fixedDeltaTime * movementSpeed;
+        rb.MovePosition(transform.position + direction);
         movement = 0;
+        sideMovement = 0;
 
         Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotation, 0) * Time.deltaTime * rotationSpeed);
         rb.MoveRotation(rb.rotation * deltaRotation);

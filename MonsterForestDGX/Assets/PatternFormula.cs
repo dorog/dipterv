@@ -28,7 +28,7 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public override void Guess(Vector2 point)
+    public void Guess(Vector2 point)
     {
         int minId = int.MaxValue;
         bool hit = false;
@@ -49,7 +49,7 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public override float GetResult()
+    public float GetResult()
     {
         int correct = 0;
         int max = 0;
@@ -62,7 +62,7 @@ public class PatternFormula : ISpellPattern
         return ((float)correct) / max;
     }
 
-    public override void Reset()
+    public void Reset()
     {
         lastId = int.MinValue;
         for (int i = 0; i < rectangles.Count; i++)
@@ -71,22 +71,22 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public override GameObject GetSpell()
+    public GameObject GetSpell()
     {
         return Spells[level - 1].gameObject;
     }
 
-    public override ElementType GetElementType()
+    public ElementType GetElementType()
     {
         return ElementType;
     }
 
-    public override string GetSpellType()
+    public string GetSpellType()
     {
         return Spells[level - 1].GetSpellType();
     }
 
-    public override string GetLevel()
+    public string GetLevel()
     {
         if(level == Spells.Length - 1)
         {
@@ -95,22 +95,22 @@ public class PatternFormula : ISpellPattern
         return level.ToString();
     }
 
-    public override Sprite GetIcon()
+    public Sprite GetIcon()
     {
         return icon;
     }
 
-    public override float GetTypeValue()
+    public float GetTypeValue()
     {
         return Spells[level - 1].GetSpellTypeValue();
     }
 
-    public override float GetCooldown()
+    public float GetCooldown()
     {
         return Spells[level - 1].cd;
     }
 
-    public override int GetLevelValue()
+    public int GetLevelValue()
     {
         return level;
     }

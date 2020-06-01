@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    TeleportUI teleportUI = hit.collider.gameObject.GetComponent<TeleportUI>();
+                    UiShower teleportUI = hit.collider.gameObject.GetComponent<UiShower>();
                     if (teleportUI)
                     {
                         player.InMenu = true;
