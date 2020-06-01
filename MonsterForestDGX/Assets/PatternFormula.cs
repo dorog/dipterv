@@ -10,7 +10,6 @@ public class PatternFormula : ISpellPattern
 
     public Sprite icon;
     public int level = 0;
-    //public float xp = 0;
 
     public PlayerSpell[] Spells;
     public ElementType ElementType;

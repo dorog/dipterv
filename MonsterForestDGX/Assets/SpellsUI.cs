@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SpellsUI : MenuUI
 {
-    public Text xpText;
+    public Text expText;
     public SpellElementUI spellElementUI;
     public Transform content;
 
@@ -18,9 +18,9 @@ public class SpellsUI : MenuUI
         }
     }
 
-    public void SetXp(int value)
+    public void SetExp(int value)
     {
-        xpText.text = value + " XP";
+        expText.text = value + " EXP";
 
         //Set Update buttons
     }

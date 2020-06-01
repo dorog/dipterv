@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpellManager : SingletonClass<SpellManager>
 {
-    public Player player;
+    public PlayerExperience playerExperience;
 
     public float minCoverage = 0.6f;
 
@@ -35,6 +35,8 @@ public class SpellManager : SingletonClass<SpellManager>
         List<BasePaternSpell> basePaternSpells = SharedData.GameConfig.baseSpells.ToList();
         CreatePatterns(basePaternSpells, attackPatterns, attackParent);
         spellsUI.SetupUI(attackPatterns);
+
+        playerExperience = PlayerExperience.GetInstance();
     }
 
     private void CreatePatterns(List<BasePaternSpell> BasePaternSpells, List<ISpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
@@ -59,7 +61,6 @@ public class SpellManager : SingletonClass<SpellManager>
         PatternFormula spellPattern = new PatternFormula(points, basePaternSpell.icon);
         spellPattern.ElementType = basePaternSpell.SpellPatternPoints.attackType;
         spellPattern.level = basePaternSpell.level;
-        //spellPattern.xp = basePaternSpell.xp;
         spellPattern.Spells = basePaternSpell.levelsSpell;
         SpellPatterns.Add(spellPattern);
     }
@@ -92,8 +93,7 @@ public class SpellManager : SingletonClass<SpellManager>
 
         if(minCoverage <= max && index != -1)
         {
-            player.AddXp(XpType.Cast, max);
-            //SpellPatterns[index].AddXp(XpType.Cast, max);
+            playerExperience.AddExp(ExpType.Cast, max);
             SpellResult spellResult = new SpellResult
             {
                 id = index,
@@ -154,12 +154,10 @@ public class SpellManager : SingletonClass<SpellManager>
 
     public void Won()
     {
-        player.AddXp(XpType.Kill, lastCoverage);
+        playerExperience.AddExp(ExpType.Kill, lastCoverage);
 
         for (int i = 0; i < attackPatterns.Count; i++)
         {
-            //Debug.Log(attackPatterns[i].xp);
-            //SharedData.GameConfig.baseSpells[i].xp = attackPatterns[i].xp;
             //Debug.Log(attackPatterns[i].level);
             SharedData.GameConfig.baseSpells[i].level = attackPatterns[i].GetLevelValue();
         }
@@ -171,6 +169,6 @@ public class SpellManager : SingletonClass<SpellManager>
     {
         lastCoverage = coverage;
         Debug.Log("Not only Attack!");
-        player.AddXp(XpType.Hit, coverage);
+        playerExperience.AddExp(ExpType.Hit, coverage);
     }
 }

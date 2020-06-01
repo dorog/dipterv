@@ -5,7 +5,7 @@ public class SpellPattern : MonoBehaviour
 {
     public bool isAttack = true;
     public int level = 0;
-    public float xp = 0;
+    public float exp = 0;
 
     public float maxPoints = 0;
     public float correct = 0;

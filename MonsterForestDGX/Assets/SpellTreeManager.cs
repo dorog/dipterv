@@ -85,7 +85,7 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
         return spellPatternPoints;
     }
 
-    public void XpUpdate(bool isAttack, int treeLine, XpType xp)
+    public void XpUpdate(bool isAttack, int treeLine, ExpType xp)
     {
         /*TreeLine[] treeLineArray = isAttack ? attackTreeLines : defenseTreeLines;
         bool levelUp = treeLineArray[treeLine].AddXp(GetXp(xp));
@@ -103,15 +103,15 @@ public class SpellTreeManager : SingletonClass<SpellTreeManager>
         //dataManager.Won(spellTreeLineData);
     }
 
-    private int GetXp(XpType xpType)
+    private int GetXp(ExpType xpType)
     {
         switch (xpType)
         {
-            case XpType.Cast:
+            case ExpType.Cast:
                 return 0;
-            case XpType.Hit:
+            case ExpType.Hit:
                 return 0;
-            case XpType.Kill:
+            case ExpType.Kill:
                 return 0;
             default:
                 return 0;

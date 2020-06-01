@@ -6,15 +6,15 @@ public class GameData
     public PatternSpell[] BasePatternSpells;
     public AliveMonsters AliveMonsters;
     public bool[] availablePets;
-    public float xp;
+    public float exp;
 
     public GameData() { }
 
-    public GameData(GameConfig gameConfig)
+    public GameData(GameConfig gameConfig, float playerExp)
     {
         AliveMonsters = new AliveMonsters(gameConfig.aliveMonsters);
         BasePatternSpells = gameConfig.GetBasePatternSpells();
         availablePets = gameConfig.GetAvailablePets();
-        xp = gameConfig.xp;
+        exp = playerExp;
     }
 }

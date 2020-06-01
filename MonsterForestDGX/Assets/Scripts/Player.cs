@@ -6,8 +6,6 @@ using UnityEngine.UI;
 [Serializable]
 public class Player : Fighter
 {
-    public SpellsUI spellsUI;
-
     public bool canAttack = false;
     public BattleManager battleManager;
     public Rigidbody rb;
@@ -55,8 +53,6 @@ public class Player : Fighter
         spellTreeManager = SpellTreeManager.GetInstance();
         aliveMonstersManager = AliveMonstersManager.GetInstance();
         spellManager = SpellManager.GetInstance();
-
-        spellsUI.SetXp(Convert.ToInt32(SharedData.GameConfig.xp));
     }
 
     public void BattleStarted()
@@ -289,11 +285,5 @@ public class Player : Fighter
     public bool CanMove()
     {
         return !(InLobby || InBattle || InMenu);
-    }
-
-    public void AddXp(XpType xpType, float coverage) 
-    {
-        SharedData.GameConfig.xp += (xpType.GetXp() * coverage);
-        spellsUI.SetXp(Convert.ToInt32(SharedData.GameConfig.xp));
     }
 }
