@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour
     private static DataManager instance = null;
 
     private float exp = 0;
+    private GameObject lastLocation = null;
 
     public static DataManager GetInstance()
     {
@@ -72,6 +73,7 @@ public class DataManager : MonoBehaviour
         }
 
         exp = gameData.exp;
+        lastLocation = gameData.lastLocation;
 
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
     }
@@ -133,5 +135,20 @@ public class DataManager : MonoBehaviour
         }
 
         return pets.ToArray();
+    }
+
+    public GameObject GetLastLocation()
+    {
+        return lastLocation;
+    }
+
+    public void SavePortLocation(GameObject lastLocation)
+    {
+        GameData gameData = new GameData(SharedData.GameConfig, PlayerExperience.GetInstance().GetExp())
+        {
+            lastLocation = lastLocation
+        };
+
+        Save(gameData);
     }
 }

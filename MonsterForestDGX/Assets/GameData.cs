@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class GameData
@@ -7,6 +8,7 @@ public class GameData
     public AliveMonsters AliveMonsters;
     public bool[] availablePets;
     public float exp;
+    public GameObject lastLocation = null;
 
     public GameData() { }
 
