@@ -7,7 +7,7 @@ public abstract class MenuUI : MonoBehaviour
 
     public void HideUI()
     {
-        player.InMenu = false;
+        player.MenuState(false);
         ui.SetActive(false);
     }
 }

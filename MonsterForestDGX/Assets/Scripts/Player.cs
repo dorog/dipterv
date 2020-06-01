@@ -8,17 +8,13 @@ public class Player : Fighter
 {
     public bool canAttack = false;
     public BattleManager battleManager;
-    public Rigidbody rb;
-    private bool InLobby = false;
-    public bool InBattle = false;
-    public bool InMenu = false;
+
     private bool inCast = false;
 
-    private float rotation = 0;
-    public float rotationSpeed = 10;
-    private float movement = 0;
-    private float sideMovement = 0;
-    public float movementSpeed = 10;
+    private bool InLobby = false;
+    private bool InBattle = false;
+    private bool InMenu = false;
+
     private Vector3 mousePosition;
     public GameObject magicCircle;
     public PlayerHealth playerHealth;
@@ -105,34 +101,7 @@ public class Player : Fighter
 
     private void Update()
     {
-        if (CanMove())
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                rotation -= 1;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                rotation += 1;
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                movement += 1;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                movement -= 1;
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                sideMovement += 1;
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                sideMovement -= 1;
-            }
-        }
-        else
+        if(InBattle)
         {
             //Remove later, add def spells
             if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
@@ -230,20 +199,6 @@ public class Player : Fighter
         resetedCd = true;
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 forwardDirection = transform.forward * movement;
-        Vector3 sideDirection = transform.right * sideMovement;
-        Vector3 direction =  (forwardDirection + sideDirection) * Time.fixedDeltaTime * movementSpeed;
-        rb.MovePosition(transform.position + direction);
-        movement = 0;
-        sideMovement = 0;
-
-        Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotation, 0) * Time.deltaTime * rotationSpeed);
-        rb.MoveRotation(rb.rotation * deltaRotation);
-        rotation = 0;
-    }
-
     public override void Die()
     {
         //Necessary?
@@ -285,5 +240,10 @@ public class Player : Fighter
     public bool CanMove()
     {
         return !(InLobby || InBattle || InMenu);
+    }
+
+    public void MenuState(bool state)
+    {
+        InMenu = state;
     }
 }
