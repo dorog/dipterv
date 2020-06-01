@@ -11076,13 +11076,45 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 570111807}
-    - target: {fileID: 1361564444, guid: 1e441748457b6f64590f12d8459067fc, type: 3}
-      propertyPath: m_Name
-      value: Exp
+    - target: {fileID: 4974427262557414474, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1361564446, guid: 1e441748457b6f64590f12d8459067fc, type: 3}
-      propertyPath: m_Text
-      value: 500 EXP
+    - target: {fileID: 3113824246925222010, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113824246925222010, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113824246925222010, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022597893232682548, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022597893232682548, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2420945661166353587, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460576292778708764, guid: 1e441748457b6f64590f12d8459067fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e441748457b6f64590f12d8459067fc, type: 3}

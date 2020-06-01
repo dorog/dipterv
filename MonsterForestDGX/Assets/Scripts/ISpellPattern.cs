@@ -13,4 +13,7 @@ public interface ISpellPattern
     Sprite GetIcon();
     float GetTypeValue();
     float GetCooldown();
+    string GetDifficulty();
+    Color GetDifficultyColor();
+    float GetMinCoverage();
 }

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SpellManager : SingletonClass<SpellManager>
 {
-    public PlayerExperience playerExperience;
-
-    public float minCoverage = 0.6f;
+    private PlayerExperience playerExperience;
 
     public SpellPattern SpellPattern;
 
@@ -82,8 +80,8 @@ public class SpellManager : SingletonClass<SpellManager>
         for (int i = 0; i < SpellPatterns.Count; i++)
         {
             float result = SpellPatterns[i].GetResult();
-            //Debug.Log(result);
-            if (result > max)
+            float minCoverage = SpellPatterns[i].GetMinCoverage();
+            if ((minCoverage <= result) && (result > max))
             {
                 index = i;
                 max = result;
@@ -91,7 +89,7 @@ public class SpellManager : SingletonClass<SpellManager>
         }
 
 
-        if(minCoverage <= max && index != -1)
+        if(index != -1)
         {
             playerExperience.AddExp(ExpType.Cast, max);
             SpellResult spellResult = new SpellResult

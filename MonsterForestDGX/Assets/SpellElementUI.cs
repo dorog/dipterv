@@ -5,18 +5,24 @@ public class SpellElementUI : MonoBehaviour
 {
     public Image iconImage;
     public Text spellNameText;
-    public Text typeText;
-    public Text typeValueText;
-    public Text cooldownText;
-    public Text levelText;
 
-    public void SetupUI(Sprite icon, string spellName,  string typeName, float typeValue, float cooldown, string lvl)
+    public Text requiredExpValue;
+
+    private ISpellPattern spellPattern;
+    private SpellElementInfoUI spellElementInfoUI;
+
+    public void SetupUI(ISpellPattern spellPattern, SpellElementInfoUI info)
     {
-        iconImage.sprite = icon;
-        spellNameText.text = spellName;
-        typeText.text = typeName + ":";
-        typeValueText.text = typeValue.ToString();
-        cooldownText.text = cooldown.ToString();
-        levelText.text = lvl;
+        spellElementInfoUI = info;
+        this.spellPattern = spellPattern;
+
+        iconImage.sprite = spellPattern.GetIcon();
+        spellNameText.text = spellPattern.GetElementType().ToString();
+        requiredExpValue.text = "---";
+    }
+
+    public void ShowInfo()
+    {
+        spellElementInfoUI.ShowUI(spellPattern);
     }
 }

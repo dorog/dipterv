@@ -9690,9 +9690,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedb34d52050e1a4aba1bc3ca342a0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  elementType: 6
+  coverage: 0.4
   cd: 2
-  attackType: 6
   dmg: 5
   impactParticle: {fileID: 106788, guid: 2f99ecca0dcb5d64a86c68c065ee62db, type: 3}
 --- !u!114 &4698942910622252794

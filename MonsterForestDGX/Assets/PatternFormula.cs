@@ -113,4 +113,19 @@ public class PatternFormula : ISpellPattern
     {
         return level;
     }
+
+    public string GetDifficulty()
+    {
+        return Spells[level - 1].GetDifficulty();
+    }
+
+    public Color GetDifficultyColor()
+    {
+        return Spells[level - 1].GetDifficultyColor();
+    }
+
+    public float GetMinCoverage()
+    {
+        return Spells[level - 1].coverage;
+    }
 }

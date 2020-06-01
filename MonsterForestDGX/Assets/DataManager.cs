@@ -10,6 +10,9 @@ public class DataManager : MonoBehaviour
     public GameConfig gameConfig;
 
     private static DataManager instance = null;
+
+    private float exp = 0;
+
     public static DataManager GetInstance()
     {
         return instance;
@@ -31,6 +34,12 @@ public class DataManager : MonoBehaviour
         GetGameData();
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        PlayerExperience playerExperience = PlayerExperience.GetInstance();
+        playerExperience.SetExp(exp);
     }
 
     private void GetGameData()
@@ -62,8 +71,7 @@ public class DataManager : MonoBehaviour
             SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
         }
 
-        PlayerExperience playerExperience = PlayerExperience.GetInstance();
-        playerExperience.SetExp(gameData.exp);
+        exp = gameData.exp;
 
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
     }
@@ -82,9 +90,6 @@ public class DataManager : MonoBehaviour
         {
             SharedData.GameConfig.pets[i].available = gameData.availablePets[i];
         }
-
-        PlayerExperience playerExperience = PlayerExperience.GetInstance();
-        playerExperience.SetExp(gameData.exp);
 
         SharedData.GameConfig.aliveMonsters = gameData.AliveMonsters.alive;
 
