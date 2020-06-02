@@ -99,35 +99,45 @@ public class PatternFormula : ISpellPattern
 
     public string GetSpellTypeUI()
     {
-        //Attack -> def? Make it impossible
-        return Spells[level].GetSpellType().ToString();
+        if (level != 0)
+        {
+            return Spells[level - 1].GetSpellType().ToString();
+        }
+        else
+        {
+            return Spells[level].GetSpellType().ToString();
+        }
     }
 
-    public string GetLevelUI()
+    public string[] GetLevelUI()
     {
-        if (level == Spells.Length - 1)
+        if (IsMaxed())
         {
-            return "Max";
+            return new string[] { "Max" };
         }
         else if (level == 0)
         {
-            return (level + 1).ToString();
+            return new string[] { level.ToString() };
         }
         else
         {
-            return level.ToString() + " -> (" + (level + 1) + ")";
+            return new string[] { level.ToString(), (level + 1).ToString() };
         }
     }
 
-    public string GetTypeValueUI()
+    public string[] GetTypeValueUI()
     {
-        if (level == 0 || level == (Spells.Length - 1))
+        if (IsMaxed())
         {
-            return Spells[level].GetSpellTypeValue().ToString();
+            return new string[] { Spells[level - 1].GetSpellTypeValue().ToString() };
+        }
+        else if (level == 0)
+        {
+            return new string[] { Spells[level].GetSpellTypeValue().ToString() };
         }
         else
         {
-            return Spells[level].GetSpellTypeValue() + " -> (" + Spells[level + 1].GetSpellTypeValue() + ")";
+            return new string[] { Spells[level - 1].GetSpellTypeValue().ToString(), Spells[level].GetSpellTypeValue().ToString() };
         }
     }
 
@@ -136,28 +146,41 @@ public class PatternFormula : ISpellPattern
         return Spells[level - 1].cd;
     }
 
-    public string GetDifficulty()
+    public string[] GetDifficulty()
     {
-        if(level == 0 || level == (Spells.Length - 1))
+        if (IsMaxed())
         {
-            return Spells[level].GetDifficulty();
+            return new string[] { Spells[level - 1].GetDifficulty() };
+        }
+        else if (level == 0)
+        {
+            return new string[] { Spells[level].GetDifficulty() };
         }
         else
         {
-            return Spells[level].GetDifficulty() + " -> (" + Spells[level + 1].GetDifficulty() + ")";
+            return new string[] { Spells[level - 1].GetDifficulty(), Spells[level].GetDifficulty() };
         }
     }
 
-    public Color GetDifficultyColor()
+    public Color[] GetDifficultyColor()
     {
-        //TODO: Handle different difficulty
-        //return Spells[level].GetDifficultyColor();
-        return Color.white;
+        if (IsMaxed())
+        {
+            return new Color[] { Spells[level - 1].GetDifficultyColor() };
+        }
+        else if (level == 0)
+        {
+            return new Color[] { Spells[level].GetDifficultyColor() };
+        }
+        else
+        {
+            return new Color[] { Spells[level - 1].GetDifficultyColor(), Spells[level].GetDifficultyColor() };
+        }
     }
 
     public string GetRequiredExp()
     {
-        if(level >= Spells.Length)
+        if(IsMaxed())
         {
             return "---";
         }
@@ -167,24 +190,33 @@ public class PatternFormula : ISpellPattern
         }
     }
 
-    public string GetCooldownUI()
+    public string[] GetCooldownUI()
     {
-        if (level == 0 || level == (Spells.Length - 1))
+        if (IsMaxed())
         {
-            return Spells[level].cd.ToString();
+            return new string[] { Spells[level - 1].cd.ToString() };
+        }
+        else if (level == 0)
+        {
+            return new string[] { Spells[level].cd.ToString() };
         }
         else
         {
-            return Spells[level].cd.ToString() + " -> (" + Spells[level].cd.ToString() + ")";
+            return new string[] { Spells[level - 1].cd.ToString(), Spells[level].cd.ToString() };
         }
     }
 
     public int GetRequiredExpValue()
     {
-        if(level >= Spells.Length)
+        if(IsMaxed())
         {
             return int.MaxValue;
         }
         return RequiredExps[level];
+    }
+
+    public bool IsMaxed()
+    {
+        return level == Spells.Length;
     }
 }

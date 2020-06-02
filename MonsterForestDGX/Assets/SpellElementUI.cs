@@ -25,8 +25,11 @@ public class SpellElementUI : MonoBehaviour
         {
             buttonText.text = "Buy";
         }
-
-        //TODO: Max level: Max and interactive false
+        else if (spellPattern.IsMaxed())
+        {
+            button.gameObject.SetActive(false);
+            //Exp and value set false too?
+        }
     }
 
     public void AvailableExp(int exp)

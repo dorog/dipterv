@@ -14,11 +14,12 @@ public interface ISpellPattern
     //Only UI:
     Sprite GetIcon();
     string GetSpellTypeUI();
-    string GetLevelUI();
-    string GetTypeValueUI();
-    string GetDifficulty();
-    Color GetDifficultyColor();
+    string[] GetLevelUI();
+    string[] GetTypeValueUI();
+    string[] GetDifficulty();
+    Color[] GetDifficultyColor();
     string GetRequiredExp();
     int GetRequiredExpValue();
-    string GetCooldownUI();
+    string[] GetCooldownUI();
+    bool IsMaxed();
 }
