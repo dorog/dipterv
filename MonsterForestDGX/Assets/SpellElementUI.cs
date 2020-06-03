@@ -9,13 +9,15 @@ public class SpellElementUI : MonoBehaviour
     public Text buttonText;
     public Button button;
 
+    private int id;
     private ISpellPattern spellPattern;
     private SpellElementInfoUI spellElementInfoUI;
 
-    public void SetupUI(ISpellPattern spellPattern, SpellElementInfoUI info)
+    public void SetupUI(int id, ISpellPattern spellPattern, SpellElementInfoUI info, int exp)
     {
-        spellElementInfoUI = info;
+        this.id = id;
         this.spellPattern = spellPattern;
+        spellElementInfoUI = info;
 
         iconImage.sprite = spellPattern.GetIcon();
         spellNameText.text = spellPattern.GetElementType().ToString();
@@ -30,6 +32,18 @@ public class SpellElementUI : MonoBehaviour
             button.gameObject.SetActive(false);
             //Exp and value set false too?
         }
+        else
+        {
+            buttonText.text = "Update";
+        }
+
+        AvailableExp(exp);
+    }
+
+    public void Refresh(int exp)
+    {
+        spellPattern.LevelUp();
+        SetupUI(id, spellPattern, spellElementInfoUI, exp);
     }
 
     public void AvailableExp(int exp)
@@ -41,6 +55,12 @@ public class SpellElementUI : MonoBehaviour
 
     public void ShowInfo()
     {
-        spellElementInfoUI.ShowUI(spellPattern);
+        spellElementInfoUI.ShowUI(id, spellPattern);
+    }
+
+    public void BuyOrUpdate()
+    {
+        DataManager dataManager = DataManager.GetInstance();
+        dataManager.LevelUpSpell(id,spellPattern.GetRequiredExpValue());
     }
 }

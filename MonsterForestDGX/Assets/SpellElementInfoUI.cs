@@ -31,8 +31,14 @@ public class SpellElementInfoUI : MonoBehaviour
     public Text cooldownValueText;
     public Text levelText;
 
-    public void ShowUI(ISpellPattern spellPattern)
+    private int spellId = -1;
+    private ISpellPattern spellPattern = null;
+
+    public void ShowUI(int id, ISpellPattern spellPattern)
     {
+        spellId = id;
+        this.spellPattern = spellPattern;
+
         if (spellPattern.IsMaxed() || spellPattern.GetLevelValue() == 0)
         {
             spellNameText.text = spellPattern.GetElementType().ToString();
@@ -76,6 +82,14 @@ public class SpellElementInfoUI : MonoBehaviour
 
             buyOrMaxedUI.SetActive(false);
             updateUI.SetActive(true);
+        }
+    }
+
+    public void RefreshInfo(int id)
+    {
+        if(spellId == id)
+        {
+            ShowUI(spellId, spellPattern);
         }
     }
 

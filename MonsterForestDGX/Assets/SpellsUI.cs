@@ -11,14 +11,20 @@ public class SpellsUI : MenuUI
 
     private List<SpellElementUI> spellElementUIs = new List<SpellElementUI>();
 
-    private int exp;
+    private int exp = 0;
+
+    private void Start()
+    {
+        DataManager dataManager = DataManager.GetInstance();
+        dataManager.spellLevelChangedEvent += LevelChanged;
+    }
 
     public void SetupUI(List<ISpellPattern> spellPatterns)
     {
         for(int i = 0; i < spellPatterns.Count; i++)
         {
             SpellElementUI spellElementUiInstance = Instantiate(spellElementUI, content);
-            spellElementUiInstance.SetupUI(spellPatterns[i], SpellElementInfoUI);
+            spellElementUiInstance.SetupUI(i, spellPatterns[i], SpellElementInfoUI, exp);
 
             spellElementUIs.Add(spellElementUiInstance);
         }
@@ -36,5 +42,11 @@ public class SpellsUI : MenuUI
         {
             spellElementUIs[i].AvailableExp(value);
         }
+    }
+
+    public void LevelChanged(int id)
+    {
+        spellElementUIs[id].Refresh(exp);
+        SpellElementInfoUI.RefreshInfo(id);
     }
 }

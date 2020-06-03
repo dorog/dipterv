@@ -14,6 +14,12 @@ public class DataManager : MonoBehaviour
 
     private GameData gameData = null;
 
+    public delegate void ExpChangedEvent(float exp);
+    public ExpChangedEvent expChangedEvent;
+
+    public delegate void SpellLevelChangedEvent(int id);
+    public SpellLevelChangedEvent spellLevelChangedEvent;
+
     public static DataManager GetInstance()
     {
         return instance;
@@ -39,8 +45,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerExperience playerExperience = PlayerExperience.GetInstance();
-        playerExperience.SetExp(gameData.exp);
+        expChangedEvent(gameData.exp);
     }
 
     private void GetGameData()
@@ -131,5 +136,16 @@ public class DataManager : MonoBehaviour
     public List<int> GetBasePatternLevels()
     {
         return gameData.basePatternSpellLevels.ToList();
+    }
+
+    public void LevelUpSpell(int id, int exp)
+    {
+        gameData.exp -= exp;
+        gameData.basePatternSpellLevels[id]++;
+
+        Save(gameData);
+
+        expChangedEvent(gameData.exp);
+        spellLevelChangedEvent(id);
     }
 }

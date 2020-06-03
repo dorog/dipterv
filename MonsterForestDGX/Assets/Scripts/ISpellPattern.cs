@@ -22,4 +22,5 @@ public interface ISpellPattern
     int GetRequiredExpValue();
     string[] GetCooldownUI();
     bool IsMaxed();
+    void LevelUp();
 }

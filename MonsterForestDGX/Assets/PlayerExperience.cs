@@ -10,6 +10,8 @@ public class PlayerExperience : SingletonClass<PlayerExperience>
     private void Awake()
     {
         Init(this);
+        DataManager dataManager = DataManager.GetInstance();
+        dataManager.expChangedEvent += SetExp;
     }
 
     public float GetExp()

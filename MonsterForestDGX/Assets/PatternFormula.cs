@@ -219,4 +219,9 @@ public class PatternFormula : ISpellPattern
     {
         return level == Spells.Length;
     }
+
+    public void LevelUp()
+    {
+        level++;
+    }
 }

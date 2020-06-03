@@ -741,7 +741,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9200575894681267066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5925421579814158886}
+        m_MethodName: BuyOrUpdate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7815315526113082430
 GameObject:
   m_ObjectHideFlags: 0
