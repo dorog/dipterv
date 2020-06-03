@@ -34,8 +34,17 @@ public class SpellElementInfoUI : MonoBehaviour
     private int spellId = -1;
     private ISpellPattern spellPattern = null;
 
-    public void ShowUI(int id, ISpellPattern spellPattern)
+    public void ShowUI(int id, ISpellPattern spellPattern, bool refresh = false)
     {
+        if (!refresh && id == spellId)
+        {
+            spellId = -1;
+            buyOrMaxedUI.SetActive(false);
+            updateUI.SetActive(false);
+
+            return;
+        }
+
         spellId = id;
         this.spellPattern = spellPattern;
 
@@ -89,7 +98,7 @@ public class SpellElementInfoUI : MonoBehaviour
     {
         if(spellId == id)
         {
-            ShowUI(spellId, spellPattern);
+            ShowUI(spellId, spellPattern, true);
         }
     }
 
