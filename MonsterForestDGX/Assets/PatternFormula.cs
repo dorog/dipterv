@@ -51,6 +51,11 @@ public class PatternFormula : ISpellPattern
 
     public float GetResult()
     {
+        if(level == 0)
+        {
+            return -1;
+        }
+
         int correct = 0;
         int max = 0;
         for(int i = 0; i < rectangles.Count; i++)
@@ -88,6 +93,10 @@ public class PatternFormula : ISpellPattern
 
     public float GetMinCoverage()
     {
+        if(level == 0)
+        {
+            return 2;
+        }
         return Spells[level - 1].coverage;
     }
 

@@ -30,11 +30,13 @@ public class SpellManager : SingletonClass<SpellManager>
     void Start()
     {
         DataManager dataManager = DataManager.GetInstance();
+        dataManager.spellLevelChangedEvent += SpellLeveledUp;
 
         CreatePatterns(dataManager.GetBasePatterns(), dataManager.GetBasePatternLevels(), attackPatterns, attackParent);
         spellsUI.SetupUI(attackPatterns);
 
         playerExperience = PlayerExperience.GetInstance();
+
     }
 
     private void CreatePatterns(List<BasePatternSpell> BasePaternSpells, List<int> levels, List<ISpellPattern> SpellPatterns, Transform parent, float extraHeigh = 0)
@@ -164,5 +166,11 @@ public class SpellManager : SingletonClass<SpellManager>
     {
         lastCoverage = coverage;
         playerExperience.AddExp(ExpType.Hit, coverage);
+    }
+
+    public void SpellLeveledUp(int id)
+    {
+        //TODO: Not only attacks!
+        attackPatterns[id].LevelUp();
     }
 }
