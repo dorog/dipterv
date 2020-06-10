@@ -4,12 +4,14 @@ using UnityEngine.UI;
 public class PetManager : SingletonClass<PetManager>
 {
     private Image selectedImage = null;
-    public Color selectedColor;
     private readonly int notSelectedPetValue = -1;
     public int selectedPet;
     private Pet[] pets;
 
     public PetTab petTab;
+
+    public Sprite selectedImageSprite;
+    private Sprite originalSprite;
 
     private static readonly string lastPetKey = "lastPetKey";
 
@@ -53,10 +55,11 @@ public class PetManager : SingletonClass<PetManager>
     {
         if(selectedImage != null)
         {
-            selectedImage.color = Color.white;
+            selectedImage.sprite = originalSprite;
         }
         selectedImage = image;
-        selectedImage.color = selectedColor;
+        originalSprite = selectedImage.sprite;
+        selectedImage.sprite = selectedImageSprite;
         selectedPet = number;
 
         PlayerPrefs.SetInt(lastPetKey, selectedPet);
