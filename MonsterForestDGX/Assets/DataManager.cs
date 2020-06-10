@@ -123,9 +123,21 @@ public class DataManager : MonoBehaviour
         Save(gameData);
     }
 
+    public void SaveTeleportUnlock(int id)
+    {
+        gameData.teleports[id] = true;
+
+        Save(gameData);
+    }
+
     public bool[] GetAliveMonsters()
     {
         return gameData.aliveMonsters;
+    }
+
+    public bool[] GetTeleportsState()
+    {
+        return gameData.teleports;
     }
 
     public List<BasePatternSpell> GetBasePatterns()

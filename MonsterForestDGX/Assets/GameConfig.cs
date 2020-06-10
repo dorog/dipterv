@@ -10,6 +10,9 @@ public class GameConfig : ScriptableObject
     [Header("Monster Settings")]
     public int aliveMonsters;
 
+    [Header("Teleports Settings")]
+    public int teleports;
+
     [Header("Attack Spells Settings")]
     public BasePatternSpell[] baseSpells;
 

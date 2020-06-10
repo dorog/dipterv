@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exp: 500
   aliveMonsters: 4
+  teleports: 5
   baseSpells:
   - {fileID: 11400000, guid: 98daaeb9848c2354799233c83004bbbf, type: 2}
   - {fileID: 11400000, guid: e8b0832720fe931479a6860fa3618cb0, type: 2}
