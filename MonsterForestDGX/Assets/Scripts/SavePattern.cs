@@ -17,7 +17,6 @@ public class SavePattern : MonoBehaviour
         {
             x = new float[count],
             y = new float[count],
-            z = new float[count]
         };
 
         for(int i = 0; i < count; i++)
@@ -25,7 +24,6 @@ public class SavePattern : MonoBehaviour
             Vector3 position = lineRenderer.GetPosition(i);
             spellPatternData.x[i] = position.x * scale;
             spellPatternData.y[i] = position.y * scale;
-            spellPatternData.z[i] = position.z * scale;
         }
 
         string jsonData = JsonUtility.ToJson(spellPatternData, true);

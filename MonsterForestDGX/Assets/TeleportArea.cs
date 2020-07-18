@@ -8,6 +8,7 @@ public class TeleportArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.gameObject.name);
         teleport.ReachedTerritory(id, port);
     }
 }

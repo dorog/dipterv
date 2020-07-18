@@ -8,10 +8,13 @@ public class CooldownResetPetAbility : PetAbility
     [Range(0, 100)]
     public float resetChance = 50;
 
+    private MagicCircleHandler magicCircleHandler;
+
     public override void Init(Player _player)
     {
         player = _player;
-        player.castSpellDelegateEvent += ResetCooldown;
+        magicCircleHandler = player.GetMagicCircleHandler();
+        magicCircleHandler.castSpellDelegateEvent += ResetCooldown;
     }
 
     private void ResetCooldown()
@@ -20,7 +23,7 @@ public class CooldownResetPetAbility : PetAbility
         //Debug.Log(random + ", " + resetChance);
         if (random <= resetChance)
         {
-            player.ResetCooldown();
+            magicCircleHandler.ResetCooldown();
         }
     }
 }

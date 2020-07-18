@@ -5,9 +5,9 @@ using UnityEngine;
 public class SpellPatternPoint
 {
     public int Id { get; set; }
-    public Vector3 Point { get; set; }
+    public Vector2 Point { get; set; }
 
-    public SpellPatternPoint(int id, Vector3 point)
+    public SpellPatternPoint(int id, Vector2 point)
     {
         Id = id;
         Point = point;

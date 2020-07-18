@@ -16,7 +16,7 @@ public class AttackPetAbility : PetNextAction
 
     public override void UpdateEffect()
     {
-        if (player.canAttack && !inWait)
+        if (player.CanAttack() && !inWait)
         {
             monsterHealth.TakeDamage(effectAmount, ElementType.TrueDamage);
             SetUpNextEffect();

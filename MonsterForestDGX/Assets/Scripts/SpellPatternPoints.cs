@@ -20,7 +20,7 @@ public class SpellPatternPoints : ScriptableObject
 
         for (int i = 0; i < spellPatternData.x.Length; i++)
         {
-            spellPatternPoints.Add(new SpellPatternPoint(i, new Vector3(spellPatternData.x[i], spellPatternData.y[i], spellPatternData.z[i])));
+            spellPatternPoints.Add(new SpellPatternPoint(i, new Vector3(spellPatternData.x[i], spellPatternData.y[i])));
         }
 
         return spellPatternPoints;

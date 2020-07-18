@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpellManager : SingletonClass<SpellManager>
 {
@@ -21,6 +22,8 @@ public class SpellManager : SingletonClass<SpellManager>
     public CastEffect[] castEffects;
 
     public SpellsUI spellsUI;
+
+    public Transform castEffectTransformReference;
 
     private void Awake()
     {
@@ -68,8 +71,10 @@ public class SpellManager : SingletonClass<SpellManager>
         SpellPatterns.Add(spellPattern);
     }
 
-    public void Guess(Vector3 point, bool canAttack)
+    public void Guess(Vector2 point, bool canAttack)
     {
+        //feeder.text = "Guess: " + point.ToString();
+        //Debug.Log(point);
         List<ISpellPattern> SpellPatterns = canAttack ? attackPatterns : defensePatterns;
         foreach (var spellPattern in SpellPatterns)
         {
@@ -117,7 +122,7 @@ public class SpellManager : SingletonClass<SpellManager>
             }
             if(castEffect != null)
             {
-                Instantiate(castEffect, castParent.transform);
+                Instantiate(castEffect, castEffectTransformReference.position, castEffectTransformReference.rotation);
             }
 
             return spellResult;
@@ -134,6 +139,7 @@ public class SpellManager : SingletonClass<SpellManager>
         {
             spellPattern.Reset();
         }
+
         foreach (var spellPattern in defensePatterns)
         {
             spellPattern.Reset();

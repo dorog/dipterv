@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-public abstract class MenuUI : MonoBehaviour
+public class MenuUI : MonoBehaviour
 {
+    public Transform canvas;
     public GameObject ui;
     public Player player;
 
@@ -9,5 +10,15 @@ public abstract class MenuUI : MonoBehaviour
     {
         player.MenuState(false);
         ui.SetActive(false);
+    }
+
+    public void ShowUI(Vector3 position, Quaternion rotation)
+    {
+        player.MenuState(true);
+
+        canvas.position = position;
+        canvas.rotation = rotation;
+
+        ui.SetActive(true);
     }
 }

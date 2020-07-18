@@ -6,34 +6,23 @@ using UnityEngine.UI;
 [Serializable]
 public class Player : Fighter
 {
-    public bool canAttack = false;
+    public MagicCircleHandler magicCircleHandler;
+
     public BattleManager battleManager;
 
     public Teleport teleport;
 
-    private bool inCast = false;
+    public bool InLobby = false;
+    public bool InBattle = false;
+    public bool InMenu = false;
 
-    private bool InLobby = false;
-    private bool InBattle = false;
-    private bool InMenu = false;
-
-    private Vector3 mousePosition;
-    public GameObject magicCircle;
     public PlayerHealth playerHealth;
 
     public Color DefenseGridColor;
     public Color AttackGridColor;
     public SpriteRenderer grid;
 
-    public Slider coolDown;
-    private RectTransform coolDownRectTransform;
-    private readonly float multiplyCD = 100;
-    private bool resetedCd = false;
-
     private GameObject petGO;
-
-    public delegate void CastSpellDelegate();
-    public CastSpellDelegate castSpellDelegateEvent;
 
     private PetManager petManager;
     private SpellTreeManager spellTreeManager;
@@ -45,7 +34,6 @@ public class Player : Fighter
     private void Start()
     {
         health.SetUpHealth();
-        coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
 
         petManager = PetManager.GetInstance();
         spellTreeManager = SpellTreeManager.GetInstance();
@@ -74,12 +62,11 @@ public class Player : Fighter
     {
         InBattle = false;
         health.inBlock = false;
-        canAttack = false;
-        inCast = false;
         playerHealth.BlockDown();
-        magicCircle.SetActive(false);
 
-        ClearDelegates();
+
+        magicCircleHandler.BattleEnd();
+
         if(petGO != null)
         {
             Destroy(petGO);
@@ -89,108 +76,9 @@ public class Player : Fighter
         aliveMonstersManager.Won(id);
     }
 
-    private void ClearDelegates()
-    {
-        if(castSpellDelegateEvent != null)
-        {
-            Delegate[] delegates = castSpellDelegateEvent.GetInvocationList();
-            foreach (Delegate d in delegates)
-            {
-                castSpellDelegateEvent -= (CastSpellDelegate)d;
-            }
-        }
-    }
-
-    private void Update()
-    {
-        if(InBattle)
-        {
-            //Remove later, add def spells
-            if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
-            {
-                health.SetUpBlock();
-            }
-            if (Input.GetMouseButtonDown(1) && !inCast)
-            {
-                inCast = true;
-                mousePosition = Input.mousePosition;
-                magicCircle.SetActive(true);
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                inCast = false;
-                magicCircle.SetActive(false);
-            }
-        }
-    }
-
-    public void Def()
-    {
-        health.SetUpBlock();
-        magicCircle.SetActive(false);
-        inCast = false;
-    }
-
-    public void CastSpell(SpellResult spellResult)
-    {
-        Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
-        GameObject spell = Instantiate(spellResult.spell, position + transform.forward, Camera.main.transform.rotation);
-        PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
-        spellAttack.coverage = spellResult.coverage;
-
-        SetUpCoolDown(spellResult.cooldown);
-
-        if (!canAttack)
-        {
-            health.SetUpBlock();
-        }
-
-        magicCircle.SetActive(false);
-    }
-
-    private void SetUpCoolDown(float cd)
-    {
-        castSpellDelegateEvent?.Invoke();
-
-        if (!resetedCd)
-        {
-            coolDownRectTransform.sizeDelta = new Vector2(multiplyCD * cd, coolDownRectTransform.sizeDelta.y);
-            coolDown.value = 1;
-            coolDown.gameObject.SetActive(true);
-            StartCoroutine(Countdown(coolDown));
-        }
-        else
-        {
-            inCast = false;
-            resetedCd = false;
-        }
-    }
-
-    private IEnumerator Countdown(Slider slider)
-    {
-        float duration = coolDownRectTransform.sizeDelta.x / 100;
-        float normalizedTime = 0;
-        while (normalizedTime <= 1f && !resetedCd)
-        {
-            normalizedTime += Time.deltaTime / duration;
-            slider.value -= Time.deltaTime / duration;
-            yield return null;
-        }
-
-        coolDown.gameObject.SetActive(false);
-        inCast = false;
-        resetedCd = false;
-    }
-
-    public void ResetCooldown()
-    {
-        resetedCd = true;
-    }
-
     public override void Die()
     {
-        //Necessary?
-        magicCircle.SetActive(false);
+        magicCircleHandler.Die();
         battleManager.PlayerDied();
     }
 
@@ -202,17 +90,13 @@ public class Player : Fighter
     public void DefTurn()
     {
         grid.color = DefenseGridColor;
-        canAttack = false;
-        magicCircle.SetActive(false);
-        inCast = false;
+        magicCircleHandler.DefTurn();
     }
 
     public void AttackTurn()
     {
         grid.color = AttackGridColor;
-        canAttack = true;
-        magicCircle.SetActive(false);
-        inCast = false;
+        magicCircleHandler.AttackTurn();
     }
 
     public void Battle(BattleManager battleManager, Resistant monsterResistant)
@@ -239,5 +123,20 @@ public class Player : Fighter
     {
         InLobby = false;
         teleport.TeleportToLastPosition();
+    }
+
+    public bool CanAttack()
+    {
+        return magicCircleHandler.canAttack;
+    }
+
+    public void CastSpell(SpellResult spellResult)
+    {
+        magicCircleHandler.CastSpell(spellResult);
+    }
+
+    public MagicCircleHandler GetMagicCircleHandler()
+    {
+        return magicCircleHandler;
     }
 }
