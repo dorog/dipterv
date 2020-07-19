@@ -35,6 +35,8 @@ public class MagicCircleHandler : MonoBehaviour
 
     public Text feedback;
 
+    public float magicCircleExtraDistance = 2;
+
     private void Start()
     {
         coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
@@ -68,7 +70,7 @@ public class MagicCircleHandler : MonoBehaviour
                 handPosition = hand.transform.position;
                 handRotaion = hand.transform.rotation;
 
-                magicCircle.transform.position = hand.transform.position;
+                magicCircle.transform.position = hand.transform.position + hand.transform.forward * magicCircleExtraDistance;
                 magicCircle.transform.rotation = hand.transform.rotation;
                 magicCircle.SetActive(true);
             }

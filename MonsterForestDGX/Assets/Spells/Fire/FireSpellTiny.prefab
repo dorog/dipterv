@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19980130}
   - component: {fileID: 19896464}
   - component: {fileID: 9644576}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4661,6 +4662,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4767,7 +4769,7 @@ GameObject:
   - component: {fileID: -5420316031954961204}
   - component: {fileID: -373359622468341789}
   - component: {fileID: 2752158805988373444}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireSpellTiny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9506,6 +9508,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9625,7 +9628,7 @@ GameObject:
   - component: {fileID: 421118}
   - component: {fileID: 19842878}
   - component: {fileID: 19962864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14265,6 +14268,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14323,7 +14327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404760}
   - component: {fileID: 10890774}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14352,8 +14356,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185162}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.47586206, b: 0, a: 1}
   m_Intensity: 4
   m_Range: 3

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454986}
   - component: {fileID: 10849924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,8 +39,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130364}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 0.20588237, g: 1, b: 0.63853943, a: 1}
   m_Intensity: 4
   m_Range: 3
@@ -103,7 +104,7 @@ GameObject:
   - component: {fileID: 19844556}
   - component: {fileID: 19985032}
   - component: {fileID: 9668582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4689,6 +4690,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4752,6 +4754,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4853,7 +4856,7 @@ GameObject:
   - component: {fileID: 481858}
   - component: {fileID: 19804342}
   - component: {fileID: 19917578}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthGlowTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9457,6 +9460,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9516,7 +9520,7 @@ GameObject:
   - component: {fileID: 456326}
   - component: {fileID: 19896034}
   - component: {fileID: 19953522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14129,6 +14133,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14193,7 +14198,7 @@ GameObject:
   - component: {fileID: -6026737951799444418}
   - component: {fileID: 5385135956828367811}
   - component: {fileID: 7199581983481526681}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthSpellTiny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14330,6 +14335,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18999,7 +19005,7 @@ GameObject:
   - component: {fileID: 436184}
   - component: {fileID: 19898772}
   - component: {fileID: 19935874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthPebbleTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23639,6 +23645,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

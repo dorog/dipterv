@@ -210,6 +210,8 @@ MonoBehaviour:
   rigid: {fileID: 5932595735893776517}
   speed: 10
   body: {fileID: 5932595735893776518}
+  xrRig: {fileID: 0}
+  playerCollider: {fileID: 0}
 --- !u!114 &5932595735893776523
 MonoBehaviour:
   m_ObjectHideFlags: 0

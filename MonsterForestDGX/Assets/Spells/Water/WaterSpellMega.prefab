@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 470186}
   - component: {fileID: 19851544}
   - component: {fileID: 19947316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4651,6 +4651,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4709,7 +4710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432494}
   - component: {fileID: 10839192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4738,8 +4739,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138860}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 0.30882353, g: 0.7997971, b: 1, a: 1}
   m_Intensity: 4
   m_Range: 7
@@ -4801,7 +4803,7 @@ GameObject:
   - component: {fileID: 416022}
   - component: {fileID: 19897166}
   - component: {fileID: 19917240}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9387,6 +9389,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9446,7 +9449,7 @@ GameObject:
   - component: {fileID: 402910}
   - component: {fileID: 19814152}
   - component: {fileID: 19905760}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14126,6 +14129,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14190,7 +14194,7 @@ GameObject:
   - component: {fileID: 937600494204601970}
   - component: {fileID: -2471743151391661410}
   - component: {fileID: 655262293194744560}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterSpellMega
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14327,6 +14331,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19076,7 +19081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452300}
   - component: {fileID: 9669792}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19112,6 +19117,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19212,7 +19218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434912}
   - component: {fileID: 11491440}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19259,7 +19265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470358}
   - component: {fileID: 9622690}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19295,6 +19301,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

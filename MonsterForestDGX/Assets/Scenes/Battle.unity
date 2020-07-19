@@ -3583,7 +3583,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 6.790784e-33, z: 1.3563156e-19, w: -12.728691}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -14.100304}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6347,6 +6347,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 5932595735893776517, guid: 42c945077afaa2149bff56f43193a7be,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5932595735893776518, guid: 42c945077afaa2149bff56f43193a7be,
         type: 3}
       propertyPath: m_Name
@@ -6422,6 +6427,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1220643221}
+    - target: {fileID: 5932595735893776522, guid: 42c945077afaa2149bff56f43193a7be,
+        type: 3}
+      propertyPath: xrRig
+      value: 
+      objectReference: {fileID: 1220643224}
+    - target: {fileID: 5932595735893776522, guid: 42c945077afaa2149bff56f43193a7be,
+        type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1220643222}
+    - target: {fileID: 5932595735893776522, guid: 42c945077afaa2149bff56f43193a7be,
+        type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 1220643222}
     - target: {fileID: 5932595736034050564, guid: 42c945077afaa2149bff56f43193a7be,
         type: 3}
       propertyPath: m_Layer
@@ -6550,6 +6570,19 @@ MonoBehaviour:
   hand: {fileID: 1101447980}
   input: 5
   feedback: {fileID: 277069153}
+  magicCircleExtraDistance: 0.4
+--- !u!114 &1220643224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5932595735893776516, guid: 42c945077afaa2149bff56f43193a7be,
+    type: 3}
+  m_PrefabInstance: {fileID: 1220643217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220643219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7448815bd5148434682b3d931066cd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1233624563
 GameObject:
   m_ObjectHideFlags: 0
@@ -9550,7 +9583,7 @@ PrefabInstance:
     - target: {fileID: 8359874444270467352, guid: 774a50c21a8d1714e92a6668400f6a35,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8647900124941240674, guid: 774a50c21a8d1714e92a6668400f6a35,
         type: 3}
@@ -10064,7 +10097,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.2
+      scalar: 1.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2

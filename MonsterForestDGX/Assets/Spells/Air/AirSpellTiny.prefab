@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 443258}
   - component: {fileID: 10832570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,8 +39,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118546}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.9908722, b: 0.86764705, a: 1}
   m_Intensity: 4
   m_Range: 3
@@ -103,7 +104,7 @@ GameObject:
   - component: {fileID: 19861478}
   - component: {fileID: 19925690}
   - component: {fileID: 9688340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StormTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4725,6 +4726,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4788,6 +4790,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4894,7 +4897,7 @@ GameObject:
   - component: {fileID: -8666051587782103589}
   - component: {fileID: 4698942910622252794}
   - component: {fileID: -3295337669045449815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirSpellTiny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5028,6 +5031,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

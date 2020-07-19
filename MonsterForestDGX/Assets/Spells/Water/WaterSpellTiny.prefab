@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2352094987165873297}
   - component: {fileID: 7551133517098699665}
   - component: {fileID: -2837604896045214544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterSpellTiny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4820,7 +4821,7 @@ GameObject:
   - component: {fileID: 19883134}
   - component: {fileID: 19920206}
   - component: {fileID: 9658700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9460,6 +9461,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9523,6 +9525,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9623,7 +9626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434796}
   - component: {fileID: 10843938}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9652,8 +9655,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187740}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 0.30147058, g: 0.59533465, b: 1, a: 1}
   m_Intensity: 4
   m_Range: 3
