@@ -15,7 +15,7 @@ public class ContinousMovementVR : MonoBehaviour
 
     public BoxCollider playerCollider;
 
-    private float additionalHeight = 0.01f;
+    private readonly float additionalHeight = 0.01f;
 
     void Update()
     {

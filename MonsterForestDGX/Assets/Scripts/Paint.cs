@@ -17,19 +17,14 @@ public class Paint : MonoBehaviour
     public XRNode input;
 
     public Transform hand;
-    public Text text;
 
     void Update()
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(input);
-        device.TryGetFeatureValue(CommonUsages.trigger, out float inputDirection);
+        device.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputDirection);
 
-        if (inputDirection > 0.2)
+        if (inputDirection)
         {
-            text.text = "Pressing...";
-
-            lineRenderer.positionCount += 1;
-
             try
             {
                 //Vector3 position = ScreenWithoutRay();
@@ -73,8 +68,7 @@ public class Paint : MonoBehaviour
 
                 Vector2 guess = GetGuess(flattenedVector, flat) * 200;
 
-                text.text += "\nGuess: " + (guess);
-                text.text += "\nCan: " + (player.CanAttack());
+                lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, flattenedVector);
                 SpellManager.Guess(guess, player.CanAttack());
 
@@ -84,9 +78,6 @@ public class Paint : MonoBehaviour
         else
         {
             CheckResult();
-
-            text.text = "Nothing...";
-
         }
     }
 
@@ -134,11 +125,9 @@ public class Paint : MonoBehaviour
             if (spellResult == null)
             {
                 Debug.Log("Null");
-                text.text = "\nNull";
             }
             else
             {
-                text.text = "\nHit";
                 player.CastSpell(spellResult);
             }
             SpellManager.ResetSpells();

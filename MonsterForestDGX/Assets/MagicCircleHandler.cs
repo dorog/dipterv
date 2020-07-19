@@ -19,8 +19,7 @@ public class MagicCircleHandler : MonoBehaviour
 
     private bool inCast = false;
 
-    public Slider coolDown;
-    private RectTransform coolDownRectTransform;
+    public Text coolDown;
     private readonly float multiplyCD = 100;
     private bool resetedCd = false;
 
@@ -39,7 +38,7 @@ public class MagicCircleHandler : MonoBehaviour
 
     private void Start()
     {
-        coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
+        //coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
     }
 
     public void ResetCooldown()
@@ -49,7 +48,7 @@ public class MagicCircleHandler : MonoBehaviour
 
     private void Update()
     {
-        if (player.InBattle)
+        if (player.InBattle && player.CanAttack())
         {
             //Remove later, add def spells
             /*if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
@@ -74,7 +73,7 @@ public class MagicCircleHandler : MonoBehaviour
                 magicCircle.transform.rotation = hand.transform.rotation;
                 magicCircle.SetActive(true);
             }
-            if (primaryBtn)
+            if (primaryBtn && inCast)
             {
                 inCast = false;
                 magicCircle.SetActive(false);
@@ -120,18 +119,20 @@ public class MagicCircleHandler : MonoBehaviour
         magicCircle.SetActive(false);
     }
 
-    private IEnumerator Countdown(Slider slider)
+    private IEnumerator Countdown(float cd)
     {
-        float duration = coolDownRectTransform.sizeDelta.x / 100;
-        float normalizedTime = 0;
-        while (normalizedTime <= 1f && !resetedCd)
+        float duration = cd;
+        while (duration > 0 && !resetedCd)
         {
-            normalizedTime += Time.deltaTime / duration;
-            slider.value -= Time.deltaTime / duration;
+            //normalizedTime += Time.deltaTime / duration;
+            coolDown.text = duration.ToString();
+            duration -= Time.deltaTime;
+            //slider.value -= Time.deltaTime / duration;
             yield return null;
         }
 
-        coolDown.gameObject.SetActive(false);
+        coolDown.text = "Ready";
+        //coolDown.gameObject.SetActive(false);
         inCast = false;
         resetedCd = false;
     }
@@ -142,10 +143,11 @@ public class MagicCircleHandler : MonoBehaviour
 
         if (!resetedCd)
         {
-            coolDownRectTransform.sizeDelta = new Vector2(multiplyCD * cd, coolDownRectTransform.sizeDelta.y);
+            coolDown.text = cd.ToString();
+            /*coolDownRectTransform.sizeDelta = new Vector2(multiplyCD * cd, coolDownRectTransform.sizeDelta.y);
             coolDown.value = 1;
-            coolDown.gameObject.SetActive(true);
-            StartCoroutine(Countdown(coolDown));
+            coolDown.gameObject.SetActive(true);*/
+            StartCoroutine(Countdown(cd));
         }
         else
         {
