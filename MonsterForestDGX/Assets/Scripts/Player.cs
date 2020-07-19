@@ -144,4 +144,17 @@ public class Player : Fighter
     {
         return cooldownParticleSystemEffect;
     }
+
+    public void Died()
+    {
+        InBattle = false;
+
+        if (petGO != null)
+        {
+            Destroy(petGO);
+        }
+
+        health.ResetHealth();
+        teleport.TeleportToDefaultLocation();
+    }
 }

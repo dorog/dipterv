@@ -43,4 +43,10 @@ public abstract class Health : MonoBehaviour
     protected abstract float GetBlockedDamage(float dmg);
 
     public abstract void SetDamageBlock();
+
+    public void ResetHealth()
+    {
+        currentHp = maxHp;
+        SetUpHealth();
+    }
 }

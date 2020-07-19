@@ -6842,8 +6842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e0d8d6a6c36bc4db990195251685c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
-  currentHp: 1000
+  maxHp: 1
+  currentHp: 1
   fighter: {fileID: 1220643221}
   hpSlider: {fileID: 487861890}
   hpImage: {fileID: 469202258}
@@ -6868,7 +6868,7 @@ MonoBehaviour:
   health: {fileID: 1220643220}
   magicCircleHandler: {fileID: 1220643223}
   battleManager: {fileID: 0}
-  teleport: {fileID: 0}
+  teleport: {fileID: 877319448}
   InLobby: 0
   InBattle: 0
   InMenu: 0
@@ -9906,6 +9906,12 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 2147483647
+--- !u!198 &1946945794 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7651830619681896454, guid: 53bc6e8785af0c04a86644e22462c864,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000349071641932287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1960781366
 GameObject:
   m_ObjectHideFlags: 0
@@ -15791,6 +15797,26 @@ PrefabInstance:
       propertyPath: maxHp
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146616, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: ultimateAttackChance
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146616, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: hardAttackChance
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146616, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: normalAttakChance
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
         type: 3}
       propertyPath: nameText
@@ -15811,6 +15837,11 @@ PrefabInstance:
       propertyPath: feedback
       value: 
       objectReference: {fileID: 1960781368}
+    - target: {fileID: 4000349072905146619, guid: 53bc6e8785af0c04a86644e22462c864,
+        type: 3}
+      propertyPath: extraParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 1946945794}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53bc6e8785af0c04a86644e22462c864, type: 3}
 --- !u!1001 &4392558750906907078
@@ -15990,6 +16021,11 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 4392558750906907083}
+    - target: {fileID: 3586287159768950288, guid: 312a4b7c3cb916c439faba3525d1496f,
+        type: 3}
+      propertyPath: defaultLocation
+      value: 
+      objectReference: {fileID: 982983583}
     - target: {fileID: 4726401583399408125, guid: 312a4b7c3cb916c439faba3525d1496f,
         type: 3}
       propertyPath: m_Name

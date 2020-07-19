@@ -11,6 +11,8 @@ public class Teleport : MenuUI
 
     private int lastTeleportUI = -1;
 
+    public GameObject defaultLocation;
+
     public void Start()
     {
         dataManager = DataManager.GetInstance();
@@ -80,5 +82,10 @@ public class Teleport : MenuUI
         {
             teleportsParent.transform.GetChild(i).gameObject.SetActive(ports[i]);
         }
+    }
+
+    public void TeleportToDefaultLocation()
+    {
+        TeleportPlayer(defaultLocation);
     }
 }

@@ -24,6 +24,8 @@ public class Monster : Fighter
     public float maxWaitTime = 10;
 
     public GameObject[] extraObjects;
+    public ParticleSystem[] extraParticles;
+
     private bool died = false;
 
     private bool firstTurn = true;
@@ -124,7 +126,7 @@ public class Monster : Fighter
 
     public void Appear()
     {
-        foreach(var go in extraObjects)
+        foreach (var go in extraObjects)
         {
             go.SetActive(true);
         }
@@ -140,6 +142,11 @@ public class Monster : Fighter
         {
             go.SetActive(false);
         }
+        foreach (var particle in extraParticles)
+        {
+            particle.Stop();
+        }
+
         animator.SetTrigger(disappearAnimation);
     }
 
@@ -150,6 +157,19 @@ public class Monster : Fighter
 
     public void MonsterTurnStart()
     {
-        StartCoroutine(Strike());
+        StartCoroutine(nameof(Strike));
+    }
+
+    public void ResetMonster()
+    {
+        firstRound = true;
+        firstTurn = true;
+
+        StopCoroutine(nameof(Strike));
+        //StopCoroutine(Countdown(2));
+
+        Disappear();
+
+        health.ResetHealth();
     }
 }

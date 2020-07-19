@@ -59,7 +59,14 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        sceneLoader.LoadMainMenu();
+        turnGO.SetActive(false);
+
+        player.Died();
+
+        monster.ResetMonster();
+        battlePlace.SetActive(true);
+
+        //sceneLoader.LoadMainMenu();
     }
 
     public void Run()

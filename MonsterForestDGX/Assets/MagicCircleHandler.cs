@@ -121,6 +121,7 @@ public class MagicCircleHandler : MonoBehaviour
         }
     }
 
+    //TODO: Rename
     public void Die()
     {
         //Necessary?
