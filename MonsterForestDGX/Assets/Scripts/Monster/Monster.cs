@@ -105,18 +105,13 @@ public class Monster : Fighter
         return attack.Attack();
     }
 
-    private void Block()
-    {
-        health.SetUpBlock();
-    }
-
     public void React()
     {
-        health.inBlock = false;
         float random = Random.Range(0, 101);
+
         if (random <= blockChance)
         {
-            Block();
+            health.SetDamageBlock();
         }
     }
 

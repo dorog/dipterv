@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterHealth : Health
 {
@@ -10,11 +11,17 @@ public class MonsterHealth : Health
 
     private bool death = false;
 
-    private SpellManager spellManager;
+    public bool inBlock = false;
 
-    private void Start()
+    public DamageBlock damageBlock;
+
+    public Text hp;
+
+    public override void SetUpHealth()
     {
-        spellManager = SpellManager.GetInstance();
+        base.SetUpHealth();
+
+        hp.text = Mathf.Ceil(currentHp).ToString() + "/" + maxHp.ToString();
     }
 
     public void TakeDamageBody(float dmg, ElementType magicType)
@@ -22,7 +29,10 @@ public class MonsterHealth : Health
         if (inBlock)
         {
             TakeDamage(dmg, magicType);
-            animator.SetTrigger(blockAnimation);
+            if(currentHp > 0)
+            {
+                animator.SetTrigger(blockAnimation);
+            }
         }
         else
         {
@@ -64,5 +74,23 @@ public class MonsterHealth : Health
             hpSlider.gameObject.SetActive(false);
             StartCoroutine(monsterBodyDisappear.DisAppear());
         }
+    }
+
+    protected override float GetBlockedDamage(float dmg)
+    {
+        if (inBlock)
+        {
+            inBlock = false;
+            return damageBlock.GetCalculatedDamage(dmg);
+        }
+        else
+        {
+            return dmg;
+        }
+    }
+
+    public override void SetDamageBlock()
+    {
+        inBlock = true;
     }
 }

@@ -6,6 +6,8 @@ public class PlayerHealth : Health
     public Text hp;
     public GameObject block;
 
+    public TimeDamageBlock timeDamageBlock;
+
     public override void SetUpHealth()
     {
         base.SetUpHealth();
@@ -13,15 +15,9 @@ public class PlayerHealth : Health
         hp.text = Mathf.Ceil(currentHp).ToString() + "/" + maxHp.ToString();
     }
 
-    public override void SetUpBlock()
+    public void BlockDown()
     {
-        base.SetUpBlock();
-        block.SetActive(true);
-    }
-
-    public override void BlockDown()
-    {
-        base.BlockDown();
+        //base.BlockDown();
         block.SetActive(false);
     }
 
@@ -37,5 +33,25 @@ public class PlayerHealth : Health
         }
 
         SetUpHealth();
+    }
+
+    protected override float GetBlockedDamage(float dmg)
+    {
+        if (timeDamageBlock != null)
+        {
+            return timeDamageBlock.GetCalculatedDamage(dmg);
+        }
+        else
+        {
+            return dmg;
+        }
+    }
+
+    public override void SetDamageBlock()
+    {
+        if (timeDamageBlock != null)
+        {
+            timeDamageBlock.StartBlock();
+        }
     }
 }

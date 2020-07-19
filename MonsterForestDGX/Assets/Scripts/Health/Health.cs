@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
     public float maxHp = 100f;
     public float currentHp;
     public Fighter fighter;
-    public bool inBlock = false;
     public Slider hpSlider;
     public Image hpImage;
     public Color lowColor;
@@ -26,13 +25,11 @@ public class Health : MonoBehaviour
 
     public virtual void TakeDamage(float dmg, ElementType magicType)
     {
-        if (inBlock)
-        {
-            BlockDown();
-            return;
-        }
-
         float realDmg = resistant.CalculateDmg(dmg, magicType);
+
+        //TODO: Add resistant
+        realDmg = GetBlockedDamage(realDmg);
+
         currentHp -= realDmg;
 
         SetUpHealth();
@@ -43,13 +40,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public virtual void SetUpBlock()
-    {
-        inBlock = true;
-    }
+    protected abstract float GetBlockedDamage(float dmg);
 
-    public virtual void BlockDown()
-    {
-        inBlock = false;
-    }
+    public abstract void SetDamageBlock();
 }

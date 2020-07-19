@@ -61,7 +61,6 @@ public class Player : Fighter
     public void BattleEnd(int id)
     {
         InBattle = false;
-        health.inBlock = false;
         playerHealth.BlockDown();
 
 
@@ -132,6 +131,7 @@ public class Player : Fighter
 
     public void CastSpell(SpellResult spellResult)
     {
+        battleManager.PlayerAttack();
         magicCircleHandler.CastSpell(spellResult);
     }
 

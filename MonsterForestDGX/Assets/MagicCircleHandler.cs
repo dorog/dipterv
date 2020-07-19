@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class MagicCircleHandler : MonoBehaviour
 {
     public bool canAttack = false;
 
-    private Vector3 mousePosition;
 
     private Vector3 handPosition;
-    private Quaternion handRotaion;
 
     public GameObject magicCircle;
 
@@ -36,11 +32,6 @@ public class MagicCircleHandler : MonoBehaviour
 
     public float magicCircleExtraDistance = 2;
 
-    private void Start()
-    {
-        //coolDownRectTransform = coolDown.transform.GetComponent<RectTransform>();
-    }
-
     public void ResetCooldown()
     {
         resetedCd = true;
@@ -50,14 +41,6 @@ public class MagicCircleHandler : MonoBehaviour
     {
         if (player.InBattle && player.CanAttack())
         {
-            //Remove later, add def spells
-            /*if (Input.GetKeyDown(KeyCode.Keypad0) && !canAttack)
-            {
-                health.SetUpBlock();
-            }*/
-
-            //feedback.text = "Fix: " + handPosition.ToString() + "\nHand: " + hand.transform.position;
-
             InputDevice device = InputDevices.GetDeviceAtXRNode(input);
             device.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryBtn);
             device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryBtn);
@@ -65,9 +48,6 @@ public class MagicCircleHandler : MonoBehaviour
             if (secondaryBtn && !inCast)
             {
                 inCast = true;
-                mousePosition = Input.mousePosition;
-                handPosition = hand.transform.position;
-                handRotaion = hand.transform.rotation;
 
                 magicCircle.transform.position = hand.transform.position + hand.transform.forward * magicCircleExtraDistance;
                 magicCircle.transform.rotation = hand.transform.rotation;
@@ -77,16 +57,12 @@ public class MagicCircleHandler : MonoBehaviour
             {
                 inCast = false;
                 magicCircle.SetActive(false);
-
-                //feedback.text = hand.transform.position.ToString();
-                //Debug.Log(hand.transform.position.ToString());
             }
         }
     }
 
     public void Def()
     {
-        //health.SetUpBlock();
         magicCircle.SetActive(false);
         inCast = false;
     }
@@ -102,19 +78,11 @@ public class MagicCircleHandler : MonoBehaviour
 
     public void CastSpell(SpellResult spellResult)
     {
-        //Vector3 position = Camera.main.ScreenToWorldPoint(mousePosition);
-        //GameObject spell = Instantiate(spellResult.spell, position + transform.forward, Camera.main.transform.rotation);
-        Vector3 position = handPosition;
         GameObject spell = Instantiate(spellResult.spell, magicCircle.transform.position, magicCircle.transform.rotation);
         PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
         spellAttack.coverage = spellResult.coverage;
 
         SetUpCoolDown(spellResult.cooldown);
-
-        if (!canAttack)
-        {
-            //health.SetUpBlock();
-        }
 
         magicCircle.SetActive(false);
     }
@@ -124,15 +92,15 @@ public class MagicCircleHandler : MonoBehaviour
         float duration = cd;
         while (duration > 0 && !resetedCd)
         {
-            //normalizedTime += Time.deltaTime / duration;
             coolDown.text = duration.ToString();
             duration -= Time.deltaTime;
-            //slider.value -= Time.deltaTime / duration;
+
             yield return null;
         }
 
+        //TODO: Reset text after win
         coolDown.text = "Ready";
-        //coolDown.gameObject.SetActive(false);
+
         inCast = false;
         resetedCd = false;
     }
@@ -144,9 +112,6 @@ public class MagicCircleHandler : MonoBehaviour
         if (!resetedCd)
         {
             coolDown.text = cd.ToString();
-            /*coolDownRectTransform.sizeDelta = new Vector2(multiplyCD * cd, coolDownRectTransform.sizeDelta.y);
-            coolDown.value = 1;
-            coolDown.gameObject.SetActive(true);*/
             StartCoroutine(Countdown(cd));
         }
         else
@@ -192,16 +157,7 @@ public class MagicCircleHandler : MonoBehaviour
     {
         var matrix = hand.transform.worldToLocalMatrix;
 
-        //Debug.Log("Hand fix: " + handPosition);
-        //Debug.Log("Hand trans: " + hand.transform.position);
-        //return hand.transform.position - handPosition;
         return hand.transform.position;
-    }
-
-    public Vector3 GetNormal()
-    {
-        Debug.Log("Normal: " + magicCircle.transform.forward);
-        return magicCircle.transform.forward;
     }
 
     public Transform GetTransform()

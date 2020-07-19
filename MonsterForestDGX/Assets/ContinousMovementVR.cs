@@ -38,7 +38,6 @@ public class ContinousMovementVR : MonoBehaviour
         ColliderFollowHeadset();
 
         Quaternion rotation = Quaternion.Euler(0, xrRig.cameraGameObject.transform.eulerAngles.y, 0);
-        //Quaternion rotation = Quaternion.Euler(0, body.transform.eulerAngles.y, 0);
         Vector3 position = transform.position + (rotation * new Vector3(inputDirection.x, 0, inputDirection.y) * Time.fixedDeltaTime * speed);
         rigid.MovePosition(position);
 

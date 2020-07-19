@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.UI;
 
 public class Paint : MonoBehaviour
 {
@@ -27,44 +25,11 @@ public class Paint : MonoBehaviour
         {
             try
             {
-                //Vector3 position = ScreenWithoutRay();
-                /*Vector3 position = transform.position + magicCircleHandler.GetPosition();
-                Debug.Log("Pos: " + position);
-                position.z = transform.position.z;
-
-                Vector3 planeNormal = magicCircleHandler.GetNormal();
-
-                Vector3 flattenedVector = Vector3.ProjectOnPlane(magicCircleHandler.GetPosition(), planeNormal);
-
-                float up_angle = Vector3.SignedAngle(Vector3.forward, player.transform.forward, Vector3.up);
-                float left_angle = Vector3.SignedAngle(player.transform.forward, transform.forward, Vector3.left);
-
-                //Vector3 rotatedVector = Quaternion.Euler(-left_angle, up_angle, 0) * new Vector3(position.x * scale, position.y * scale, 0);
-                Vector3 rotatedVector = Quaternion.Euler(-left_angle, up_angle, 0) * new Vector3(position.x, position.y, 0);
-                Vector3 playerPoint = transform.position + rotatedVector;
-
-                //text.text += "\n" + (playerPoint);
-                //text.text += "\n" + (hand.position);
-                text.text += "\nFlattered: " + (flattenedVector);
-                text.text += "\nNormal: " + (planeNormal);
-                //lineRenderer.SetPosition(lineRenderer.positionCount - 1, hand.position);*/
-
-
                 Transform flat = magicCircleHandler.GetTransform();
 
                 Vector3 relativPosition = magicCircleHandler.GetPosition() - flat.position;
                 Vector3 projected = Vector3.ProjectOnPlane(relativPosition, flat.forward);
                 Vector3 flattenedVector = flat.position + projected;
-
-                //Vector3 flattenedVector = transform.position + Vector3.ProjectOnPlane(magicCircleHandler.GetPosition(), flat.forward);
-
-                /*float up_angle = Vector3.SignedAngle(Vector3.forward, flat.forward, Vector3.up);
-                //float left_angle = Vector3.SignedAngle(flat.forward, transform.forward, Vector3.left);
-                float left_angle = Vector3.SignedAngle(Vector3.forward, flat.forward, Vector3.left);
-                float forward_angle = Vector3.SignedAngle(Vector3.forward, flat.right, Vector3.forward);
-
-                Vector3 rotatedVector = Quaternion.Euler(-left_angle, up_angle, forward_angle) * new Vector3(flattenedVector.x, flattenedVector.y, flattenedVector.z);
-                Vector3 playerPoint = flat.position + rotatedVector;*/
 
                 Vector2 guess = GetGuess(flattenedVector, flat) * 200;
 
@@ -107,15 +72,6 @@ public class Paint : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    private Vector3 ScreenWithoutRay()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.x -= Screen.width / 2;
-        mousePos.y -= Screen.height / 2;
-
-        return mousePos;
-    }
-
     private void CheckResult()
     {
         if (lineRenderer.positionCount != 0)
@@ -139,6 +95,4 @@ public class Paint : MonoBehaviour
         lineRenderer.positionCount = 0;
         SpellManager.ResetSpells();
     }
-
-
 }
