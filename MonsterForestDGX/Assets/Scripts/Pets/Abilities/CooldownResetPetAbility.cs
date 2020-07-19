@@ -10,9 +10,12 @@ public class CooldownResetPetAbility : PetAbility
 
     private MagicCircleHandler magicCircleHandler;
 
+    private ParticleSystem effect;
+
     public override void Init(Player _player)
     {
         player = _player;
+        effect = _player.GetCooldownEffect();
         magicCircleHandler = player.GetMagicCircleHandler();
         magicCircleHandler.castSpellDelegateEvent += ResetCooldown;
     }
@@ -20,10 +23,10 @@ public class CooldownResetPetAbility : PetAbility
     private void ResetCooldown()
     {
         float random = UnityEngine.Random.Range(0, 100);
-        //Debug.Log(random + ", " + resetChance);
         if (random <= resetChance)
         {
             magicCircleHandler.ResetCooldown();
+            effect.Play();
         }
     }
 }

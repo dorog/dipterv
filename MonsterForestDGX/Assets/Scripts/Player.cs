@@ -25,18 +25,18 @@ public class Player : Fighter
     private GameObject petGO;
 
     private PetManager petManager;
-    private SpellTreeManager spellTreeManager;
     private SpellManager spellManager;
     private AliveMonstersManager aliveMonstersManager;
 
     public BattleLobby battleLobbyUI;
+
+    public ParticleSystem cooldownParticleSystemEffect;
 
     private void Start()
     {
         health.SetUpHealth();
 
         petManager = PetManager.GetInstance();
-        spellTreeManager = SpellTreeManager.GetInstance();
         aliveMonstersManager = AliveMonstersManager.GetInstance();
         spellManager = SpellManager.GetInstance();
     }
@@ -138,5 +138,10 @@ public class Player : Fighter
     public MagicCircleHandler GetMagicCircleHandler()
     {
         return magicCircleHandler;
+    }
+
+    public ParticleSystem GetCooldownEffect()
+    {
+        return cooldownParticleSystemEffect;
     }
 }
