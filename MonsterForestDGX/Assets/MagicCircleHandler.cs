@@ -76,11 +76,13 @@ public class MagicCircleHandler : MonoBehaviour
         ClearDelegates();
     }
 
-    public void CastSpell(SpellResult spellResult)
+    public void CastSpell(SpellResult spellResult, BattleManager battleManager)
     {
         GameObject spell = Instantiate(spellResult.spell, magicCircle.transform.position, magicCircle.transform.rotation);
-        PlayerSpell spellAttack = spell.GetComponent<PlayerSpell>();
+        SpellAttack spellAttack = spell.GetComponent<SpellAttack>();
         spellAttack.coverage = spellResult.coverage;
+
+        spellAttack.SetBattleManager(battleManager);
 
         SetUpCoolDown(spellResult.cooldown);
 

@@ -13,6 +13,9 @@ public class BattleManager : MonoBehaviour
 
     private GameObject battlePlace;
 
+    public delegate void MonsterTurnEndDelegate();
+    public MonsterTurnEndDelegate monsterTurnStartDelegateEvent;
+
     public void Battle(int _id, GameObject battlePlace)
     {
         this.battlePlace = battlePlace;
@@ -47,8 +50,11 @@ public class BattleManager : MonoBehaviour
     public void MonsterTurn()
     {
         monster.StartTurn();
+
         player.DefTurn();
         turn.text = "Monster Turn";
+
+        monsterTurnStartDelegateEvent();
     }
 
     public void MonsterDied()

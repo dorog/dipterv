@@ -28,7 +28,8 @@ public class ShieldHandler : MonoBehaviour
             device.TryGetFeatureValue(CommonUsages.gripButton, out bool pressed);
 
             float angle = Vector3.Angle(hand.forward, Vector3.up);
-            feedback.text = "" + angle;
+            //feedback.text = "" + angle;
+            //feedback.text = "" + angle;
 
             if (pressed)
             {

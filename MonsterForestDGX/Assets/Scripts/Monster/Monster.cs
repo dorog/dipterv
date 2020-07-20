@@ -93,6 +93,7 @@ public class Monster : Fighter
         while (normalizedTime <= 1f && !died)
         {
             normalizedTime += Time.deltaTime / duration;
+
             yield return null;
         }
 

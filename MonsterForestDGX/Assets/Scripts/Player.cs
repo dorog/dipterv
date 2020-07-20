@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,7 +131,7 @@ public class Player : Fighter
     public void CastSpell(SpellResult spellResult)
     {
         battleManager.PlayerAttack();
-        magicCircleHandler.CastSpell(spellResult);
+        magicCircleHandler.CastSpell(spellResult, battleManager);
     }
 
     public MagicCircleHandler GetMagicCircleHandler()
@@ -156,5 +155,10 @@ public class Player : Fighter
 
         health.ResetHealth();
         teleport.TeleportToDefaultLocation();
+    }
+
+    public void DestroyAttackSpells()
+    {
+
     }
 }
