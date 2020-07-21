@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 
+//TODO: Merge this and EnableShopUI
 public class UiShower : MonoBehaviour
 {
     public MenuUI menuUI;
     public Vector3 offset;
 
-    public void ShowUI()
+    public void ShowUI(EnableShopUI enableShopUI)
     {
-        /*portUI.transform.rotation = transform.rotation;
-        portUI.transform.position = transform.position + offset;
-
-        portUI.SetActive(true);*/
-        menuUI.ShowUI(transform.position + offset, transform.rotation);
+        menuUI.ShowUI(transform.position + offset, transform.rotation, enableShopUI);
     }
 }

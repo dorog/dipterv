@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Click()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
                     teleportUI.ShowUI();
                 }
             }
-        }
+        }*/
     }
 
     private void Move()

@@ -1,33 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.XR;
 
 public class EnableShopUI : MonoBehaviour
 {
     public UiShower uiShower;
+    public XRNode input = XRNode.LeftHand;
+    private bool inArea = false;
+    private bool inShop = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject notification;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (inArea && !inShop)
+        {
+
+            InputDevice device = InputDevices.GetDeviceAtXRNode(input);
+            device.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed);
+
+            if (pressed)
+            {
+                uiShower.ShowUI(this);
+                inShop = true;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            uiShower.ShowUI();
+            inArea = true;
+            notification.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (other.gameObject.tag == "Player")
+        {
+            inArea = false;
+            notification.SetActive(false);
+        }
+    }
+
+    public void ClosedUI()
+    {
+        inShop = false;
     }
 }

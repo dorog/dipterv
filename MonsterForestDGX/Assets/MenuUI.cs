@@ -2,22 +2,31 @@
 
 public class MenuUI : MonoBehaviour
 {
-    public Transform canvas;
+    public Transform menu;
     public GameObject ui;
     public Player player;
 
+    private EnableShopUI esUI = null;
+
     public void HideUI()
     {
+        if(esUI != null)
+        {
+            esUI.ClosedUI();
+        }
+
         player.MenuState(false);
         ui.SetActive(false);
     }
 
-    public void ShowUI(Vector3 position, Quaternion rotation)
+    public void ShowUI(Vector3 position, Quaternion rotation, EnableShopUI enableShopUI)
     {
+        esUI = enableShopUI;
+
         player.MenuState(true);
 
-        canvas.position = position;
-        canvas.rotation = rotation;
+        menu.position = position;
+        menu.rotation = rotation;
 
         ui.SetActive(true);
     }
