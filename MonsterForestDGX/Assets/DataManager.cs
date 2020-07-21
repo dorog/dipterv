@@ -87,14 +87,17 @@ public class DataManager : MonoBehaviour
         Save(gameData);
     }
 
-    public void Won(List<ISpellPattern> spellPatterns)
+    public void Won(List<ISpellPattern> spellPatterns, float exp)
     {
+        gameData.exp = exp;
         for (int i = 0; i < spellPatterns.Count; i++)
         {
             gameData.basePatternSpellLevels[i] = spellPatterns[i].GetLevelValue();
         }
 
         Save(gameData);
+
+        expChangedEvent(exp);
     }
 
     public Pet[] GetAvailablePets()

@@ -165,7 +165,7 @@ public class SpellManager : SingletonClass<SpellManager>
     {
         playerExperience.AddExp(ExpType.Kill, lastCoverage);
 
-        DataManager.GetInstance().Won(attackPatterns);
+        DataManager.GetInstance().Won(attackPatterns, playerExperience.GetExp());
     }
 
     public void AddXpForHit(float coverage)

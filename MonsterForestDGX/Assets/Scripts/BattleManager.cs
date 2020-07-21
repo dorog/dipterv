@@ -54,6 +54,7 @@ public class BattleManager : MonoBehaviour
         player.DefTurn();
         turn.text = "Monster Turn";
 
+        //TODO: Nullref error sometimes
         monsterTurnStartDelegateEvent();
     }
 
