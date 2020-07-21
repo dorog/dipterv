@@ -35,7 +35,6 @@ public class SpellAttack : PlayerSpell
             hasCollided = true;
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
 
-            battleManager.monsterTurnStartDelegateEvent -= VanishSpell;
             Destroy(impactParticle, 3f);
             Destroy(gameObject);
         }
@@ -43,11 +42,14 @@ public class SpellAttack : PlayerSpell
 
     private void VanishSpell()
     {
-        battleManager.monsterTurnStartDelegateEvent -= VanishSpell;
-
         hasCollided = true;
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        battleManager.monsterTurnStartDelegateEvent -= VanishSpell;
     }
 
     private void DamageMonster(Collision hit)
