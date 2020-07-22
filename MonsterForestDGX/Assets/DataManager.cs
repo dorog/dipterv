@@ -114,6 +114,11 @@ public class DataManager : MonoBehaviour
         return pets.ToArray();
     }
 
+    public bool[] GetAllPetsAvailability()
+    {
+        return gameData.availablePets;
+    }
+
     public GameObject GetLastLocation()
     {
         return gameData.lastLocation;
@@ -162,5 +167,11 @@ public class DataManager : MonoBehaviour
 
         expChangedEvent(gameData.exp);
         spellLevelChangedEvent(id);
+    }
+
+    public void CollectPet(int id)
+    {
+        gameData.availablePets[id] = true;
+        Save(gameData);
     }
 }

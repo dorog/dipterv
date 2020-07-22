@@ -35,8 +35,7 @@ public class PetTab : MonoBehaviour
     {
         for(int i = parent.childCount - 1; i >= 0; i--)
         {
-            Destroy(parent.GetChild(i));
+            Destroy(parent.GetChild(i).gameObject);
         }
-        
     }
 }

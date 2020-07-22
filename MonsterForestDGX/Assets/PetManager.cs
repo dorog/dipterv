@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class PetManager : SingletonClass<PetManager>
 {
@@ -15,6 +16,12 @@ public class PetManager : SingletonClass<PetManager>
 
     private static readonly string lastPetKey = "lastPetKey";
 
+    private static readonly int defaultPetId = -1;
+    private int availablePetId = defaultPetId;
+    private PetEnable actualPetEnable = null;
+
+    public XRNode input = XRNode.LeftHand;
+
     private void Awake()
     {
         Init(this);
@@ -22,15 +29,20 @@ public class PetManager : SingletonClass<PetManager>
 
     private void Start()
     {
+        SetupPets();
+    }
+
+    private void SetupPets()
+    {
         pets = DataManager.GetInstance().GetAvailablePets();
-        if(pets == null)
+        if (pets == null)
         {
             Debug.LogError("PetManager: Null");
         }
         else
         {
             selectedPet = PlayerPrefs.GetInt(lastPetKey, notSelectedPetValue);
-            if(selectedPet >= pets.Length)
+            if (selectedPet >= pets.Length)
             {
                 selectedPet = notSelectedPetValue;
                 petTab.SetUpUI(pets);
@@ -68,5 +80,38 @@ public class PetManager : SingletonClass<PetManager>
     public Pet[] GetPets()
     {
         return pets;
+    }
+
+    private void Update()
+    {
+        if(availablePetId != defaultPetId)
+        {
+            InputDevice device = InputDevices.GetDeviceAtXRNode(input);
+            device.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed);
+
+            if (pressed)
+            {
+                CollectPet();
+                DisableAvailablePet();
+            }
+        }
+    }
+
+    public void SetAvailablePet(PetEnable petEnable, int id)
+    {
+        availablePetId = id;
+        actualPetEnable = petEnable;
+    }
+
+    public void DisableAvailablePet()
+    {
+        availablePetId = defaultPetId;
+    }
+
+    private void CollectPet()
+    {
+        DataManager.GetInstance().CollectPet(availablePetId);
+        actualPetEnable.Collected();
+        SetupPets();
     }
 }
