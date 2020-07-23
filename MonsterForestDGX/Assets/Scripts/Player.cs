@@ -31,6 +31,8 @@ public class Player : Fighter
 
     public ParticleSystem cooldownParticleSystemEffect;
 
+    private bool petEnable = true;
+
     private void Start()
     {
         health.SetUpHealth();
@@ -47,13 +49,16 @@ public class Player : Fighter
 
         InBattle = true;
 
-        GameObject playerPet = petManager.GetPet();
-        if(playerPet != null)
+        if (petEnable)
         {
-            petGO = Instantiate(playerPet, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
+            GameObject playerPet = petManager.GetPet();
+            if (playerPet != null)
+            {
+                petGO = Instantiate(playerPet, playerPet.transform.position + new Vector3(transform.position.x, 0, transform.position.z) + transform.right * 2, transform.rotation);
 
-            Pet pet = petGO.GetComponent<Pet>();
-            pet.AddPlayer(this);
+                Pet pet = petGO.GetComponent<Pet>();
+                pet.AddPlayer(this);
+            }
         }
     }
 
@@ -93,16 +98,20 @@ public class Player : Fighter
 
     public void AttackTurn()
     {
+        Debug.Log("ATK Turn");
         grid.color = AttackGridColor;
         magicCircleHandler.AttackTurn();
     }
 
-    public void Battle(BattleManager battleManager, Resistant monsterResistant)
+    public void Battle(BattleManager battleManager, Resistant monsterResistant, bool petEnable)
     {
+        this.petEnable = petEnable;
+
         InLobby = true;
         this.battleManager = battleManager;
         battleLobbyUI.battleManager = battleManager;
         battleLobbyUI.SetResistantValues(monsterResistant);
+        battleLobbyUI.SetPetTab(petEnable);
 
         battleLobbyUI.gameObject.SetActive(true);
     }
@@ -121,11 +130,6 @@ public class Player : Fighter
     {
         InLobby = false;
         teleport.TeleportToLastPosition();
-    }
-
-    public bool CanAttack()
-    {
-        return magicCircleHandler.canAttack;
     }
 
     public void CastSpell(SpellResult spellResult)
@@ -160,5 +164,20 @@ public class Player : Fighter
     public void DestroyAttackSpells()
     {
 
+    }
+
+    public bool CanAttack()
+    {
+        return magicCircleHandler.canAttack;
+    }
+
+    public void FinishedTraining()
+    {
+        magicCircleHandler.canAttack = false;
+        InBattle = false;
+
+        playerHealth.BlockDown();
+
+        teleport.TeleportToLastPosition();
     }
 }

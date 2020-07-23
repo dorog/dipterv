@@ -8,9 +8,16 @@ public class BattleLobby : MonoBehaviour
     public ResistantValue fire;
     public ResistantValue air;
 
+    public GameObject petTab;
+
     public void StartBattle()
     {
         battleManager.BattleStart();
+    }
+
+    public void SetPetTab(bool petEnable)
+    {
+        petTab.SetActive(petEnable);
     }
 
     public void SetResistantValues(Resistant resistant)

@@ -1,16 +1,15 @@
 ﻿using System;
-using UnityEngine;
 
 [Serializable]
 public class AttackPetAbility : PetNextAction
 {
     private Player player;
-    private MonsterHealth monsterHealth;
+    private Health monsterHealth;
 
     public override void Init(Player _player)
     {
         player = _player;
-        monsterHealth = player.battleManager.monster.GetComponent<MonsterHealth>();
+        monsterHealth = player.battleManager.monster.GetHealth();
         base.Init(player);
     }
 

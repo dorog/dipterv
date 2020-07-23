@@ -29,4 +29,9 @@ public class CooldownResetPetAbility : PetAbility
             effect.Play();
         }
     }
+
+    public void DisableAbility()
+    {
+        magicCircleHandler.castSpellDelegateEvent -= ResetCooldown;
+    }
 }

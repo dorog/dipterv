@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
-    public Monster monster;
-    public MonsterHealth monsterHealth;
+    public GameObject monsterGO;
+    public IEnemy monster;
+    public Health monsterHealth;
     public Player player;
     public SceneLoader sceneLoader;
     public Text turn;
@@ -16,6 +17,8 @@ public class BattleManager : MonoBehaviour
     public delegate void MonsterTurnEndDelegate();
     public MonsterTurnEndDelegate monsterTurnStartDelegateEvent;
 
+    public bool petEnable = true;
+
     public void Battle(int _id, GameObject battlePlace)
     {
         this.battlePlace = battlePlace;
@@ -26,8 +29,9 @@ public class BattleManager : MonoBehaviour
 
         player.battleManager = this;
 
+        monster = monsterGO.GetComponent<IEnemy>();
         monster.Appear();
-        player.Battle(this, monsterHealth.resistant);
+        player.Battle(this, monsterHealth.resistant, petEnable);
     }
 
     public void BattleStart()
@@ -43,19 +47,23 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerTurn()
     {
+        Debug.Log("Player: start");
         player.StartTurn();
         turn.text = "Player Turn";
     }
 
     public void MonsterTurn()
     {
+        player.DefTurn();
+
         monster.StartTurn();
 
-        player.DefTurn();
         turn.text = "Monster Turn";
 
-        //TODO: Nullref error sometimes
-        monsterTurnStartDelegateEvent();
+        if(monsterTurnStartDelegateEvent != null)
+        {
+            monsterTurnStartDelegateEvent();
+        }
     }
 
     public void MonsterDied()
@@ -82,6 +90,12 @@ public class BattleManager : MonoBehaviour
 
         monster.Disappear();
         player.Run();
+        battlePlace.SetActive(true);
+    }
+
+    public void FinishedTraining()
+    {
+        turnGO.SetActive(false);
         battlePlace.SetActive(true);
     }
 }

@@ -8,9 +8,6 @@ public class MagicCircleHandler : MonoBehaviour
 {
     public bool canAttack = false;
 
-
-    private Vector3 handPosition;
-
     public GameObject magicCircle;
 
     private bool inCast = false;
@@ -39,7 +36,7 @@ public class MagicCircleHandler : MonoBehaviour
 
     private void Update()
     {
-        if (player.InBattle && player.CanAttack())
+        if (player.InBattle && canAttack)
         {
             InputDevice device = InputDevices.GetDeviceAtXRNode(input);
             device.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryBtn);
@@ -69,6 +66,7 @@ public class MagicCircleHandler : MonoBehaviour
 
     public void BattleEnd()
     {
+        Debug.Log("BattleEnd");
         inCast = false;
         canAttack = false;
         magicCircle.SetActive(false);
@@ -132,6 +130,8 @@ public class MagicCircleHandler : MonoBehaviour
 
     public void DefTurn()
     {
+        Debug.Log("Can attack");
+
         canAttack = false;
         magicCircle.SetActive(false);
         inCast = false;
@@ -158,8 +158,6 @@ public class MagicCircleHandler : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        var matrix = hand.transform.worldToLocalMatrix;
-
         return hand.transform.position;
     }
 

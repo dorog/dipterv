@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Monster : Fighter
+public class Monster : Fighter, IEnemy
 {
     public string MonsterName = "";
     public Text nameText;
@@ -172,5 +172,10 @@ public class Monster : Fighter
         Disappear();
 
         health.ResetHealth();
+    }
+
+    public Health GetHealth()
+    {
+        return GetComponent<MonsterHealth>();
     }
 }
