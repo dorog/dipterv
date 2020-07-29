@@ -17,6 +17,7 @@ public class SpellManager : SingletonClass<SpellManager>
     private readonly int distanceDiff = 1100;
 
     private float lastCoverage = 0;
+    private float castedCoverage = 0;
 
     public GameObject castParent;
     public CastEffect[] castEffects;
@@ -98,8 +99,9 @@ public class SpellManager : SingletonClass<SpellManager>
             }
         }
 
+        castedCoverage = max;
 
-        if(index != -1)
+        if (index != -1)
         {
             playerExperience.AddExp(ExpType.Cast, max);
             SpellResult spellResult = new SpellResult
@@ -168,6 +170,11 @@ public class SpellManager : SingletonClass<SpellManager>
         DataManager.GetInstance().Won(attackPatterns, playerExperience.GetExp());
     }
 
+    public float GetCastedCoverage()
+    {
+        return castedCoverage;
+    }
+
     public void AddXpForHit(float coverage)
     {
         lastCoverage = coverage;
@@ -178,5 +185,47 @@ public class SpellManager : SingletonClass<SpellManager>
     {
         //TODO: Not only attacks!
         attackPatterns[id].LevelUp();
+    }
+
+    public BasePatternSpell GetSpellPoints(string name)
+    {
+        var basePatterns = DataManager.GetInstance().GetBasePatterns();
+
+        if(name == "All")
+        {
+            return null;
+        }
+        else
+        {
+            ElementType type = ElementType.Air;
+            switch (name)
+            {
+                case "Fire":
+                    type = ElementType.Fire;
+                    break;
+                case "Water":
+                    type = ElementType.Water;
+                    break;
+                case "Air":
+                    type = ElementType.Air;
+                    break;
+                case "Earth":
+                    type = ElementType.Earth;
+                    break;
+                default:
+                    type = ElementType.Air;
+                    break;
+            }
+
+            for(int i = 0; i < basePatterns.Count; i++)
+            {
+                if(basePatterns[i].elementType == type)
+                {
+                    return basePatterns[i];
+                }
+            }
+
+            return null;
+        }
     }
 }

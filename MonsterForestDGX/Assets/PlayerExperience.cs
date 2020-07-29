@@ -24,7 +24,7 @@ public class PlayerExperience : SingletonClass<PlayerExperience>
         this.exp = exp;
         int expValue = Mathf.FloorToInt(exp);
         spellsUI.SetExp(expValue);
-        expText.text = expValue + " EXP";
+        //expText.text = expValue + " EXP";
     }
 
     public void AddExp(ExpType expType, float coverage)

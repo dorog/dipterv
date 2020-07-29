@@ -44,7 +44,8 @@ public class Player : Fighter
 
     public void BattleStarted()
     {
-        battleLobbyUI.gameObject.SetActive(false);
+        //battleLobbyUI.gameObject.SetActive(false);
+
         InLobby = false;
 
         InBattle = true;
@@ -98,8 +99,7 @@ public class Player : Fighter
 
     public void AttackTurn()
     {
-        Debug.Log("ATK Turn");
-        grid.color = AttackGridColor;
+        //grid.color = AttackGridColor;
         magicCircleHandler.AttackTurn();
     }
 
@@ -129,7 +129,7 @@ public class Player : Fighter
     public void Run()
     {
         InLobby = false;
-        teleport.TeleportToLastPosition();
+        //teleport.TeleportToLastPosition();
     }
 
     public void CastSpell(SpellResult spellResult)
@@ -159,11 +159,6 @@ public class Player : Fighter
 
         health.ResetHealth();
         teleport.TeleportToDefaultLocation();
-    }
-
-    public void DestroyAttackSpells()
-    {
-
     }
 
     public bool CanAttack()

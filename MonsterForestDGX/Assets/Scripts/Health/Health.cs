@@ -19,8 +19,8 @@ public abstract class Health : MonoBehaviour
 
     public virtual void SetUpHealth()
     {
-        hpSlider.value = currentHp / maxHp;
-        hpImage.color = Color.Lerp(lowColor, fullColor, currentHp / maxHp);
+        //hpSlider.value = currentHp / maxHp;
+        //hpImage.color = Color.Lerp(lowColor, fullColor, currentHp / maxHp);
     }
 
     public virtual void TakeDamage(float dmg, ElementType magicType)

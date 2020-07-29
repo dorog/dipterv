@@ -1,30 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class DefendingTrainingDoll : MonoBehaviour, IEnemy
 {
     public BattleManager battleManager;
 
-    public Slider cooldownSlider;
-
-    public CooldownResetPetAbility cooldownReset;
-
-    public GameObject canvas;
-
-    public Text percent;
-
     public Player player;
 
-    public void StepSlider(float value)
-    {
-        cooldownSlider.value += value;
-    }
+    public TrainingCampUI trainingCampUI;
 
-    public void SetCooldownChance()
-    {
-        cooldownReset.resetChance = cooldownSlider.value * 100;
-        percent.text = (cooldownSlider.value * 100) + "%";
-    }
+    public CooldownResetPetAbility cooldownReset;
 
     public void Appear()
     {
@@ -53,16 +37,16 @@ public class DefendingTrainingDoll : MonoBehaviour, IEnemy
 
     public void StartTurn()
     {
-        cooldownReset.Init(battleManager.player);
-        canvas.SetActive(true);
+        trainingCampUI.EnableUI();
 
-        Debug.Log("Doll: Start");
+        cooldownReset.Init(battleManager.player);
+
         battleManager.PlayerTurn();
     }
 
     public void FinishedTraining()
     {
-        canvas.SetActive(false);
+        trainingCampUI.DisableUI();
 
         cooldownReset.DisableAbility();
 

@@ -130,8 +130,6 @@ public class MagicCircleHandler : MonoBehaviour
 
     public void DefTurn()
     {
-        Debug.Log("Can attack");
-
         canAttack = false;
         magicCircle.SetActive(false);
         inCast = false;

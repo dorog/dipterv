@@ -19,10 +19,11 @@ public class Teleport : MenuUI
         GameObject last = dataManager.GetLastLocation();
         ports = dataManager.GetTeleportsState();
 
-        if (last != null)
+        //TODO: Refactor, id instead of gameobject
+        /*if (last != null)
         {
             TeleportPlayer(last);
-        }
+        }*/
 
         SetupTeleportUI();
     }

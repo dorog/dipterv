@@ -8,7 +8,7 @@ public class BattleManager : MonoBehaviour
     public Health monsterHealth;
     public Player player;
     public SceneLoader sceneLoader;
-    public Text turn;
+    //public Text turn;
     public GameObject turnGO;
     public int id;
 
@@ -25,7 +25,7 @@ public class BattleManager : MonoBehaviour
 
         id = _id;
         turnGO.SetActive(true);
-        turn.text = "Battle!";
+        //turn.text = "Battle!";
 
         player.battleManager = this;
 
@@ -36,8 +36,8 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart()
     {
-        player.BattleStarted();
         MonsterTurn();
+        player.BattleStarted();
     }
 
     public void PlayerAttack()
@@ -47,9 +47,8 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerTurn()
     {
-        Debug.Log("Player: start");
         player.StartTurn();
-        turn.text = "Player Turn";
+        //turn.text = "Player Turn";
     }
 
     public void MonsterTurn()
@@ -58,12 +57,9 @@ public class BattleManager : MonoBehaviour
 
         monster.StartTurn();
 
-        turn.text = "Monster Turn";
+        //turn.text = "Monster Turn";
 
-        if(monsterTurnStartDelegateEvent != null)
-        {
-            monsterTurnStartDelegateEvent();
-        }
+        monsterTurnStartDelegateEvent?.Invoke();
     }
 
     public void MonsterDied()
@@ -90,7 +86,7 @@ public class BattleManager : MonoBehaviour
 
         monster.Disappear();
         player.Run();
-        battlePlace.SetActive(true);
+        //battlePlace.SetActive(true);
     }
 
     public void FinishedTraining()

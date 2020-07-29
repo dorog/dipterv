@@ -134,7 +134,7 @@ public class Monster : Fighter, IEnemy
 
         animator.SetTrigger(appearAnimation);
         health.SetUpHealth();
-        nameText.text = MonsterName;
+        //nameText.text = MonsterName;
     }
 
     public void Disappear()

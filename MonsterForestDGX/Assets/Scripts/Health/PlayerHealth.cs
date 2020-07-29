@@ -12,7 +12,7 @@ public class PlayerHealth : Health
     {
         base.SetUpHealth();
         
-        hp.text = Mathf.Ceil(currentHp).ToString() + "/" + maxHp.ToString();
+        //hp.text = Mathf.Ceil(currentHp).ToString() + "/" + maxHp.ToString();
     }
 
     public void BlockDown()

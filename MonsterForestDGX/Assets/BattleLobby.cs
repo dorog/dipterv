@@ -12,7 +12,11 @@ public class BattleLobby : MonoBehaviour
 
     public void StartBattle()
     {
+        Debug.Log("1");
         battleManager.BattleStart();
+        Debug.Log("2");
+
+        gameObject.SetActive(false);
     }
 
     public void SetPetTab(bool petEnable)
