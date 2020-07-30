@@ -14,6 +14,7 @@ public class Rectangle
     private Straight minX;
 
     private Vector2 distancePoint;
+    private Vector2 direction;
 
     public Rectangle(int id, float step, int maxHit, Vector2 startPoint, Vector2 endPoint, float width)
     {
@@ -27,7 +28,7 @@ public class Rectangle
 
     private void CalculateLines(Vector2 startPoint, Vector2 endPoint, float width)
     {
-        Vector2 direction = (endPoint - startPoint).normalized;
+        direction = (endPoint - startPoint).normalized;
         float signedAngle = Vector2.SignedAngle(Vector2.right, direction);
 
         if (signedAngle >= 0 && signedAngle < 90)
@@ -67,11 +68,6 @@ public class Rectangle
     {
         this.distancePoint = distancePoint;
 
-        /*Debug.Log("Direction: " + direction);
-        Debug.Log("Start: " + startPoint);
-        Debug.Log("End: " + endPoint);
-        Debug.Log("Width: " + width);*/
-
         Vector2 normal = new Vector2(-direction.y, direction.x);
 
         maxY = new Straight(startPoint + width * normal, normal);
@@ -79,7 +75,6 @@ public class Rectangle
 
         maxX = new Straight(endPoint, direction);
         minX = new Straight(startPoint, direction);
-
     }
 
     private bool Include(Vector2 point)
@@ -90,9 +85,6 @@ public class Rectangle
         float maxValueX = maxX.GetX(point.y);
         float minValueX = minX.GetX(point.y);
 
-        /*Debug.Log("Y: " + minValueY + " : " + maxValueY);
-        Debug.Log("X: " + minValueX + " : " + maxValueX);*/
-
         return (point.y >= minValueY && point.y <= maxValueY) && (point.x <= maxValueX && point.x >= minValueX);
     }
 
@@ -100,36 +92,29 @@ public class Rectangle
     {
         if (id + maxHit <= lastId)
         {
-            //Debug.Log("Little id: " + id + ", " + (id+ maxHit) + ", " + lastId);
             return -1;
         }
         if (Include(point))
         {
-            //Debug.Log("Include" + id);
-            //Calculate correctly
             Vector2 dir = point - distancePoint;
-            float angle = Vector2.Angle(dir, Vector2.right);
+            float angle = Vector2.Angle(dir, direction);
             float length = dir.magnitude;
 
             float distance = Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * angle) * length);
 
             int calculatedId = Mathf.FloorToInt(distance / step);
-            //Debug.Log("Distance: " + distance);
-            //Debug.Log("Calculated: " + calculatedId);
-            //Debug.Log("Return: " + (calculatedId + id));
             calculatedId = calculatedId >= dones.Length ? dones.Length - 1 : calculatedId;
             if (!dones[calculatedId] && calculatedId + id > lastId)
             {
-                //Debug.Log("Id good");
                 dones[calculatedId] = true;
                 return calculatedId + id;
             }
             else
             {
-                //Debug.Log("Id problem: " + !dones[0] + " and " + (calculatedId > lastId));
                 return -1;
             }
         }
+
         return -1;
     }
 

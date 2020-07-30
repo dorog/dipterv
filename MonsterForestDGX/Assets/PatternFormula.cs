@@ -22,7 +22,6 @@ public class PatternFormula : ISpellPattern
         for(int i = 0; i < points.Count - 1; i++)
         {
             int maxHit = Mathf.CeilToInt((points[i + 1] - points[i]).magnitude / step);
-            //int maxHit = 1;
             rectangles.Add(new Rectangle(id, step, maxHit, points[i], points[i + 1], width));
             id += maxHit;
         }
@@ -45,7 +44,6 @@ public class PatternFormula : ISpellPattern
         if (hit)
         {
             lastId = minId;
-            //Debug.Log("New ID: " + lastId);
         }
     }
 
